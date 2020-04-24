@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'type', 'city', 'interest',
     ];
 
     /**
@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    const ADMIN_TYPE = 'admin';
+    const DEFAULT_TYPE = 'default';
+
+    public function isAdmin()    {
+        return $this->type === self::ADMIN_TYPE;
+    }
 }

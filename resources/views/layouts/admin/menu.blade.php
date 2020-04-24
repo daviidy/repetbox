@@ -50,7 +50,7 @@
                 <div class="navbar-wrapper">
                     <div class="navbar-logo">
                         <a href="index.html">
-                            <img class="img-fluid" src="/admin_dashboard/files/assets/images/logo.png" alt="Theme-Logo" />
+                            <img class="img-fluid" width="300" src="{{ asset('assets/logos/repetbox2.png') }}" alt="Logo RepetBox" />
                         </a>
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="feather icon-menu icon-toggle-right"></i>

@@ -98,6 +98,10 @@ div.contentbox {
     float: left;
 }
 
+.right{
+    float: right;
+}
+
 .contentbox_row{
     width: 80%;
     margin: 1rem auto;
@@ -134,6 +138,92 @@ ul.progresslistv {
     text-align: left;
 }
 
+
+div.trafficlight {
+    display: inline-block;
+    width: 33px;
+    height: 17px;
+    background: #333;
+    border-radius: 2px;
+    border: 1px solid #111;
+    top: 3px;
+    margin-right: 4px;
+}
+
+div.trafficbulb {
+    position: absolute;
+    border: 1px solid black;
+    height: 11px;
+    width: 11px;
+    margin: 2px;
+    border-radius: 50%;
+}
+
+.redon {
+    background-color: #f62c11;
+    z-index: 1;
+}
+
+.greenon {
+    background-color: #11f65d;
+    z-index: 1;
+}
+
+.redoff {
+    background-color: #400f0f;
+}
+
+.greenoff {
+    background-color: #0c2a0a;
+}
+
+table {
+    width: 95%;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.pplminiatures {
+    display: inline-block;
+    margin: 1%;
+    width: 21%;
+    text-align: center;
+    font-size: 8px;
+}
+
+div.creatorspics {
+    display: inline-block;
+    width: 95%;
+    padding-top: 95%;
+}
+
+div.profilepic {
+    background-size: cover;
+    background-position: center center;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+}
+
+div.videobloc {
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ccc;
+}
+
+.row_title{
+    margin-bottom: 2rem;
+}
+
+div.pplsearchmin {
+    display: inline-block;
+    margin: 1%;
+    width: 21%;
+    text-align: center;
+}
+
+
 @media screen and (max-width: 600px){
     .showProfile__button{
         float: left;
@@ -164,6 +254,7 @@ ul.progresslistv {
                      <div class="profilepic sixtyprctwidth" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');">
                          <div class="checkedprofile">✓</div>
                      </div>
+                     <button class="btn btn-primary"><i class="fa fa-thumbs-up"></i> (120)</button>
                  </div>
                  <div class="col-sm-8">
                      <div class="row">
@@ -328,7 +419,7 @@ ul.progresslistv {
      <!--competences-->
      <div class="row contentbox_row">
          <div class="col-sm-12 contentbox center">
-             <h3 style="margin-bottom: 2rem;">
+             <h3 class="row_title">
                  Mes compétences
              </h3>
 
@@ -405,6 +496,161 @@ ul.progresslistv {
                      <span class="badge badge-dark">Dark</span>
                  </div>
              </div>
+         </div>
+
+     </div>
+
+     <!--enregistrements-->
+     <div class="row contentbox_row">
+         <div class="col-sm-12 contentbox center">
+             <h3>
+                 Mes enregistrements
+             </h3>
+             <h6 class="text-left">
+                   <div class="trafficlight">
+                       <div class="trafficbulb redon"></div>
+                       <div class="trafficbulb greenoff"></div>
+                   </div>
+                   All of me
+             </h6>
+             <div class="row videobloc">
+
+                 <div class="col-sm-7">
+                     <video width="100%" controls="">
+					  <source src="./video/guitare.mp4" type="video/mp4">
+					  Attention, votre navigateur ne supporte pas les vidéos
+					</video>
+                 </div>
+                 <div class="col-sm-5 text-justify">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>12/03/2020</td>
+                                <td class="right">00:00:25</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pplminiatures">
+                        <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
+                        thx1138
+                    </div>
+                    <div class="pplminiatures">
+                        <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
+                        thx1138
+                    </div>
+                    <div class="pplminiatures">
+                        <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
+                        thx1138
+                    </div>
+                    <div class="pplminiatures">
+                        <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
+                        thx1138
+                    </div>
+                    <div class="pplminiatures">
+                        <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
+                        thx1138
+                    </div>
+                 </div>
+             </div>
+
+         </div>
+
+     </div>
+
+     <!--reseau-->
+     <div class="row contentbox_row">
+         <div class="col-sm-12 contentbox center">
+             <h3 class="row_title">
+                 Mon réseau de musiciens
+             </h3>
+
+             <div class="row row_title">
+                 <div class="col-sm-3">
+                     <label for="">Style</label>
+                     <select class="form-control" id="sel1" name="sellist1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                      </select>
+                 </div>
+                 <div class="col-sm-3">
+                     <label for="">Instrument</label>
+                     <select class="form-control" id="sel1" name="sellist1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                      </select>
+                 </div>
+                 <div class="col-sm-3">
+                     <label for="">Niveau</label>
+                     <select class="form-control" id="sel1" name="sellist1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                      </select>
+                 </div>
+                 <div class="col-sm-3">
+                     <label for="">Nb Enrg.</label>
+                     <select class="form-control" id="sel1" name="sellist1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                      </select>
+                 </div>
+             </div>
+             <div class="row">
+                 <p class="left row_title">Résultat de recherche : 26</p>
+             </div>
+
+             <div class="row">
+
+                 <div class="pplsearchmin">
+                     <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
+                     thx1138
+                     <div>
+                    <button class="btn btn-primary"><i class="fa fa-thumbs-up"></i> (120)</button>
+                    </div>
+                </div>
+
+                <div class="pplsearchmin">
+                    <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
+                    thx1138
+                    <div>
+                   <button class="btn btn-primary"><i class="fa fa-thumbs-up"></i> (120)</button>
+                   </div>
+               </div>
+
+               <div class="pplsearchmin">
+                   <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
+                   thx1138
+                   <div>
+                  <button class="btn btn-primary"><i class="fa fa-thumbs-up"></i> (120)</button>
+                  </div>
+              </div>
+
+
+              <div class="pplsearchmin">
+                  <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
+                  thx1138
+                  <div>
+                 <button class="btn btn-primary"><i class="fa fa-thumbs-up"></i> (120)</button>
+                 </div>
+             </div>
+
+             <div class="pplsearchmin">
+                 <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
+                 thx1138
+                 <div>
+                <button class="btn btn-primary"><i class="fa fa-thumbs-up"></i> (120)</button>
+                </div>
+            </div>
+
+             </div>
+
          </div>
 
      </div>

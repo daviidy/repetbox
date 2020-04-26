@@ -65,9 +65,9 @@ a:hover{text-decoration:underline;color:#FC0254;}
 .s-wrapper{padding-left:3.75rem;padding-right:3.75rem;}
 }
 /*! CSS Used from: Embedded */
-.s-hero[_ngcontent-serverApp-c12]{background-image:url(https://splice-res.cloudinary.com/image/upload/f_auto,q_auto,w_1400,dpr_1.0/v1532723796/marketing_site/home/2018-08/featuresHome-hero_2x.png);}
+.s-hero[_ngcontent-serverApp-c12]{background-image:url(https://media-private.canva.com/aMMbE/MAD6lpaMMbE/1/tl.png?response-expires=Mon%2C%2027%20Apr%202020%2000%3A55%3A32%20GMT&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200426T224415Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7876&X-Amz-Credential=AKIAJWF6QO3UH4PAAJ6Q%2F20200426%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=25967b1e0deadbbd46b6bd06ab8aa73112959710345eb024b281d23c71d66f31);}
 @media (-webkit-min-device-pixel-ratio:1.5),(min-resolution:144dpi){
-.s-hero[_ngcontent-serverApp-c12]{background-image:url(https://splice-res.cloudinary.com/image/upload/f_auto,q_auto,w_1400,dpr_2.0/v1532723796/marketing_site/home/2018-08/featuresHome-hero_2x.png);}
+.s-hero[_ngcontent-serverApp-c12]{background-image:url(https://media-private.canva.com/aMMbE/MAD6lpaMMbE/1/tl.png?response-expires=Mon%2C%2027%20Apr%202020%2000%3A55%3A32%20GMT&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200426T224415Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7876&X-Amz-Credential=AKIAJWF6QO3UH4PAAJ6Q%2F20200426%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=25967b1e0deadbbd46b6bd06ab8aa73112959710345eb024b281d23c71d66f31);}
 }
 @media (min-width:768px){
 .above-fold[_ngcontent-serverApp-c12]{display:flex;}
@@ -296,13 +296,19 @@ a:hover{text-decoration:underline;color:#FC0254;}
                   class="s-button s-button--blue s-button--large s-hero__cta" data-qa="home-hero-signup" href="/register">Inscrivez-vous</a>
             </div>
         </div>
-        <div _ngcontent-serverapp-c12="" class="s-hero__footer"><a _ngcontent-serverapp-c12="" class="s-hero__skip-link js-skip-link" href="#home-section-sounds"> Learn more <svg _ngcontent-serverApp-c12="" aria-hidden="true" class="s-hero__caret"
-                  role="presentation" viewBox="0 0 8 5" xmlns="http://www.w3.org/2000/svg">
-                    <g _ngcontent-serverApp-c12="" fill-rule="evenodd" stroke-linecap="round" stroke-width="2">
-                        <path _ngcontent-serverApp-c12="" d="M4 4L1 1"></path>
-                        <path _ngcontent-serverApp-c12="" d="M4 4l3-3"></path>
-                    </g>
-                </svg></a>
+        <div _ngcontent-serverapp-c12="" class="s-hero__footer">
+            {{--
+            <a _ngcontent-serverapp-c12="" class="s-hero__skip-link js-skip-link" href="#home-section-sounds">
+            Learn more
+                <svg _ngcontent-serverApp-c12="" aria-hidden="true" class="s-hero__caret"
+                      role="presentation" viewBox="0 0 8 5" xmlns="http://www.w3.org/2000/svg">
+                        <g _ngcontent-serverApp-c12="" fill-rule="evenodd" stroke-linecap="round" stroke-width="2">
+                            <path _ngcontent-serverApp-c12="" d="M4 4L1 1"></path>
+                            <path _ngcontent-serverApp-c12="" d="M4 4l3-3"></path>
+                        </g>
+                </svg>
+            </a>
+            --}}
             <div _ngcontent-serverapp-c12="" class="s-hero__artistname s-hero__artistname--right-aligned">
                 <p _ngcontent-serverapp-c12="" class="s-hero__credit s-hero__credit--name">Denitia</p>
                 <p _ngcontent-serverapp-c12="" class="s-hero__credit">Singer / Producer</p>

@@ -356,29 +356,33 @@ a[_ngcontent-serverApp-c11]:hover   .nav-dropdown__profile[_ngcontent-serverApp-
                 <!---->
               </ul>
             </nav>
+            <!--
             <section _ngcontent-serverapp-c9="" class="sidetray__secondary">
               <ul _ngcontent-serverapp-c9="" class="sidetray__items">
                 <li _ngcontent-serverapp-c9="" class="sidetray__item"><a _ngcontent-serverapp-c9="" class="sidetray__link" data-qa="sidetray-blog" href="https://splice.com/blog" rel="noopener" target="_blank">Blog</a></li>
                 <li _ngcontent-serverapp-c9="" class="sidetray__item"><a _ngcontent-serverapp-c9="" class="sidetray__link" data-qa="sidetray-help" href="https://support.splice.com/hc/en-us" rel="noopener" target="_blank">Help</a></li>
               </ul>
             </section>
+        -->
             <section _ngcontent-serverapp-c9="" class="sidetray__meta">
               <ul _ngcontent-serverapp-c9="" class="sidetray__social-items">
-                <li _ngcontent-serverapp-c9="" class="sidetray__social-item"><a _ngcontent-serverapp-c9="" href="//facebook.com/spliceofficial" target="_blank"><span _ngcontent-serverapp-c9="" class="s-hide-visually">Facebook</span><i
+                <li _ngcontent-serverapp-c9="" class="sidetray__social-item"><a _ngcontent-serverapp-c9="" href="#"><span _ngcontent-serverapp-c9="" class="s-hide-visually">Facebook</span><i
                       _ngcontent-serverapp-c9="" aria-hidden="true" class="fa fa-facebook-square"></i></a></li>
-                <li _ngcontent-serverapp-c9="" class="sidetray__social-item"><a _ngcontent-serverapp-c9="" href="//twitter.com/splice" target="_blank"><span _ngcontent-serverapp-c9="" class="s-hide-visually">Twitter</span><i _ngcontent-serverapp-c9=""
+                <li _ngcontent-serverapp-c9="" class="sidetray__social-item"><a _ngcontent-serverapp-c9="" href="#"><span _ngcontent-serverapp-c9="" class="s-hide-visually">Twitter</span><i _ngcontent-serverapp-c9=""
                       aria-hidden="true" class="fa fa-twitter"></i></a></li>
-                <li _ngcontent-serverapp-c9="" class="sidetray__social-item"><a _ngcontent-serverapp-c9="" href="//www.youtube.com/channel/UCb8xLPa5RP8TnCsU7E5ASKQ" target="_blank"><span _ngcontent-serverapp-c9="" class="s-hide-visually">YouTube</span><i
+                <li _ngcontent-serverapp-c9="" class="sidetray__social-item"><a _ngcontent-serverapp-c9="" href="#"><span _ngcontent-serverapp-c9="" class="s-hide-visually">YouTube</span><i
                       _ngcontent-serverapp-c9="" aria-hidden="true" class="fa fa-youtube-play"></i></a></li>
-                <li _ngcontent-serverapp-c9="" class="sidetray__social-item"><a _ngcontent-serverapp-c9="" href="//instagram.com/splice" target="_blank"><span _ngcontent-serverapp-c9="" class="s-hide-visually">Instagram</span><i
+                <li _ngcontent-serverapp-c9="" class="sidetray__social-item"><a _ngcontent-serverapp-c9="" href="#"><span _ngcontent-serverapp-c9="" class="s-hide-visually">Instagram</span><i
                       _ngcontent-serverapp-c9="" aria-hidden="true" class="fa fa-instagram"></i></a></li>
               </ul>
+              <!--
               <ul _ngcontent-serverapp-c9="" class="sidetray__meta-items">
-                <li _ngcontent-serverapp-c9="" class="sidetray__meta-item"><a _ngcontent-serverapp-c9="" class="sidetray__meta-link" data-qa="sidetray-jobs" href="http://jobs.splice.com" rel="noopener" target="_blank">Jobs</a></li>
-                <li _ngcontent-serverapp-c9="" class="sidetray__meta-item"><a _ngcontent-serverapp-c9="" class="sidetray__meta-link" data-qa="sidetray-terms" href="/terms" rel="noopener" target="_blank">Terms</a></li>
-                <li _ngcontent-serverapp-c9="" class="sidetray__meta-item"><a _ngcontent-serverapp-c9="" class="sidetray__meta-link" data-qa="sidetray-privacy" href="/privacy_policy" rel="noopener" target="_blank">Privacy Policy</a></li>
+                <li _ngcontent-serverapp-c9="" class="sidetray__meta-item"><a _ngcontent-serverapp-c9="" class="sidetray__meta-link" data-qa="sidetray-jobs" href="#" rel="noopener" target="_blank">Carrières</a></li>
+                <li _ngcontent-serverapp-c9="" class="sidetray__meta-item"><a _ngcontent-serverapp-c9="" class="sidetray__meta-link" data-qa="sidetray-terms" href="#" rel="noopener" target="_blank">Terms</a></li>
+                <li _ngcontent-serverapp-c9="" class="sidetray__meta-item"><a _ngcontent-serverapp-c9="" class="sidetray__meta-link" data-qa="sidetray-privacy" href="#" rel="noopener" target="_blank">Privacy Policy</a></li>
               </ul>
-              <p _ngcontent-serverapp-c9="" class="sidetray__copyright">© 2020 Splice.com</p>
+          -->
+              <p _ngcontent-serverapp-c9="" class="sidetray__copyright">© <script>document.write(new Date().getFullYear());</script> RépétBox.com</p>
             </section>
           </div>
           <div _ngcontent-serverapp-c9="" class="sidetray-overlay" data-target="#sidetray"></div>

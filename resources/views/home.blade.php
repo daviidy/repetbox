@@ -219,7 +219,7 @@ div.videobloc {
 div.pplsearchmin {
     display: inline-block;
     margin: 1%;
-    width: 21%;
+    width: 100%;
     text-align: center;
 }
 
@@ -608,46 +608,46 @@ div.pplsearchmin {
 
              <div class="row">
 
-                 <div class="pplsearchmin">
-                     <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
-                     thx1138
-                     <div>
-                    <button class="btn btn-primary"><i class="fa fa-thumbs-up"></i> (120)</button>
+                 <div class="col-sm-3">
+                     <div class="pplsearchmin">
+                         <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
+                         thx1138
+                         <div>
+                        <button class="btn btn-primary"><i class="fa fa-thumbs-up"></i> (120)</button>
+                        </div>
                     </div>
-                </div>
-
-                <div class="pplsearchmin">
-                    <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
-                    thx1138
-                    <div>
-                   <button class="btn btn-primary"><i class="fa fa-thumbs-up"></i> (120)</button>
-                   </div>
-               </div>
-
-               <div class="pplsearchmin">
-                   <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
-                   thx1138
-                   <div>
-                  <button class="btn btn-primary"><i class="fa fa-thumbs-up"></i> (120)</button>
-                  </div>
-              </div>
-
-
-              <div class="pplsearchmin">
-                  <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
-                  thx1138
-                  <div>
-                 <button class="btn btn-primary"><i class="fa fa-thumbs-up"></i> (120)</button>
                  </div>
-             </div>
 
-             <div class="pplsearchmin">
-                 <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
-                 thx1138
-                 <div>
-                <button class="btn btn-primary"><i class="fa fa-thumbs-up"></i> (120)</button>
-                </div>
-            </div>
+                 <div class="col-sm-3">
+                     <div class="pplsearchmin">
+                         <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
+                         thx1138
+                         <div>
+                        <button class="btn btn-primary"><i class="fa fa-thumbs-up"></i> (120)</button>
+                        </div>
+                    </div>
+                 </div>
+
+                 <div class="col-sm-3">
+                     <div class="pplsearchmin">
+                         <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
+                         thx1138
+                         <div>
+                        <button class="btn btn-primary"><i class="fa fa-thumbs-up"></i> (120)</button>
+                        </div>
+                    </div>
+                 </div>
+
+                 <div class="col-sm-3">
+                     <div class="pplsearchmin">
+                         <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
+                         thx1138
+                         <div>
+                        <button class="btn btn-primary"><i class="fa fa-thumbs-up"></i> (120)</button>
+                        </div>
+                    </div>
+                 </div>
+
 
              </div>
 

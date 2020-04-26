@@ -457,10 +457,10 @@ a[_ngcontent-serverApp-c11]:hover   .nav-dropdown__profile[_ngcontent-serverApp-
                   <a onclick="dropdownLanguagePhone()" _ngcontent-serverapp-c2="" class="global-nav__link global-nav__dropdown-toggle" data-qa="navbar-blog" rel="noopener">
                       @switch($locale)
                           @case('en')
-                      Langue (English)
+                      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1200px-Flag_of_the_United_Kingdom.svg.png" width="30px" height="20x">
                       @break
                       @default
-                      Langue (Français)
+                      <img src="https://cdn.webshopapp.com/shops/94414/files/52383156/flag-of-france.jpg" width="30px" height="20x">
                       @endswitch
                       <i class="fa fa-angle-down"></i>
                   </a>

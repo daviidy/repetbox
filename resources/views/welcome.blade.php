@@ -106,23 +106,7 @@ a:hover{text-decoration:underline;color:#FC0254;}
 
 
 
-<!-- Intro section -->
-<section class="intro-section spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="section-title">
-                    <h2 id="registerSection">Inscrivez-vous maintenant</h2>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
-                <a href="#" class="site-btn">Try it now</a>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Intro section end -->
+
 
 <!-- How section -->
 <section class="how-section spad set-bg" data-setbg="/main_theme/img/how-to-bg.jpg">
@@ -315,8 +299,36 @@ a:hover{text-decoration:underline;color:#FC0254;}
             </div>
         </div>
     </section>
+
     <!---->
 </div>
+
+<!-- Intro section -->
+<section class="intro-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-title">
+                    <h4 id="registerSection">Vous souhaitez être informé de trucs et astuces sur Répét'Box ? <br>
+                        Abonnez-vous gratuitement à la newsletter
+                    </h4>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <form action="/subscribeNewsletter" method="post" class="contact-from">
+                    <div class="row">
+                        @csrf
+                        <div class="col-md-12">
+                            <input required type="email" name="user_email" placeholder="Votre adresse email">
+                            <button type="submit" class="site-btn">Je m'inscris</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Intro section end -->
 
 
 

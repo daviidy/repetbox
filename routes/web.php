@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::post('/subscribeNewsletter', 'NewsletterController@store');
+
 Route::get('lang/{locale}', 'HomeController@lang');
 
 Auth::routes();

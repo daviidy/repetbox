@@ -590,11 +590,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <div class="modal-dialog">
       <div class="modal-content">
 
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
         <!-- Modal body -->
         <div class="modal-body">
           {{session('status')}}

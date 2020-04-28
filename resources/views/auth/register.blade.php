@@ -69,6 +69,7 @@
                         </span>
                     @enderror
                 </div>
+                <input hidden type="text" name="pricing" value="Studio'Plan 10">
 
                 <div class="wrap-input100 validate-input" data-validate = "Le mot de passe est requis">
                     <input class="input100" type="password" name="password" placeholder="Mot de passe" required>

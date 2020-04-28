@@ -18,6 +18,10 @@ use Redirect;
 use Session;
 use URL;
 use PayPal\Exception\PayPalConnectionException;
+use Auth;
+use App\Purchase;
+use App\Pricing;
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
@@ -44,6 +48,8 @@ class PaymentController extends Controller
 
     public function payWithpaypal(Request $request)
       {
+
+          \Session::put('pricing', $request->pricing_id);
 
           $payer = new Payer();
           $payer->setPaymentMethod('paypal');
@@ -149,12 +155,24 @@ class PaymentController extends Controller
           if ($result->getState() == 'approved') {
 
               \Session::put('success', 'Paiement effectué avec succès ! Consultez votre boîte mail');
-              return redirect('home')->with('status', 'Paiement réussi');
+              $pricing = Pricing::find(\Session::get('pricing'));
+              $purchase = Purchase::create([
+                  'date' => Carbon::now(),
+                  'price' => $pricing->price,
+                  'status' => '1',
+                  'pricing_id' => $pricing->id,
+                  'trans_id' => date("YmdHis"),
+                  'user_id' => Auth::user()->id,
+
+              ]);
+              return redirect('home');
+
+
 
           }
 
           \Session::put('error', 'Paiement échoué');
-          return redirect('home')->with('status', 'Paiement réussi');
+          return redirect('home');
 
       }
 

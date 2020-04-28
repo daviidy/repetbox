@@ -350,6 +350,8 @@ a[_ngcontent-serverApp-c11]:hover   .nav-dropdown__profile[_ngcontent-serverApp-
                 <li _ngcontent-serverapp-c9="" class="sidetray__item"><a _ngcontent-serverapp-c9="" class="sidetray__link" data-qa="sidetray-studio" routerlink="/studio" routerlinkactive="is-active" href="#">Créer un enregistrement</a></li>
                 <li _ngcontent-serverapp-c9="" class="sidetray__item"><a _ngcontent-serverapp-c9="" class="sidetray__link" data-qa="sidetray-community" routerlink="/explore/contests" routerlinkactive="is-active" href="#">Rechercher des musiciens</a>
                 </li>
+								<li _ngcontent-serverapp-c9="" class="sidetray__item"><a _ngcontent-serverapp-c9="" class="sidetray__link" data-qa="sidetray-community" routerlink="/explore/contests" routerlinkactive="is-active" href="/studioPlan">Mon Studio'Plan</a>
+                </li>
                 <li _ngcontent-serverapp-c9="" class="sidetray__item"><a _ngcontent-serverapp-c9="" class="sidetray__link" data-qa="sidetray-sounds" routerlink="/sounds" routerlinkactive="is-active" href="#">Utiliser Studio'Box</a></li>
                 <li _ngcontent-serverapp-c9="" class="sidetray__item"><a _ngcontent-serverapp-c9="" class="sidetray__link" data-qa="sidetray-plugins" routerlink="/plugins" routerlinkactive="is-active" href="#">Contactez-nous</a></li>
                 <!---->
@@ -443,6 +445,11 @@ a[_ngcontent-serverApp-c11]:hover   .nav-dropdown__profile[_ngcontent-serverApp-
                         </li>
                   </ul>
               </li>
+							<li _ngcontent-serverapp-c2="" class="ng-star-inserted">
+								<a _ngcontent-serverapp-c2="" class="global-nav__link" data-qa="navbar-sounds" data-tab="sounds" routerlink="/features/sounds" routerlinkactive="is-active" href="/studioPlan">
+									Mon Studio'Plan
+								</a>
+							</li>
 
           <!---->
         </ul>

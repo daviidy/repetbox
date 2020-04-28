@@ -44,4 +44,21 @@ class User extends Authenticatable
     public function isAdmin()    {
         return $this->type === self::ADMIN_TYPE;
     }
+
+
+
+    /**
+     * [users description]
+     * relationship one to many with Purchase model
+     * @return [array] [description]
+     */
+     public function purchases()
+     {
+         return $this->hasMany('App\Purchase');
+     }
+
+
+
+
+
 }

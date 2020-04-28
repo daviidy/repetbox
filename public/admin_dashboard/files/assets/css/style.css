@@ -3138,7 +3138,7 @@ table thead .border-bottom-info th {
 }
 
 .header-navbar .navbar-wrapper .navbar-logo[logo-theme=theme6] {
-    background: #263544
+    background: #08192D
 }
 
 .header-navbar .navbar-wrapper .navbar-container .nav-left,
@@ -4718,7 +4718,7 @@ body[themebg-pattern=theme6] {
 
 .pcoded .pcoded-navbar[navbar-theme=theme1] .nav-user,
 .pcoded .pcoded-navbar[navbar-theme=theme1] .pcoded-inner-navbar {
-    background-color: #263544
+    background-color: #263544;
 }
 
 .pcoded .pcoded-navbar[navbar-theme=theme1] .nav-user .pcoded-item>.pcoded-hasmenu>.pcoded-submenu:after,

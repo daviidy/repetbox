@@ -69,7 +69,7 @@ transition: all 0.2s;
                   <div class="col-4">
                       <h6>Mon Studio'Plan</h6>
                   </div>
-                  <div class="col-6 col-sm-6 col-md-3">
+                  <div class="col-12 col-sm-12 col-md-3">
                       <h6>Temps restant</h6>
                       <div class="row">
                           <div class="col-2">

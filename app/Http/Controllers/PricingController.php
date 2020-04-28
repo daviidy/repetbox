@@ -29,7 +29,7 @@ class PricingController extends Controller
 
     public function indexFront()
     {
-        if (Auth::check() && Auth::user()->isAdmin()) {
+        if (Auth::check()) {
             $pricings = Pricing::orderby('id', 'asc')->paginate(100);
             return view('studioPlan', ['pricings' => $pricings,]);
         }

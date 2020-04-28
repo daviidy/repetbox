@@ -73,9 +73,10 @@ transition: all 0.2s;
               <li><span class="fa-li"><i class="fa fa-check"></i></span><strong>{{$characteristic->description}}</strong></li>
               @endforeach
             </ul>
-            <form class="w3-container w3-display-middle w3-card-4 " method="POST" id="payment-form"  action="/payment/add-funds/paypal">
+            <form class="w3-container w3-display-middle w3-card-4 " method="POST" id="payment-form"  action="{!! URL::to('paypal') !!}">
               {{ csrf_field() }}
             <input hidden value="{{$pricing->price}}" class="" name="amount" type="text">
+            <input hidden value="Abonnement {{$pricing->name}}" class="" name="item" type="text">
             <button href="#" class="btn btn-block btn-primary text-uppercase">Adhérer maintenant</button>
             </form>
           </div>

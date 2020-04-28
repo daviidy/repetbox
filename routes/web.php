@@ -18,7 +18,8 @@ Route::get('/', function () {
 })->name('welcome');
 
 //payments gateways
-Route::post('/payment/add-funds/paypal', 'PaymentController@payWithpaypal')->name('paywithpaypal');
+Route::post('paypal', 'PaymentController@payWithpaypal')->name('paywithpaypal');
+Route::get('status', 'PaymentController@getPaymentStatus')->name('status');
 
 Route::post('/subscribeNewsletter', 'NewsletterController@store');
 

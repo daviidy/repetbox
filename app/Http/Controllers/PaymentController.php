@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Item;
@@ -22,6 +21,7 @@ use PayPal\Exception\PayPalConnectionException;
 
 class PaymentController extends Controller
 {
+    private $_api_context;
 
     public function __construct()
     {
@@ -29,10 +29,16 @@ class PaymentController extends Controller
         /** PayPal api context **/
         $paypal_conf = \Config::get('paypal');
         $this->_api_context = new ApiContext(new OAuthTokenCredential(
-            $paypal_conf['client_id'],
-            $paypal_conf['secret'])
+            'AV4_6sSLRUxQkIMFhSqV_nkVN2PICsgKr5Xzptw0X7NrVmLsdBPPPDURfDJUrdu4ln9iGE2oI-eqTYRG',
+            'ELChJIRSTYuhPGnliwPkiOsa0rskZ-56Pvql38925XnHFaqQ6X67eaJanoZLKZV27_w9ojShIDk_wJ0s')
         );
-        $this->_api_context->setConfig($paypal_conf['settings']);
+        $this->_api_context->setConfig(array(
+            'mode' => env('PAYPAL_MODE','sandbox'),
+            'http.ConnectionTimeOut' => 30,
+            'log.LogEnabled' => true,
+            'log.FileName' => storage_path() . '/logs/paypal.log',
+            'log.LogLevel' => 'ERROR'
+        ));
 
     }
 
@@ -45,7 +51,7 @@ class PaymentController extends Controller
           $item_1 = new Item();
 
           $item_1->setName($request->get('item')) /** item name **/
-              ->setCurrency('EUR')
+              ->setCurrency('USD')
               ->setQuantity(1)
               ->setPrice($request->get('amount')); /** unit price **/
 
@@ -53,7 +59,7 @@ class PaymentController extends Controller
           $item_list->setItems(array($item_1));
 
           $amount = new Amount();
-          $amount->setCurrency('EUR')
+          $amount->setCurrency('USD')
               ->setTotal($request->get('amount'));
 
           $transaction = new Transaction();
@@ -112,21 +118,21 @@ class PaymentController extends Controller
 
           }
 
-          \Session::put('error', 'Unknown error occurred');
+          \Session::put('error', 'Une erreur est survenue');
           return Redirect::route('paywithpaypal');
 
       }
 
 
 
-      public function getPaymentStatus()
+      public function getPaymentStatus(Request $request)
       {
           /** Get the payment ID before session clear **/
           $payment_id = Session::get('paypal_payment_id');
 
           /** clear the session payment ID **/
           Session::forget('paypal_payment_id');
-          if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
+          if (empty($request->input('PayerID')) || empty($request->input('token'))) {
 
               \Session::put('error', 'Payment failed');
               return Redirect::route('accueil');
@@ -135,7 +141,7 @@ class PaymentController extends Controller
 
           $payment = Payment::get($payment_id, $this->_api_context);
           $execution = new PaymentExecution();
-          $execution->setPayerId(Input::get('PayerID'));
+          $execution->setPayerId($request->input('PayerID'));
 
           /**Execute the payment **/
           $result = $payment->execute($execution, $this->_api_context);
@@ -143,12 +149,12 @@ class PaymentController extends Controller
           if ($result->getState() == 'approved') {
 
               \Session::put('success', 'Paiement effectué avec succès ! Consultez votre boîte mail');
-              return Redirect::route('accueil');
+              return redirect('home')->with('status', 'Paiement réussi');
 
           }
 
           \Session::put('error', 'Paiement échoué');
-          return Redirect::route('accueil');
+          return redirect('home')->with('status', 'Paiement réussi');
 
       }
 

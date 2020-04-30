@@ -6,13 +6,22 @@
 	<meta name="description" content="RepetBox">
 	<meta name="keywords" content="music, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{!! csrf_token() !!}">
+
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
     <script src="/main_theme/js/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
 
 	<!-- Favicon -->
 	<link href="https://media-private.canva.com/ZmLZ0/MAD6XgZmLZ0/1/tl.png?response-expires=Fri%2C%2024%20Apr%202020%2017%3A13%3A34%20GMT&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200424T144647Z&X-Amz-SignedHeaders=host&X-Amz-Expires=8806&X-Amz-Credential=AKIAJWF6QO3UH4PAAJ6Q%2F20200424%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=506c2f9aeacdbdf3328682c3caf8c4fb249faec54f1ff7624e420a9efaa7d398" rel="shortcut icon"/>
@@ -30,6 +39,15 @@
 
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="/main_theme/css/style.css"/>
+
+
+    <!--highlight js-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/atom-one-dark.min.css">
+    <!--fin highlight js-->
 
 
 	<!--[if lt IE 9]>
@@ -495,7 +513,7 @@ a[_ngcontent-serverApp-c11]:hover   .nav-dropdown__profile[_ngcontent-serverApp-
                 <button  onclick="dropdownUser()" _ngcontent-serverapp-c11=""
                     class="global-nav__dropdown-toggle" data-qa="navbar-user-dropdown" data-toggle="dropdown">
                     <img _ngcontent-serverapp-c11="" class="global-nav__avatar"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ1P9NIBPbZvN_8V2uZ8cVfm4Rnwwel8_UF_89HT238qUQAOZ1p&usqp=CAU">
+                        src="/images/users/{{Auth::user()->image}}">
                         <i class="fa fa-angle-down"></i>
                   </button>
                   <ul style="top: 40px;transform: translate3d(-116px, 44px, 0px);" _ngcontent-serverapp-c11="" class="dropdown-menu global-nav__dropdown-content">
@@ -620,7 +638,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 </script>
 @endif
 
+    <script type="text/javascript">
 
+    $('select').selectpicker();
+
+    </script>
 
     <script type="text/javascript">
       /* Push the body and the nav over by 285px over */
@@ -737,6 +759,61 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!--====== Javascripts & Jquery ======-->
 
 	<script src="/main_theme/js/main.js"></script>
+
+    <!-- Include the Quill library -->
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script src="/js/quill/image-resize.min.js"></script>
+  <script src="/js/quill/video-resize.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+
+
+//initialisation de l'editeur
+var options = {
+modules: {
+  toolbar: [
+    [{ header: [1, 2, false] }],
+    ['size', 'bold', 'italic', 'underline'],
+    ['image', 'code-block', 'video', 'blockquote', 'code', 'align', 'link'],
+    ['color'],
+    [{ list: 'ordered' }, { list: 'bullet' }]
+],
+imageResize: {
+     modules: [ 'Resize', 'DisplaySize', 'Toolbar' ]
+ },
+ videoResize: {
+        modules: [ 'Resize', 'DisplaySize', 'Toolbar' ]
+    },
+ syntax: true,
+},
+placeholder: 'Ecrivez ici...',
+theme: 'snow'  // or 'bubble'
+};
+var quill = new Quill('#richeditor', options);
+
+
+var form = document.getElementById('bioform');
+
+form.onsubmit = function() {
+// Populate hidden form on submit
+var bio = document.querySelector('input[name=bio]');
+bio.value = quill.root.innerHTML;
+console.log("Submitted",quill.root.innerHTML ,$(form).serialize(), $(form).serializeArray());
+
+// No back end to actually submit to!
+// alert('Open the console to see the submit data!')
+return true;
+};
+
+</script>
+
+
+
+
+
 
 	</body>
 </html>

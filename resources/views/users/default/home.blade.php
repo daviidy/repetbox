@@ -245,13 +245,26 @@ div.pplsearchmin {
      <!--profil-->
      <div class="row contentbox_row">
          <div class="col-sm-12 contentbox center">
-             <h3>
-                 Profil du musicien
-             </h3>
+             <div class="row">
+                 <div class="col-6">
+                     <h3>
+                         Profil du musicien
+                     </h3>
+                 </div>
+                 <div class="col-6">
+                     <div class="float-md-right showProfile__button left">
+                        <a style="background: #08192D; border-color: #08192D;" href="/members/{{Auth::user()->id}}/edit" class="button button--primary">
+                        Modifier
+                        </a>
+                     </div>
+                 </div>
+
+             </div>
+
 
              <div class="row">
                  <div class="col-sm-4">
-                     <div class="profilepic sixtyprctwidth" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');">
+                     <div class="profilepic sixtyprctwidth" style="background-image:url('/images/users/{{Auth::user()->image}}');">
                          <div class="checkedprofile">✓</div>
                      </div>
                      <button class="btn btn-primary"><i class="fa fa-thumbs-up"></i> (120)</button>
@@ -259,36 +272,22 @@ div.pplsearchmin {
                  <div class="col-sm-8">
                      <div class="row">
                         <div style="margin: 2rem;" class="col-sm-12">
-                            <div class="row details-title">
-                                <div class="col-sm-4">
-                                    Pseudo
-                                </div>
-                                <div class="col-sm-8 details">
-                                    Test
-                                </div>
-                            </div>
+
                             <div class="row details-title">
                                 <div class="col-sm-4">
                                     Nom et prénoms
                                 </div>
                                 <div class="col-sm-8 details">
-                                    Test
+                                    {{Auth::user()->name}}
                                 </div>
                             </div>
-                            <div class="row details-title">
-                                <div class="col-sm-4">
-                                    Langues
-                                </div>
-                                <div class="col-sm-8 details">
-                                    Test
-                                </div>
-                            </div>
+
                             <div class="row details-title">
                                 <div class="col-sm-4">
                                     Email
                                 </div>
                                 <div class="col-sm-8 details">
-                                    Test
+                                    {{Auth::user()->email}}
                                 </div>
                             </div>
                             <div class="row details-title">
@@ -296,7 +295,11 @@ div.pplsearchmin {
                                     Mobile
                                 </div>
                                 <div class="col-sm-8 details">
-                                    Test
+                                    @if(Auth::user()->mobile_tel)
+                                    {{Auth::user()->mobile_tel}}
+                                    @else
+                                    Aucun numéro renseigné
+                                    @endif
                                 </div>
                             </div>
                             <div class="row details-title">
@@ -304,26 +307,33 @@ div.pplsearchmin {
                                     Pays
                                 </div>
                                 <div class="col-sm-8 details">
-                                    Test
+                                    @if(Auth::user()->country)
+                                    {{Auth::user()->country}}
+                                    @else
+                                    Aucun pays renseigné
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="showProfile__button">
-                                   <a href="/fr/membres/davidarmelyao/edit" class="button button--primary">
-                                   Modifier
-                                   </a>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="showProfile__button">
+                                       <a href="#" class="button button--primary">
+                                       Invite-moi
+                                       </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="showProfile__button left">
-                                   <a href="/fr/membres/davidarmelyao/edit" class="button button--primary">
-                                   Modifier
-                                   </a>
+                                <div class="col-sm-6">
+                                    <div class="showProfile__button left">
+                                       <a href="#" class="button button--primary">
+                                       Contacte-moi
+                                       </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
 
                      </div>
 
@@ -346,16 +356,15 @@ div.pplsearchmin {
                      <div class="row">
                          <div class="col-sm-12">
                              <div class="progress progress-bar-vertical">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="height: 30%;">
-                                  <span class="sr-only">30% Complete</span>
+                                <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="height: {{Auth::user()->level}}%;">
                                 </div>
                               </div>
                               <ul class="progresslistv">
-        						  <li>Débutant</li>
-        						  <li>Amateur</li>
-        						  <li>Professeur</li>
-        						  <li>Intermitant</li>
         						  <li>Star</li>
+        						  <li>Intermitant</li>
+        						  <li>Professeur</li>
+        						  <li>Amateur</li>
+        						  <li>Débutant</li>
         					  </ul>
                          </div>
 
@@ -367,9 +376,14 @@ div.pplsearchmin {
                      <h6 class="mini_title_in_row">Type d'instrument</h6>
                      <div class="row">
                          <div class="col-sm-12">
-                             <span class="badge badge-dark">Dark</span>
-                             <span class="badge badge-dark">Dark</span>
-                             <span class="badge badge-dark">Dark</span>
+                             @if(count(Auth::user()->instruments) > 0)
+                             @foreach(Auth::user()->instruments as $instrument)
+                             <span class="badge badge-dark">{{$instrument->name}}</span>
+                             @endforeach
+                             @else
+                             <p>Aucun instrument renseigné</p>
+                             @endif
+
                          </div>
 
                      </div>
@@ -380,9 +394,13 @@ div.pplsearchmin {
                      <h6 class="mini_title_in_row">Style musical</h6>
                      <div class="row">
                          <div class="col-sm-12">
-                             <span class="badge badge-dark">Dark</span>
-                             <span class="badge badge-dark">Dark</span>
-                             <span class="badge badge-dark">Dark</span>
+                             @if(count(Auth::user()->styles) > 0)
+                             @foreach(Auth::user()->styles as $style)
+                             <span class="badge badge-dark">{{$style->name}}</span>
+                             @endforeach
+                             @else
+                             <p>Aucun style musical renseigné</p>
+                             @endif
                          </div>
 
                      </div>
@@ -402,8 +420,13 @@ div.pplsearchmin {
 
              <div class="row" style="text-align: justify;">
                  <div class="col-sm-12">
-                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas leo ac sollicitudin faucibus. In nec vehicula risus, eu varius est. Nullam magna sapien, sagittis quis elit elementum, mattis placerat magna. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec consequat vel libero sit amet bibendum. Pellentesque eu augue pharetra, scelerisque orci vitae, venenatis nunc. Vestibulum tincidunt diam mi, et cursus eros feugiat et. Morbi et imperdiet orci. Mauris tincidunt vestibulum lobortis. Phasellus quis purus eget felis facilisis lobortis a ut neque. Donec sit amet vestibulum nunc, eget vulputate augue. Nunc gravida iaculis condimentum. Curabitur sed tempor ipsum.</p>
+                     @if(Auth::user()->bio)
+                     {!!Auth::user()->bio!!}
+                     @else
+                     <p>Aucune bio pour le moment</p>
+                     @endif
                  </div>
+                 <!--
                  <div class="col-sm-12">
                      <div class="showProfile__button">
                         <a href="/fr/membres/davidarmelyao/edit" class="button button--primary">
@@ -411,6 +434,7 @@ div.pplsearchmin {
                         </a>
                      </div>
                  </div>
+             -->
              </div>
          </div>
 
@@ -424,53 +448,26 @@ div.pplsearchmin {
              </h3>
 
              <div class="row">
+                 @if(count(Auth::user()->skills) > 0)
+                 @foreach(Auth::user()->skills as $skill)
                  <div class="col-sm-6">
                      <div class="text-left">
     					<table>
-    						<tbody><tr><td style="width:30%;">
-                                <div class="progress">
-                                  <div class="progress-bar" style="width:70%"></div>
-                                </div>
-    						</td><td>Arrangeur / Orchestration</td></tr>
-
-    						<tr><td>
-                                <div class="progress">
-                                  <div class="progress-bar" style="width:70%"></div>
-                                </div>
-    						</td><td>Interprète</td></tr>
-    						<tr><td>
-                                <div class="progress">
-                                  <div class="progress-bar" style="width:70%"></div>
-                                </div>
-    						</td><td>Ecriture Partition</td></tr>
+    						<tbody>
+                                <tr>
+                                    <td style="width:30%;">
+                                        <div class="progress">
+                                          <div class="progress-bar" style="width:{{$skill->pivot->value}}%"></div>
+                                        </div>
+            						</td>
+                                    <td>{{$skill->name}}</td>
+                                </tr>
     					</tbody></table>
     				</div>
 
                  </div>
-                 <div class="col-sm-6">
-
-                     <div class="text-left">
-    					<table>
-    						<tbody><tr><td style="width:30%;">
-                                <div class="progress">
-                                  <div class="progress-bar" style="width:70%"></div>
-                                </div>
-    						</td><td>Arrangeur / Orchestration</td></tr>
-
-    						<tr><td>
-                                <div class="progress">
-                                  <div class="progress-bar" style="width:70%"></div>
-                                </div>
-    						</td><td>Interprète</td></tr>
-    						<tr><td>
-                                <div class="progress">
-                                  <div class="progress-bar" style="width:70%"></div>
-                                </div>
-    						</td><td>Ecriture Partition</td></tr>
-    					</tbody></table>
-    				</div>
-
-                 </div>
+                 @endforeach
+                 @endif
 
 
              </div>
@@ -487,14 +484,11 @@ div.pplsearchmin {
 
              <div class="row" style="text-align: justify;">
                  <div class="col-sm-12">
-                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas leo ac sollicitudin faucibus. In nec vehicula risus, eu varius est. Nullam magna sapien, sagittis quis elit elementum, mattis placerat magna. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec consequat vel libero sit amet bibendum. Pellentesque eu augue pharetra, scelerisque orci vitae, venenatis nunc. Vestibulum tincidunt diam mi, et cursus eros feugiat et. Morbi et imperdiet orci. Mauris tincidunt vestibulum lobortis. Phasellus quis purus eget felis facilisis lobortis a ut neque. Donec sit amet vestibulum nunc, eget vulputate augue. Nunc gravida iaculis condimentum. Curabitur sed tempor ipsum.</p>
+                     <p>
+                         {!!Auth::user()->references!!}
+                     </p>
                  </div>
-                 <div class="col-sm-12">
-                     <span class="badge badge-dark">Dark</span>
-                     <span class="badge badge-dark">Dark</span>
-                     <span class="badge badge-dark">Dark</span>
-                     <span class="badge badge-dark">Dark</span>
-                 </div>
+
              </div>
          </div>
 

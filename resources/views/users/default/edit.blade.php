@@ -269,11 +269,19 @@ div.pplsearchmin {
      <!--profil-->
      <div class="row contentbox_row">
          <div class="col-sm-12 contentbox center">
+                    <div class="col-6">
+                        <h3 class="mb-5">
+                            Modification de votre profil
+                        </h3>
+                    </div>
 
-                     <h3 class="mb-5">
-                         Modification de votre profil
-                     </h3>
-
+                     <div class="col-6">
+                         <div class="float-md-right showProfile__button left">
+                            <a style="background: #08192D; border-color: #08192D;" href="/home" class="button button--primary">
+                            Voir le profil
+                            </a>
+                         </div>
+                     </div>
 
 
              <div class="row">

@@ -335,35 +335,7 @@
                                             <span class="pcoded-mtext">Offres de prix</span>
                                         </a>
                                         <ul class="pcoded-submenu">
-                                            {{--
-                                            <li class=" pcoded-hasmenu">
-                                                <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Vertical</span>
-                                                </a>
-                                                <ul class="pcoded-submenu">
-                                                    <li class="">
-                                                        <a href="menu-static.html" class="waves-effect waves-dark">
-                                                            <span class="pcoded-mtext">Static Layout</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="">
-                                                        <a href="menu-header-fixed.html" class="waves-effect waves-dark">
-                                                            <span class="pcoded-mtext">Header Fixed</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="">
-                                                        <a href="menu-compact.html" class="waves-effect waves-dark">
-                                                            <span class="pcoded-mtext">Compact</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="">
-                                                        <a href="menu-sidebar.html" class="waves-effect waves-dark">
-                                                            <span class="pcoded-mtext">Sidebar Fixed</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            --}}
+
                                             <li class="">
                                                 <a href="/admin/pricings" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Liste des offres</span>
@@ -384,6 +356,69 @@
                                                     <span class="pcoded-mtext">Ajout d'une caractéristique</span>
                                                 </a>
                                             </li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="icon-diamond"></i></span>
+                                            <span class="pcoded-mtext">Instruments</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+
+                                            <li class="">
+                                                <a href="/admin/instruments" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Liste des instruments</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="/admin/instruments/create" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Ajout d'un instrument</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="icon-diamond"></i></span>
+                                            <span class="pcoded-mtext">Compétences</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+
+                                            <li class="">
+                                                <a href="/admin/skills" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Liste des compétences</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="/admin/skills/create" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Ajout d'une compétence</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="icon-diamond"></i></span>
+                                            <span class="pcoded-mtext">Styles</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+
+                                            <li class="">
+                                                <a href="/admin/styles" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Liste des styles</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="/admin/styles/create" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Ajout d'un style</span>
+                                                </a>
+                                            </li>
+
                                         </ul>
                                     </li>
 

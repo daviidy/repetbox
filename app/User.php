@@ -16,7 +16,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'type', 'city', 'interest',
+        'name',
+        'email',
+        'password',
+        'type',
+        'city',
+        'interest',
+        'image',
+        'mobile_tel',
+        'bio',
+        'references',
+        'zip',
+        'country',
+        'level',
     ];
 
     /**
@@ -56,6 +68,36 @@ class User extends Authenticatable
      {
          return $this->hasMany('App\Purchase');
      }
+
+     /**
+      * [users description]
+      * relationship many to many with Skill model
+      * @return [array] [description]
+      */
+      public function skills()
+      {
+          return $this->belongsToMany('App\Skill')->withPivot('value');
+      }
+
+      /**
+       * [users description]
+       * relationship many to many with Instrument model
+       * @return [array] [description]
+       */
+       public function instruments()
+       {
+           return $this->belongsToMany('App\Instrument');
+       }
+
+       /**
+        * [users description]
+        * relationship many to many with Style model
+        * @return [array] [description]
+        */
+        public function styles()
+        {
+            return $this->belongsToMany('App\Style');
+        }
 
 
 

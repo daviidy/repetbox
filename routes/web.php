@@ -39,6 +39,14 @@ Route::resource('purchases', 'PurchaseController');
 
 Route::resource('characteristics', 'CharacteristicController');
 
+Route::resource('users', 'UserController');
+
+Route::resource('instruments', 'InstrumentController');
+
+Route::resource('styles', 'StyleController');
+
+Route::resource('skills', 'SkillController');
+
 
 
 //pricings routes
@@ -57,7 +65,35 @@ Route::get('/admin/characteristics/create', 'CharacteristicController@create')->
 
 Route::get('/admin/characteristics/{characteristic}/edit', 'CharacteristicController@edit')->name('characteristics');
 
+//skills routes
+Route::get('/admin/skills', 'SkillController@index')->name('skills');
+
+Route::get('/admin/skills/create', 'SkillController@create')->name('skills');
+
+Route::get('/admin/skills/{skill}/edit', 'SkillController@edit')->name('skills');
+
+//instruments routes
+Route::get('/admin/instruments', 'InstrumentController@index')->name('instruments');
+
+Route::get('/admin/instruments/create', 'InstrumentController@create')->name('instruments');
+
+Route::get('/admin/instruments/{instrument}/edit', 'InstrumentController@edit')->name('instruments');
+
+//styles routes
+Route::get('/admin/styles', 'StyleController@index')->name('styles');
+
+Route::get('/admin/styles/create', 'StyleController@create')->name('styles');
+
+Route::get('/admin/styles/{style}/edit', 'StyleController@edit')->name('styles');
+
 //purchases routes
 Route::get('/admin/purchases', 'PurchaseController@index')->name('purchases');
 
 Route::get('/admin/purchases/create', 'PurchaseController@create')->name('purchases');
+
+//users routes
+Route::get('/members/{user}/edit', 'UserController@edit')->name('users');
+
+//ajax routes
+
+Route::post('/uploadAvatar', 'UserController@uploadAvatar');

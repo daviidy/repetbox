@@ -269,19 +269,22 @@ div.pplsearchmin {
      <!--profil-->
      <div class="row contentbox_row">
          <div class="col-sm-12 contentbox center">
-                    <div class="col-6">
-                        <h3 class="mb-5">
-                            Modification de votre profil
-                        </h3>
-                    </div>
+             <div class="row">
+                 <div class="col-md-6 col-12">
+                     <h3 class="mb-5">
+                         Modification de votre profil
+                     </h3>
+                 </div>
 
-                     <div class="col-6">
-                         <div class="float-md-right showProfile__button left">
-                            <a style="background: #08192D; border-color: #08192D;" href="/home" class="button button--primary">
-                            Voir le profil
-                            </a>
-                         </div>
-                     </div>
+                  <div class="col-md-6 col-12">
+                      <div class="float-md-right showProfile__button left">
+                         <a style="background: #08192D; border-color: #08192D;" href="/home" class="button button--primary">
+                         Voir le profil
+                         </a>
+                      </div>
+                  </div>
+             </div>
+
 
 
              <div class="row">
@@ -316,19 +319,33 @@ div.pplsearchmin {
                         </figure>
                     </div>
                      <form enctype="multipart/form-data" action="{{url('users', Auth::user())}}" method="post" class="contact-from">
-                         <div class="row">
                              @csrf
                              {{method_field('patch')}}
-                             <div class="col-md-12">
-                                 <input value="{{Auth::user()->name}}" readonly required type="text" name="name">
-                                 <input value="{{Auth::user()->email}}" readonly required type="text" name="email">
-                                 <input value="{{Auth::user()->mobile_tel}}" type="text" name="mobile_tel" placeholder="Numéro de téléphone">
-                                 <input value="{{Auth::user()->city}}" type="text" name="city" placeholder="Ville">
-                                 <input value="{{Auth::user()->country}}" type="text" name="country" placeholder="Pays">
-                                 <input value="{{Auth::user()->zip}}" type="text" name="zip" placeholder="Code Postal">
-                                 <button type="submit" class="site-btn">Enregistrer</button>
-                             </div>
-                         </div>
+                                 <div class="row">
+                                     <div class="col-md-6">
+                                         <input value="{{Auth::user()->name}}" readonly required type="text" name="name">
+                                     </div>
+                                     <div class="col-md-6">
+                                         <input value="{{Auth::user()->email}}" readonly required type="text" name="email">
+                                     </div>
+                                     <div class="col-md-6">
+                                         <input value="{{Auth::user()->mobile_tel}}" type="text" name="mobile_tel" placeholder="Numéro de téléphone">
+                                     </div>
+                                     <div class="col-md-6">
+                                         <input value="{{Auth::user()->city}}" type="text" name="city" placeholder="Ville">
+                                     </div>
+                                     <div class="col-md-6">
+                                         <input value="{{Auth::user()->country}}" type="text" name="country" placeholder="Pays">
+                                     </div>
+                                     <div class="col-md-6">
+                                         <input value="{{Auth::user()->zip}}" type="text" name="zip" placeholder="Code Postal">
+                                     </div>
+                                     <div class="col-md-12">
+                                         <button type="submit" class="site-btn">Enregistrer</button>
+                                     </div>
+                                 </div>
+
+
                      </form>
 
 

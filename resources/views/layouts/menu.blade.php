@@ -272,10 +272,20 @@ img{max-width:100%;height:auto;vertical-align:middle;}
 }
 a[_ngcontent-serverApp-c11]:hover   .nav-dropdown__profile[_ngcontent-serverApp-c11]{color:#FC0254;}
 
-
-#dropdown_user{
-    top: 40px;transform: translate3d(13rem, 44px, 0px) !important;
+@media screen and (max-width:600px)
+{
+	#dropdown_user{
+	    top: 40px;transform: translate3d(12rem, 44px, 0px) !important;
+	}
 }
+
+@media screen and (min-width:605px)
+{
+	#dropdown_user{
+		top: 40px;transform: translate3d(73rem, 44px, 0px) !important;
+	}
+}
+
 
 </style>
 

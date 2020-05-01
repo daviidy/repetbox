@@ -272,6 +272,20 @@ img{max-width:100%;height:auto;vertical-align:middle;}
 }
 a[_ngcontent-serverApp-c11]:hover   .nav-dropdown__profile[_ngcontent-serverApp-c11]{color:#FC0254;}
 
+@media screen and (max-width:600px)
+{
+	#dropdown_user{
+	    top: 40px;transform: translate3d(12rem, 44px, 0px) !important;
+	}
+}
+
+@media screen and (min-width:605px)
+{
+	#dropdown_user{
+		top: 40px;transform: translate3d(73rem, 44px, 0px) !important;
+	}
+}
+
 
 </style>
 
@@ -516,7 +530,7 @@ a[_ngcontent-serverApp-c11]:hover   .nav-dropdown__profile[_ngcontent-serverApp-
                         src="/images/users/{{Auth::user()->image}}">
                         <i class="fa fa-angle-down"></i>
                   </button>
-                  <ul style="top: 40px;transform: translate3d(-116px, 44px, 0px);" _ngcontent-serverapp-c11="" class="dropdown-menu global-nav__dropdown-content">
+                  <ul id="dropdown_user" class="dropdown-menu global-nav__dropdown-content">
                       <li _ngcontent-serverapp-c11="" class="nav-dropdown__item nav-dropdown__item--profile  nav-dropdown__item--border"><a _ngcontent-serverapp-c11="" data-qa="navbar-profile" href="/home"><strong _ngcontent-serverapp-c11=""
                                 class="nav-dropdown__username" data-qa="navbar-username">{{Auth::user()->name}}</strong><span _ngcontent-serverapp-c11="" class="nav-dropdown__profile" data-qa="navbar-view-profile">Mon compte</span></a></li>
                       <li _ngcontent-serverapp-c11="" class="nav-dropdown__item"><a _ngcontent-serverapp-c11="" data-qa="navbar-billing" routerlink="/profile/billing" href="#"> Enregistrements </a></li>
@@ -658,6 +672,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     </script>
 
+    {{--
     <script type="text/javascript">
 
         /* When the user clicks on the button,
@@ -681,6 +696,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     }
 
     </script>
+    --}}
 
     <script type="text/javascript">
 

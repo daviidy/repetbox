@@ -32,7 +32,7 @@ $(window).on('load', function() {
 		closedSymbol: '<i class="fa fa-angle-right"></i>',
 		openedSymbol: '<i class="fa fa-angle-down"></i>'
 	});
-	
+
 	$('.slicknav_nav').prepend('<li class="header-right-warp"></li>');
     $('.header-right').clone().prependTo('.slicknav_nav > .header-right-warp');
 
@@ -44,7 +44,7 @@ $(window).on('load', function() {
 		$(this).css('background-image', 'url(' + bg + ')');
 	});
 
-	
+
 	$('.hero-slider').owlCarousel({
 		loop: true,
 		nav: false,
@@ -57,4 +57,3 @@ $(window).on('load', function() {
 	});
 
 })(jQuery);
-

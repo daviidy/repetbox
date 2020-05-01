@@ -672,6 +672,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     </script>
 
+    {{--
     <script type="text/javascript">
 
         /* When the user clicks on the button,
@@ -695,6 +696,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     }
 
     </script>
+    --}}
 
     <script type="text/javascript">
 

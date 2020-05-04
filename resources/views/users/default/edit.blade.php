@@ -329,14 +329,19 @@ div.pplsearchmin {
                                          <input value="{{Auth::user()->email}}" readonly required type="text" name="email">
                                      </div>
                                      <div class="col-md-6">
-                                         <input value="{{Auth::user()->mobile_tel}}" type="text" name="mobile_tel" placeholder="Numéro de téléphone">
+                                         <input value="{{Auth::user()->mobile_tel}}" type="text" name="phone" placeholder="Numéro de téléphone" id="phone">
                                      </div>
                                      <div class="col-md-6">
                                          <input value="{{Auth::user()->city}}" type="text" name="city" placeholder="Ville">
                                      </div>
                                      <div class="col-md-6">
-                                         <input value="{{Auth::user()->country}}" type="text" name="country" placeholder="Pays">
+                                         <input value="{{Auth::user()->country}}" type="text" name="country" placeholder="Pays" id="country_selector">
+                                         <div class="form-item" style="display:none;">
+                                            <input type="text" id="country_selector_code" name="country_selector_code" data-countrycodeinput="1" readonly="readonly" placeholder="Selected country code will appear here" />
+                                            <label for="country_selector_code">...and the selected country code will be updated here</label>
+                                        </div>
                                      </div>
+                                     
                                      <div class="col-md-6">
                                          <input value="{{Auth::user()->zip}}" type="text" name="zip" placeholder="Code Postal">
                                      </div>
@@ -739,6 +744,5 @@ $(document).ready(function(){
  });
 });
 </script>
-
 
 @endsection

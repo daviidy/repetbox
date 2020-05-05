@@ -8,6 +8,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{!! csrf_token() !!}">
 
+    <link href="/videojs/video-js.min.css" rel="stylesheet">
+      <link href="/videojs/videojs.record.css" rel="stylesheet">
+
+      <script src="/videojs/video.min.js"></script>
+      <script src="/videojs/RecordRTC.js"></script>
+      <script src="/videojs/adapter.js"></script>
+
+      <script src="/videojs/videojs.record.js"></script>
+
+       <script src="/videojs/browser-workarounds.js"></script>
+
+       <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -435,7 +449,7 @@ a[_ngcontent-serverApp-c11]:hover   .nav-dropdown__profile[_ngcontent-serverApp-
           <!---->
           <!---->
           <!---->
-
+          @auth
           <li id="dropdownStudio" _ngcontent-serverapp-c11="" class="dropdown global-nav__dropdown global-nav__dropdown--user s-hide-sm">
                 <a onclick="dropdownStudio()" _ngcontent-serverapp-c2="" class="global-nav__link global-nav__dropdown-toggle" data-qa="navbar-blog" rel="noopener">
                     Studio
@@ -443,12 +457,13 @@ a[_ngcontent-serverApp-c11]:hover   .nav-dropdown__profile[_ngcontent-serverApp-
                 </a>
                 <ul style="top: 40px;" _ngcontent-serverapp-c11="" class="dropdown-menu global-nav__dropdown-content">
 
-                    <li _ngcontent-serverapp-c11="" class="nav-dropdown__item"><a _ngcontent-serverapp-c11="" data-qa="navbar-billing" routerlink="/profile/billing" href="/profile/billing"> Créer un enregistrement </a></li>
+                    <li _ngcontent-serverapp-c11="" class="nav-dropdown__item"><a _ngcontent-serverapp-c11="" data-qa="navbar-billing" routerlink="/profile/billing" href="/{{Auth::user()->id}}/recordings/create"> Créer un enregistrement </a></li>
                     <li _ngcontent-serverapp-c11="" class="nav-dropdown__item"><a _ngcontent-serverapp-c11="" data-qa="navbar-settings" routerlink="/profile/settings" href="/profile/settings"> Rechercher des musiciens </a></li>
                     <li _ngcontent-serverapp-c11="" class="nav-dropdown__item nav-dropdown__item--border"><a _ngcontent-serverapp-c11="" data-qa="navbar-download" routerlink="/download" href="/download"> Utiliser Studio'Box </a></li>
                     <li _ngcontent-serverapp-c11="" class="nav-dropdown__item"><a _ngcontent-serverapp-c11="" data-qa="navbar-terms" routerlink="/terms" href="/terms">Contactez-nous</a></li>
                 </ul>
             </li>
+            @endauth
             @php $locale = session()->get('locale'); @endphp
             <li id="dropdownLanguage" _ngcontent-serverapp-c11="" class="dropdown global-nav__dropdown global-nav__dropdown--user s-hide-sm">
                   <a onclick="dropdownLanguage()" _ngcontent-serverapp-c2="" class="global-nav__link global-nav__dropdown-toggle" data-qa="navbar-blog" rel="noopener">

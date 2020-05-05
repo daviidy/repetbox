@@ -47,6 +47,14 @@ Route::resource('styles', 'StyleController');
 
 Route::resource('skills', 'SkillController');
 
+Route::resource('recordings', 'RecordingController');
+
+Route::resource('titles', 'TitleController');
+
+Route::resource('effects', 'EffectController');
+
+Route::resource('medias', 'MediaController');
+
 
 
 //pricings routes
@@ -93,6 +101,9 @@ Route::get('/admin/purchases/create', 'PurchaseController@create')->name('purcha
 
 //users routes
 Route::get('/members/{user}/edit', 'UserController@edit')->name('users');
+
+//recordings route routes
+Route::get('/{user}/recordings/create', 'RecordingController@create')->name('recordings');
 
 //ajax routes
 

@@ -329,7 +329,7 @@ div.pplsearchmin {
                                          <input value="{{Auth::user()->email}}" readonly required type="text" name="email">
                                      </div>
                                      <div class="col-md-6">
-                                         <input value="{{Auth::user()->mobile_tel}}" type="text" name="phone" placeholder="Numéro de téléphone" id="phone">
+                                         <input class="form-control" value="{{Auth::user()->mobile_tel}}" type="tel" name="mobile_tel" placeholder="" id="phone">
                                      </div>
                                      <div class="col-md-6">
                                          <input value="{{Auth::user()->city}}" type="text" name="city" placeholder="Ville">
@@ -745,4 +745,33 @@ $(document).ready(function(){
 });
 </script>
 
+<!--tel-->
+<script src="/plugin_tel/build/js/intlTelInput.js"></script>
+  <script>
+    var input = document.querySelector("#phone");
+    window.intlTelInput(input, {
+      // allowDropdown: false,
+      // autoHideDialCode: false,
+      autoPlaceholder: "polite",
+      // dropdownContainer: document.body,
+      // excludeCountries: ["us"],
+      // formatOnDisplay: false,
+      // geoIpLookup: function(callback) {
+      //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+      //     var countryCode = (resp && resp.country) ? resp.country : "";
+      //     callback(countryCode);
+      //   });
+      // },
+       hiddenInput: "mobile_tel",
+      // initialCountry: "auto",
+      // localizedCountries: { 'de': 'Deutschland' },
+       nationalMode: true,
+      // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+      // placeholderNumberType: "MOBILE",
+       preferredCountries: ["ci", "fr"],
+       separateDialCode: true,
+      utilsScript: "/plugin_tel/build/js/utils.js",
+    });
+  </script>
+  
 @endsection

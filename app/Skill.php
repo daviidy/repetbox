@@ -22,4 +22,7 @@ class Skill extends Model
      {
          return $this->belongsToMany('App\User')->withPivot('value');
      }
+
+
+
 }

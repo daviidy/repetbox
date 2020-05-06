@@ -263,15 +263,15 @@ div.pplsearchmin {
 
 
              <div class="row">
-                 <div class="col-sm-4">
+                 <div class="col-md-4 col-sm-12">
                      <div class="profilepic sixtyprctwidth" style="background-image:url('/images/users/{{Auth::user()->image}}');">
+                         <!--
                          <div class="checkedprofile">✓</div>
+                     -->
                      </div>
                      <button class="btn btn-primary"><i class="fa fa-thumbs-up"></i> (120)</button>
                  </div>
-                 <div class="col-sm-8">
-                     <div class="row">
-                        <div style="margin: 2rem;" class="col-sm-12">
+                 <div class="col-md-8 col-sm-12">
 
                             <div class="row details-title">
                                 <div class="col-sm-4">
@@ -314,7 +314,6 @@ div.pplsearchmin {
                                     @endif
                                 </div>
                             </div>
-                        </div>
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-sm-6">
@@ -335,7 +334,6 @@ div.pplsearchmin {
                         </div>
 
 
-                     </div>
 
                  </div>
              </div>

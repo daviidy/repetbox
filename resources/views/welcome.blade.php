@@ -65,9 +65,9 @@ a:hover{text-decoration:underline;color:#FC0254;}
 .s-wrapper{padding-left:3.75rem;padding-right:3.75rem;}
 }
 /*! CSS Used from: Embedded */
-.s-hero[_ngcontent-serverApp-c12]{background-image:url(https://media-private.canva.com/aMMbE/MAD6lpaMMbE/1/tl.png?response-expires=Mon%2C%2027%20Apr%202020%2000%3A55%3A32%20GMT&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200426T224415Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7876&X-Amz-Credential=AKIAJWF6QO3UH4PAAJ6Q%2F20200426%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=25967b1e0deadbbd46b6bd06ab8aa73112959710345eb024b281d23c71d66f31);}
+.s-hero[_ngcontent-serverApp-c12]{background-image:url(https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);}
 @media (-webkit-min-device-pixel-ratio:1.5),(min-resolution:144dpi){
-.s-hero[_ngcontent-serverApp-c12]{background-image:url(https://media-private.canva.com/aMMbE/MAD6lpaMMbE/1/tl.png?response-expires=Mon%2C%2027%20Apr%202020%2000%3A55%3A32%20GMT&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200426T224415Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7876&X-Amz-Credential=AKIAJWF6QO3UH4PAAJ6Q%2F20200426%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=25967b1e0deadbbd46b6bd06ab8aa73112959710345eb024b281d23c71d66f31);}
+.s-hero[_ngcontent-serverApp-c12]{background-image:url(https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);}
 }
 @media (min-width:768px){
 .above-fold[_ngcontent-serverApp-c12]{display:flex;}
@@ -292,11 +292,14 @@ a:hover{text-decoration:underline;color:#FC0254;}
                         </g>
                 </svg>
             </a>
-            --}}
+
             <div _ngcontent-serverapp-c12="" class="s-hero__artistname s-hero__artistname--right-aligned">
                 <p _ngcontent-serverapp-c12="" class="s-hero__credit s-hero__credit--name">Denitia</p>
                 <p _ngcontent-serverapp-c12="" class="s-hero__credit">Singer / Producer</p>
             </div>
+
+            --}}
+
         </div>
     </section>
 

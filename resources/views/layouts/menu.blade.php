@@ -393,9 +393,11 @@ a[_ngcontent-serverApp-c11]:hover   .nav-dropdown__profile[_ngcontent-serverApp-
                 <li _ngcontent-serverapp-c9="" class="sidetray__item">
                   <!---->
                   <!----><a _ngcontent-serverapp-c9="" class="sidetray__link ng-star-inserted" data-qa="sidetray-home" routerlink="/" href="/">Accueil</a></li>
+                 @auth
                 <li _ngcontent-serverapp-c9="" class="sidetray__item"><a _ngcontent-serverapp-c9="" class="sidetray__link" data-qa="sidetray-studio" routerlink="/studio" routerlinkactive="is-active" href="/{{Auth::user()->id}}/recordings/create">Créer un enregistrement</a></li>
                 <li _ngcontent-serverapp-c9="" class="sidetray__item"><a _ngcontent-serverapp-c9="" class="sidetray__link" data-qa="sidetray-community" routerlink="/explore/contests" routerlinkactive="is-active" href="#">Rechercher des musiciens</a>
                 </li>
+                @endauth
 								<li _ngcontent-serverapp-c9="" class="sidetray__item"><a _ngcontent-serverapp-c9="" class="sidetray__link" data-qa="sidetray-community" routerlink="/explore/contests" routerlinkactive="is-active" href="/studioPlan">Mon Studio'Plan</a>
                 </li>
                 <li _ngcontent-serverapp-c9="" class="sidetray__item"><a _ngcontent-serverapp-c9="" class="sidetray__link" data-qa="sidetray-sounds" routerlink="/sounds" routerlinkactive="is-active" href="#">Utiliser Studio'Box</a></li>

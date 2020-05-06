@@ -23,9 +23,13 @@ class CreateRecordingsTable extends Migration
             $table->bigInteger('style_id')->unsigned()->nullable();
             $table->foreign('style_id')->references('id')->on('styles');
             $table->integer('title_id')->unsigned()->nullable();
-            $table->foreign('title_id')->references('id')->on('titles');
+
             $table->timestamps();
         });
+
+        Schema::table('recordings', function($table) {
+           $table->foreign('title_id')->references('id')->on('titles');
+       });
     }
 
     /**

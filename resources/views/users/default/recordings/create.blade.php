@@ -8,7 +8,13 @@
 #myVideo {
   background-color: #08192D;
   margin: auto;
-  width: 100%;
+}
+@media screen and (max-width: 600px)
+{
+    #myVideo {
+
+      width: 100%;
+    }
 }
 </style>
 
@@ -525,7 +531,7 @@ var options = {
         record: {
             audio: true,
             video: true,
-            maxLength: 10,
+            maxLength: 30,
             debug: true
         }
     }

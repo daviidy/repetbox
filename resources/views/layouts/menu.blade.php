@@ -36,6 +36,9 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
+    <!--file input-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.1/js/fileinput.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.1/css/fileinput.css">
 
 	<!-- Favicon -->
 	<link href="https://media-private.canva.com/ZmLZ0/MAD6XgZmLZ0/1/tl.png?response-expires=Fri%2C%2024%20Apr%202020%2017%3A13%3A34%20GMT&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200424T144647Z&X-Amz-SignedHeaders=host&X-Amz-Expires=8806&X-Amz-Credential=AKIAJWF6QO3UH4PAAJ6Q%2F20200424%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=506c2f9aeacdbdf3328682c3caf8c4fb249faec54f1ff7624e420a9efaa7d398" rel="shortcut icon"/>
@@ -394,7 +397,7 @@ a[_ngcontent-serverApp-c11]:hover   .nav-dropdown__profile[_ngcontent-serverApp-
                   <!---->
                   <!----><a _ngcontent-serverapp-c9="" class="sidetray__link ng-star-inserted" data-qa="sidetray-home" routerlink="/" href="/">Accueil</a></li>
                  @auth
-                <li _ngcontent-serverapp-c9="" class="sidetray__item"><a _ngcontent-serverapp-c9="" class="sidetray__link" data-qa="sidetray-studio" routerlink="/studio" routerlinkactive="is-active" href="/{{Auth::user()->id}}/recordings/create">Créer un enregistrement</a></li>
+                <li _ngcontent-serverapp-c9="" class="sidetray__item"><a _ngcontent-serverapp-c9="" class="sidetray__link" data-qa="sidetray-studio" routerlink="/studio" routerlinkactive="is-active" href="/recordings/create">Créer un enregistrement</a></li>
                 <li _ngcontent-serverapp-c9="" class="sidetray__item"><a _ngcontent-serverapp-c9="" class="sidetray__link" data-qa="sidetray-community" routerlink="/explore/contests" routerlinkactive="is-active" href="#">Rechercher des musiciens</a>
                 </li>
                 @endauth
@@ -459,7 +462,7 @@ a[_ngcontent-serverApp-c11]:hover   .nav-dropdown__profile[_ngcontent-serverApp-
                 </a>
                 <ul style="top: 40px;" _ngcontent-serverapp-c11="" class="dropdown-menu global-nav__dropdown-content">
 
-                    <li _ngcontent-serverapp-c11="" class="nav-dropdown__item"><a _ngcontent-serverapp-c11="" data-qa="navbar-billing" routerlink="/profile/billing" href="/{{Auth::user()->id}}/recordings/create"> Créer un enregistrement </a></li>
+                    <li _ngcontent-serverapp-c11="" class="nav-dropdown__item"><a _ngcontent-serverapp-c11="" data-qa="navbar-billing" routerlink="/profile/billing" href="/recordings/create"> Créer un enregistrement </a></li>
                     <li _ngcontent-serverapp-c11="" class="nav-dropdown__item"><a _ngcontent-serverapp-c11="" data-qa="navbar-settings" routerlink="/profile/settings" href="/profile/settings"> Rechercher des musiciens </a></li>
                     <li _ngcontent-serverapp-c11="" class="nav-dropdown__item nav-dropdown__item--border"><a _ngcontent-serverapp-c11="" data-qa="navbar-download" routerlink="/download" href="/download"> Utiliser Studio'Box </a></li>
                     <li _ngcontent-serverapp-c11="" class="nav-dropdown__item"><a _ngcontent-serverapp-c11="" data-qa="navbar-terms" routerlink="/terms" href="/terms">Contactez-nous</a></li>

@@ -16,6 +16,7 @@ class Recording extends Model
                            'user_id',
                            'style_id',
                            'title_id',
+                           'tempo',
                          ];
 
 

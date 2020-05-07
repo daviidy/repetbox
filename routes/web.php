@@ -103,8 +103,10 @@ Route::get('/admin/purchases/create', 'PurchaseController@create')->name('purcha
 Route::get('/members/{user}/edit', 'UserController@edit')->name('users');
 
 //recordings route routes
-Route::get('/{user}/recordings/create', 'RecordingController@create')->name('recordings');
+Route::get('/recordings/create', 'RecordingController@create')->name('recordings');
+Route::get('/recordings/edit/{recording}', 'RecordingController@edit')->name('recordings');
 
 //ajax routes
 
 Route::post('/uploadAvatar', 'UserController@uploadAvatar');
+Route::post('/uploadVideo', 'RecordingController@uploadVideo');

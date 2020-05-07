@@ -16,6 +16,11 @@
       width: 100%;
     }
 }
+
+.kv-upload-progress .progress{
+    display: none;
+}
+
 </style>
 
 
@@ -372,18 +377,16 @@ div.pplsearchmin {
 
                   <div class="col-md-6 col-12">
                       <div class="row">
-                          <div class="col-md-6 col-12">
+                          <div class="col-12 text-right">
                               <a href="/{{Auth::user()->id}}/recordings">
-                                      <i class="fa fa-video-camera"></i> Mes enregistrements
+                                      <i class="fa fa-video-camera"></i> >Mes enregistrements
                               </a>
 
                           </div>
-                          <div class="col-md-6 col-12">
-                              <div class="float-md-right showProfile__button left">
-                                 <button style="background: #08192D; border-color: #08192D;" href="/studioPlan" class="button button--primary">
-                                            Studio'Plan
-                                 </button>
-                              </div>
+                          <div class="col-12 text-right">
+                              <a href="/studioPlan">
+                                      <i class="fa fa-desktop"></i> >Studio'Plan
+                              </a>
                           </div>
 
                       </div>
@@ -401,49 +404,64 @@ div.pplsearchmin {
                     </div>
                     @endif
 
-                     <form enctype="multipart/form-data" method="post" class="contact-from">
-                             @csrf
-                             {{method_field('patch')}}
-                                 <div class="row">
-                                     <div class="col-md-6">
-                                         <label for="">Titre du morceau</label>
-                                         <input placeholder="Saisir le titre du morceau" type="text" name="name">
-                                     </div>
-                                     <div class="col-md-6">
-                                         <label for="">Style musical</label><br>
-                                         <select class="selectpicker" name="style">
-                                             @foreach($styles as $style)
-                                             <option value="{{$style->id}}">{{$style->name}}</option>
-                                             @endforeach
-                                         </select>
-                                     </div>
-                                     <div class="col-md-6">
-                                         <label for="">Inviter des musiciens (8 Max)</label>
-                                         <select name="users_id[]" class="selectpicker" multiple data-live-search="true" name="">
-                                             @foreach($users as $user)
-                                             <option value="{{$user->id}}">{{$user->name}}</option>
-                                             @endforeach
-                                         </select>
-                                     </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <form action="{{url('recordings', $recording)}}" enctype="multipart/form-data" method="post" class="contact-from">
+                                    @csrf
+                                    {{method_field('patch')}}
+                                        <div class="row">
+                                            <div class="col-md-12 text-left mb-4">
+                                                <h4 class="mb-3">Titre du morceau</h4>
+                                                <input value="{{$recording->name == 'New' ? '' : $recording->name}}" placeholder="Saisir le titre du morceau" type="text" name="name">
+                                                <input hidden type="text" name="recording_id">
+                                            </div>
+                                            <div class="col-md-12 text-left mb-4">
+                                                <h4 class="mb-3">1- Style musical</h4>
+                                                <select class="selectpicker" name="style_id">
+                                                    @foreach($styles as $style)
+                                                    <option {{$recording->style_id == $style->id ? 'selected' : ''}} value="{{$style->id}}">{{$style->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12 text-left mb-4">
+                                                <h4 class="mb-3">2- Inviter des musiciens (8 Max)</h4>
+                                                <select name="users_id[]" class="selectpicker" multiple data-live-search="true" name="">
+                                                    @foreach($users as $user)
+                                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
 
-                                     <div class="col-md-6">
-                                         <label for="">Joindre des fichiers</label><br>
-                                         <input id="downloadable_files" type="file" name="downloadable_files[]" multiple>
-                                     </div>
+                                            <div class="col-md-12 text-left mb-4">
+                                                <h4 class="mb-3">3- Joindre des fichiers</h4>
+                                                <div class="form-group">
 
-                                     <div class="col-md-6">
-                                         <label for="">Réglage du tempo</label><br>
-                                         <input name="tempo" min="0" max="500" step="20" type="range" class="custom-range" id="customRange">
-                                     </div>
-
-                                     <div class="col-12">
-                                         <button type="submit" class="site-btn">Envoyer la demande d'enregistrement</button>
-                                     </div>
-
-                                 </div>
+                                                          <span style="width: 100%;" class="btn btn-default btn-file">
+                                                            <input id="input-2" name="input2[]" type="file" class="file" multiple data-show-upload="true" data-show-caption="true">
+                                                          </span>
 
 
-                     </form>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 text-left mb-4">
+                                                <h4 class="mb-3">4- Réglage du tempo</h4>
+                                                <input name="tempo" min="0" max="500" step="20" type="range" class="custom-range" id="customRange">
+                                            </div>
+
+                                            <div class="col-12">
+                                                <button type="submit" class="site-btn">Envoyer la demande d'enregistrement</button>
+                                            </div>
+
+                                        </div>
+
+
+                            </form>
+                        </div>
+
+                    </div>
+
+
 
 
                  </div>
@@ -503,6 +521,15 @@ div.pplsearchmin {
                                  <button type="submit" class="site-btn">Valider l'enregistrement</button>
                              </div>
 
+                             <div style="display: none;" id="infoVideoWarning" class="alert alert-warning col-12 mt-3">
+                              <strong></strong>
+                            </div>
+
+                            <div style="display: none;" id="infoVideoSuccess" class="alert alert-success col-12 mt-3">
+                             <strong></strong>
+                           </div>
+
+
 
 
 
@@ -532,7 +559,8 @@ var options = {
             audio: true,
             video: true,
             maxLength: 30,
-            debug: true
+            debug: true,
+            videoMimeType: "video/mp4;codecs=H264"
         }
     }
 };
@@ -569,6 +597,51 @@ player.on('finishRecord', function() {
     // can be downloaded by the user, stored on server etc.
     console.log('finished recording: ', player.recordedData);
     $('#storeRecording').css('display', 'block');
+
+    $('#storeRecording').click(function(){
+
+        // Create an instance of FormData and append the video parameter that
+        // will be interpreted in the server as a file
+        var formData = new FormData();
+        formData.append('video', player.recordedData.video);
+        formData.append("recording_id", $('input[name=recording_id]').val());
+
+        $.ajaxSetup({
+                   headers: {
+                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                   }
+               });
+
+         $.ajax({
+          url:"/uploadVideo",
+          method:"POST",
+          data: formData,
+          contentType: false,
+          cache: false,
+          processData: false,
+          beforeSend:function(){
+           $('#storeRecording').css('display', 'none');
+           $('#infoVideoWarning').css('display', 'block');
+           $('#infoVideoWarning strong').text("Votre vidéo est en cours de traitement");
+          },
+          success:function(data)
+          {
+              console.log('ok');
+              $('#infoVideoWarning').css('display', 'none');
+              $('#infoVideoSuccess').css('display', 'block');
+              $('#infoVideoSuccess strong').text("Votre vidéo a bien été mise en ligne");
+              //window.location = '/home';
+        },
+        error: function (xhr, msg) {
+         console.log(msg + '\n' + xhr.responseText);
+        }
+         });
+
+    });
+
+
+
+
 });
 </script>
 
@@ -646,6 +719,9 @@ $(document).ready(function(){
  });
 });
 </script>
+
+
+
 
 
 @endsection

@@ -63,13 +63,32 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/atom-one-dark.min.css">
     <!--fin highlight js-->
 
+    <!--Plugin form cdn jquery contry selector-->
+    	<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="/plugin_country/build/css/countrySelect.css">
+		<link rel="stylesheet" href="/plugin_country/build/css/demo.css">
+		<link rel="stylesheet" href="/path/to/countrySelect.css">
+		<script src="/path/to/cdn/jquery.min.js"></script>
+		<script src="/path/to/countrySelect.js"></script>
+	<!--End Plugin form cdn jquery-->
+
+	<!--Plugin form cdn jquery tel selector-->
+	<link rel="stylesheet" href="/plugin_tel/build/css/intlTelInput.css">
+  	<link rel="stylesheet" href="/plugin_tel/build/css/demo.css">
+  	<!--End Plugin form cdn jquery-->
 
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
-
+  <link rel="stylesheet" href="niceCountryInput.css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" 
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" 
+        crossorigin="anonymous">
+</script>
+<script src="niceCountryInput.js"></script> 
+	
     <style media="screen">
 
 /*! CSS Used from: https://spliceblob.splice.com/web-cli/styles.d56bdd3ef3301985551c.css */
@@ -842,11 +861,44 @@ return true;
 };
 
 </script>
+<!--//plugin code phone and country selector-->
 
+<!-- Load jQuery from CDN so can run demo immediately -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="/plugin_country/build/js/countrySelect.js"></script>
+		<script>
+			$("#country_selector").countrySelect({
+				preferredCountries: ['ca', 'gb', 'us']
+			});
+		</script>
+		<script>
+try {
+  fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function(response) {
+    return true;
+  }).catch(function(e) {
+    var carbonScript = document.createElement("script");
+    carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+    carbonScript.id = "_carbonads_js";
+    document.getElementById("carbon-block").appendChild(carbonScript);
+  });
+} catch (error) {
+  console.log(error);
+}
+</script>
+<script type="text/javascript">
 
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
 
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 
-
+</script>
 
 	</body>
 </html>

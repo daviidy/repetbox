@@ -329,14 +329,19 @@ div.pplsearchmin {
                                          <input value="{{Auth::user()->email}}" readonly required type="text" name="email">
                                      </div>
                                      <div class="col-md-6">
-                                         <input value="{{Auth::user()->mobile_tel}}" type="text" name="mobile_tel" placeholder="Numéro de téléphone">
+                                         <input class="form-control" value="{{Auth::user()->mobile_tel}}" type="tel" name="mobile_tel" placeholder="" id="phone">
                                      </div>
                                      <div class="col-md-6">
                                          <input value="{{Auth::user()->city}}" type="text" name="city" placeholder="Ville">
                                      </div>
                                      <div class="col-md-6">
-                                         <input value="{{Auth::user()->country}}" type="text" name="country" placeholder="Pays">
+                                         <input value="{{Auth::user()->country}}" type="text" name="country" placeholder="Pays" id="country_selector">
+                                         <div class="form-item" style="display:none;">
+                                            <input type="text" id="country_selector_code" name="country_selector_code" data-countrycodeinput="1" readonly="readonly" placeholder="Selected country code will appear here" />
+                                            <label for="country_selector_code">...and the selected country code will be updated here</label>
+                                        </div>
                                      </div>
+                                     
                                      <div class="col-md-6">
                                          <input value="{{Auth::user()->zip}}" type="text" name="zip" placeholder="Code Postal">
                                      </div>
@@ -740,5 +745,33 @@ $(document).ready(function(){
 });
 </script>
 
-
+<!--tel-->
+<script src="/plugin_tel/build/js/intlTelInput.js"></script>
+  <script>
+    var input = document.querySelector("#phone");
+    window.intlTelInput(input, {
+      // allowDropdown: false,
+      // autoHideDialCode: false,
+      autoPlaceholder: "polite",
+      // dropdownContainer: document.body,
+      // excludeCountries: ["us"],
+      // formatOnDisplay: false,
+      // geoIpLookup: function(callback) {
+      //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+      //     var countryCode = (resp && resp.country) ? resp.country : "";
+      //     callback(countryCode);
+      //   });
+      // },
+       hiddenInput: "mobile_tel",
+      // initialCountry: "auto",
+      // localizedCountries: { 'de': 'Deutschland' },
+       nationalMode: true,
+      // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+      // placeholderNumberType: "MOBILE",
+       preferredCountries: ["ci", "fr"],
+       separateDialCode: true,
+      utilsScript: "/plugin_tel/build/js/utils.js",
+    });
+  </script>
+  
 @endsection

@@ -5,7 +5,7 @@
 
 <style>
 .video-js{
-    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0) !important;
 }
 /* change player background color */
 #myVideo {
@@ -16,7 +16,7 @@
 {
     #myVideo {
 
-      width: 100%;
+      width: ;
     }
 }
 

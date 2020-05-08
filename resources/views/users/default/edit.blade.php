@@ -329,13 +329,15 @@ div.pplsearchmin {
                                          <input value="{{Auth::user()->email}}" readonly required type="text" name="email">
                                      </div>
                                      <div class="col-md-6">
-                                         <input value="{{Auth::user()->mobile_tel}}" type="text" name="mobile_tel" placeholder="Numéro de téléphone">
+                                         <input value="{{Auth::user()->mobile_tel}}" type="text" name="mobile_tel" placeholder="Numéro de téléphone" id="phone">
                                      </div>
                                      <div class="col-md-6">
-                                         <input value="{{Auth::user()->city}}" type="text" name="city" placeholder="Ville">
+                                         <input value="{{Auth::user()->city}}" type="text" name="city" placeholder="Ville" id="country_selector">
                                      </div>
                                      <div class="col-md-6">
-                                         <input value="{{Auth::user()->country}}" type="text" name="country" placeholder="Pays">
+                                         
+                                         <input value="{{Auth::user()->country}}" type="text" name="country" placeholder="Pays" id="country">
+                                         
                                      </div>
                                      <div class="col-md-6">
                                          <input value="{{Auth::user()->zip}}" type="text" name="zip" placeholder="Code Postal">
@@ -740,5 +742,26 @@ $(document).ready(function(){
 });
 </script>
 
+<!--tel-->
+<script src="/plugin/build/js/intlTelInput.js"></script>
+  <script>
+    var input = document.querySelector("#phone");
+    window.intlTelInput(input, {
+      
+      autoPlaceholder: "polite",
+      
+       hiddenInput: "mobile_tel",
+      
+       nationalMode: true,
+      
+       preferredCountries: ["ci", "fr"],
+       separateDialCode: true,
+      utilsScript: "/plugin/build/js/utils.js",
+    });
+  </script>
+<script src="/plugin/build/js/countrySelect.min.js"></script>
+<script>
+  $("#country").countrySelect();
+</script>
 
 @endsection

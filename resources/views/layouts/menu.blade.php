@@ -72,6 +72,21 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
+  <!--Plugin form cdn jquery contry selector-->
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/plugin/build/css/countrySelect.css">
+    <link rel="stylesheet" href="/plugin/build/css/demo1.css">
+    <link rel="stylesheet" href="/path/to/countrySelect.css">
+    <script src="/path/to/cdn/jquery.min.js"></script>
+    <script src="/path/to/countrySelect.js"></script>
+  <!--End Plugin form cdn jquery-->
+
+  <!--Plugin form cdn jquery tel selector-->
+  <link rel="stylesheet" href="/plugin/build/css/intlTelInput.css">
+  <link rel="stylesheet" href="/plugin/build/css/demo.css">
+    <!--End Plugin form cdn jquery-->
+
+
 
     <style media="screen">
 

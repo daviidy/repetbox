@@ -528,7 +528,7 @@ div.pplsearchmin {
                              </video>
                          </div>
 
-
+                         {{--
                          <div class="col-md-12 mt-4">
                              <p>Réglage de la webcam</p>
                              <video id="my-preview" controls autoplay></video>
@@ -536,6 +536,7 @@ div.pplsearchmin {
                              <button id="btn-start-recording">Start Recording</button>
 <button id="btn-stop-recording" disabled="disabled">Stop Recording</button>
                          </div>
+                         --}}
 
                              <div style="display: none;" id="storeRecording" class="col-12 mt-4">
                                  <button type="submit" class="site-btn">Valider l'enregistrement</button>

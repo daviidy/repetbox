@@ -4,6 +4,11 @@
 @section('content')
 
 <style>
+
+.vjs-control-bar{
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
 .video-js{
     -webkit-transform: translate3d(0, 0, 0) !important;
 }
@@ -416,7 +421,7 @@ div.pplsearchmin {
                                             <div class="col-md-12 text-left mb-4">
                                                 <h4 class="mb-3">Titre du morceau</h4>
                                                 <input value="{{$recording->name == 'New' ? '' : $recording->name}}" placeholder="Saisir le titre du morceau" type="text" name="name">
-                                                <input hidden type="text" name="recording_id">
+                                                <input value="{{$recording->id}}" hidden type="text" name="recording_id">
                                             </div>
                                             <div class="col-md-12 text-left mb-4">
                                                 <h4 class="mb-3">1- Style musical</h4>
@@ -659,7 +664,7 @@ var options = {
             video: true,
             maxLength: 30,
             debug: true,
-            videoMimeType: "video/mp4;codecs=H264"
+            videoMimeType: "video/webm;codecs=vp8,opus"
         }
     }
 };
@@ -688,6 +693,9 @@ player.on('error', function(element, error) {
 player.on('startRecord', function() {
     console.log('started recording!');
     $('#storeRecording').css('display', 'none');
+    $('#infoVideoWarning').css('display', 'none');
+    $('#infoVideoSuccess').css('display', 'none');
+
 });
 
 // user completed recording and stream is available
@@ -695,6 +703,7 @@ player.on('finishRecord', function() {
     // the blob object contains the recorded data that
     // can be downloaded by the user, stored on server etc.
     console.log('finished recording: ', player.recordedData);
+
     $('#storeRecording').css('display', 'block');
 
     $('#storeRecording').click(function(){
@@ -702,8 +711,9 @@ player.on('finishRecord', function() {
         // Create an instance of FormData and append the video parameter that
         // will be interpreted in the server as a file
         var formData = new FormData();
-        formData.append('video', player.recordedData.video);
+        formData.append('video', player.recordedData);
         formData.append("recording_id", $('input[name=recording_id]').val());
+
 
         $.ajaxSetup({
                    headers: {

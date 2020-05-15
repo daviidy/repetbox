@@ -184,7 +184,7 @@ class RecordingController extends Controller
 
     public function joinVideos(Recording $recording)
     {
-        $disk = FFMpeg::fromDisk('local');
+        $disk = FFMpeg::fromDisk('public');
         $tab = array();
         foreach ($recording->videos as $video) {
             $path = $disk->open($video->video_file);

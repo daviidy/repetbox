@@ -6,8 +6,10 @@ use App\Recording;
 use App\User;
 use App\Style;
 use App\Media;
+use App\Video;
 use Auth;
 use Validator;
+use FFMpeg;
 use Illuminate\Http\Request;
 
 class RecordingController extends Controller
@@ -19,7 +21,12 @@ class RecordingController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::check()) {
+            return view('users.default.recordings.index');
+        }
+        else {
+            return redirect('home');
+        }
     }
 
     /**
@@ -33,7 +40,6 @@ class RecordingController extends Controller
 
             $recording = Recording::create(['name' => 'New',
                                             'user_id' => Auth::user()->id,
-                                            'audio_file' => 'none',
                                    ]);
 
             $styles = Style::orderby('id', 'asc')->get();
@@ -91,6 +97,23 @@ class RecordingController extends Controller
         }
     }
 
+    public function editMulti(Recording $recording)
+    {
+        if (Auth::check()) {
+
+            $styles = Style::orderby('id', 'asc')->get();
+            $users = User::orderby('id', 'asc')->where('type', 'default')->get();
+            return view('users.default.recordings.editMulti', [
+                                                            'recording' => $recording,
+                                                            'styles' => $styles,
+                                                            'users' => $users,
+                                                        ]);
+        }
+        else {
+            return redirect('home');
+        }
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -138,13 +161,45 @@ class RecordingController extends Controller
     {
         $recording = Recording::find($request->recording_id);
         $filename = time() . '.mp4';
-        $recording->video_file = $filename;
-        $recording->save();
+        if (count($recording->videos->where('user_id', Auth::user()->id)) == 0) {
+            $video = Video::create([
+                'video_file' => $filename,
+                'recording_id' => $recording->id,
+                'user_id' => Auth::user()->id,
+
+            ]);
+        }
+        else {
+            $recording->videos->where('user_id', Auth::user()->id)->first()->video_file = $filename;
+            $recording->videos->where('user_id', Auth::user()->id)->first()->save();
+        }
+
         $file = $request->video;
 
 
-        $file->move(public_path().'/videos/recordings/', $filename);
+        $file->move(storage_path('app/public'), $filename);
       return response()->json($recording);
+    }
+
+
+    public function joinVideos(Recording $recording)
+    {
+        $disk = FFMpeg::fromDisk('public');
+        $tab = array();
+        foreach ($recording->videos as $video) {
+            $path = $disk->open($video->video_file);
+            $result = $path->getPathfile();
+
+            array_push($tab, $result);
+        }
+        $first_video = $recording->videos->first()->video_file;
+
+        $video1 = $disk->open($first_video);
+        $output = $disk->open('out-'.time().'.mp4');
+
+        $video1->concat($tab)->saveFromSameCodecs($output->getFullPath(), true);
+
+        return redirect()->back()->with('status', 'Les vidéos ont été fusionnées avec succès');
     }
 
     /**

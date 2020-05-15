@@ -1,7 +1,48 @@
 @extends('layouts.menu')
-@section('title', 'Créer un enregistrement')
+@section('title', 'Enregistrer ma partie')
 
 @section('content')
+
+<style media="screen">
+    .multi{
+        padding: 0;
+    }
+</style>
+
+<style>
+
+.vjs-control-bar{
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+.video-js{
+    -webkit-transform: translate3d(0, 0, 0) !important;
+}
+/* change player background color */
+#myVideo {
+  background-color: #08192D;
+  margin: auto;
+}
+@media screen and (max-width: 600px)
+{
+    #myVideo {
+
+      width: 100%;
+    }
+}
+
+.kv-upload-progress .progress{
+    display: none;
+}
+
+</style>
+
+<style media="screen">
+    .video-js{
+        width: 100%;
+        height: 30vh;
+    }
+</style>
 
 <style>
 
@@ -411,66 +452,51 @@ div.pplsearchmin {
                       <strong>{{session('status')}}</strong>
                     </div>
                     @endif
+                    <input value="{{$recording->id}}" hidden type="text" name="recording_id">
+                    <div class="row">
+                        <div class="col-md-12 text-left mb-4">
+                            <h4 class="mb-3">Titre du morceau: {{$recording->name}}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9 col-sm-12 text-left mb-4">
+                            <p class="mb-3">Date de dernière version: {{$recording->updated_at}}</p>
+                        </div>
+                        <div class="col-md-3 col-sm-12 text-right mb-4">
+                            <p class="mb-3">Durée:</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @foreach($recording->videos as $video)
+                        <div class="multi col-md-4 col-sm-12 text-left mb-4">
+                            <video
+                               id="my-player"
+                               class="video-js"
+                               controls
+                               preload="none"
+                               poster="https://images.unsplash.com/photo-1529518969858-8baa65152fc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+                               data-setup='{}'>
+                             <source src="{{asset('storage/'.$recording->videos->where('user_id', Auth::user()->id)->first()->video_file)}}" type="video/mp4"></source>
+
+                             <p class="vjs-no-js">
+                               To view this video please enable JavaScript, and consider upgrading to a
+                               web browser that
+                               <a href="https://videojs.com/html5-video-support/" target="_blank">
+                                 supports HTML5 video
+                               </a>
+                             </p>
+                           </video>
+                        </div>
+                        @endforeach
+                    </div>
 
                     <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <form action="{{url('recordings', $recording)}}" enctype="multipart/form-data" method="post" class="contact-from">
-                                    @csrf
-                                    {{method_field('patch')}}
-                                        <div class="row">
-                                            <div class="col-md-12 text-left mb-4">
-                                                <h4 class="mb-3">Titre du morceau</h4>
-                                                <input value="{{$recording->name == 'New' ? '' : $recording->name}}" placeholder="Saisir le titre du morceau" type="text" name="name">
-                                                <input value="{{$recording->id}}" hidden type="text" name="recording_id">
-                                            </div>
-                                            <div class="col-md-12 text-left mb-4">
-                                                <h4 class="mb-3">1- Style musical</h4>
-                                                <select class="selectpicker" name="style_id">
-                                                    @foreach($styles as $style)
-                                                    <option {{$recording->style_id == $style->id ? 'selected' : ''}} value="{{$style->id}}">{{$style->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-12 text-left mb-4">
-                                                <h4 class="mb-3">2- Inviter des musiciens (8 Max)</h4>
-                                                <select name="users_id[]" class="selectpicker" multiple data-live-search="true" name="">
-                                                    @foreach($users as $user)
-                                                    @if($user->id !== Auth::user()->id)
-                                                    <option {{$recording->users->contains($user->id) ? 'selected' : ''}} value="{{$user->id}}">{{$user->name}}</option>
-                                                    @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
 
-                                            <div class="col-md-12 text-left mb-4">
-                                                <h4 class="mb-3">3- Joindre des fichiers</h4>
-                                                <div class="form-group">
-
-                                                          <span style="width: 100%;" class="btn btn-default btn-file">
-                                                            <input id="input-2" name="input2[]" type="file" class="file" multiple data-show-upload="true" data-show-caption="true">
-                                                          </span>
-
-
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 text-left mb-4">
-                                                <h4 class="mb-3">4- Réglage du tempo</h4>
-                                                <input name="tempo" min="0" max="500" step="20" type="range" class="custom-range" id="customRange">
-                                            </div>
-
-                                            <div class="col-12">
-                                                <button type="submit" class="site-btn">Envoyer la demande d'enregistrement</button>
-                                            </div>
-
-                                        </div>
-
-
-                            </form>
+                        <div class="col-sm-12">
+                            <a href="/joinVideos/{{$recording->id}}">Joindre les {{count($recording->videos)}} vidéos</a>
                         </div>
 
                     </div>
-
 
 
 
@@ -483,6 +509,7 @@ div.pplsearchmin {
 
 
                      <div class="row">
+
 
 
                          <div class="col-md-6">
@@ -535,15 +562,7 @@ div.pplsearchmin {
                              </video>
                          </div>
 
-                         {{--
-                         <div class="col-md-12 mt-4">
-                             <p>Réglage de la webcam</p>
-                             <video id="my-preview" controls autoplay></video>
 
-                             <button id="btn-start-recording">Start Recording</button>
-<button id="btn-stop-recording" disabled="disabled">Stop Recording</button>
-                         </div>
-                         --}}
 
                              <div style="display: none;" id="storeRecording" class="col-12 mt-4">
                                  <button type="submit" class="site-btn">Valider l'enregistrement</button>
@@ -556,9 +575,6 @@ div.pplsearchmin {
                             <div style="display: none;" id="infoVideoSuccess" class="alert alert-success col-12 mt-3">
                              <strong></strong>
                            </div>
-
-
-
 
 
 
@@ -578,77 +594,23 @@ div.pplsearchmin {
 
 
 
-<!-- 4. Initialize and prepare the video recorder logic -->
-<script>
-    // Store a reference of the preview video element and a global reference to the recorder instance
-    var video = document.getElementById('my-preview');
-    var recorder;
-
-    // When the user clicks on start video recording
-    document.getElementById('btn-start-recording').addEventListener("click", function(){
-        // Disable start recording button
-        this.disabled = true;
-
-        // Request access to the media devices
-        navigator.mediaDevices.getUserMedia({
-            audio: true,
-            video: true
-        }).then(function(stream) {
-            // Display a live preview on the video element of the page
-            setSrcObject(stream, video);
-
-            // Start to display the preview on the video element
-            // and mute the video to disable the echo issue !
-            video.play();
-            video.muted = true;
-
-            // Initialize the recorder
-            recorder = new RecordRTCPromisesHandler(stream, {
-                mimeType: 'video/webm',
-                bitsPerSecond: 128000
-            });
-
-            // Start recording the video
-            recorder.startRecording().then(function() {
-                console.info('Recording video ...');
-            }).catch(function(error) {
-                console.error('Cannot start video recording: ', error);
-            });
-
-            // release stream on stopRecording
-            recorder.stream = stream;
-
-            // Enable stop recording button
-            document.getElementById('btn-stop-recording').disabled = false;
-        }).catch(function(error) {
-            console.error("Cannot access media devices: ", error);
-        });
-    }, false);
-
-    // When the user clicks on Stop video recording
-    document.getElementById('btn-stop-recording').addEventListener("click", function(){
-        this.disabled = true;
-
-        recorder.stopRecording().then(function() {
-            console.info('stopRecording success');
-
-            // Retrieve recorded video as blob and display in the preview element
-            var videoBlob = recorder.getBlob();
-            video.src = URL.createObjectURL(videoBlob);
-            video.play();
-
-            // Unmute video on preview
-            video.muted = false;
-
-            // Stop the device streaming
-            recorder.stream.stop();
-
-            // Enable record button again !
-            document.getElementById('btn-start-recording').disabled = false;
-        }).catch(function(error) {
-            console.error('stopRecording failure', error);
-        });
-    }, false);
+<script type="text/javascript">
+var myPlayer = videojs('my-player', {
+autoplay: true,
+loop: true,
+controlBar: {
+    bigPlayButton: false,
+    muteToggle: true,
+    playToggle: true,
+    timeDivider: false,
+    currentTimeDisplay: false,
+    durationDisplay: false,
+    remainingTimeDisplay: false,
+    progressControl: false,
+    fullscreenToggle: false,
+    volumeControl: false,
+}
+});
 </script>
 
 
@@ -771,65 +733,7 @@ player.on('finishRecord', function() {
     */
 </script>
 
-<script type="text/javascript">
 
-$('#openimgupload').click(function(){ $('#imgupload').trigger('click'); });
-
-</script>
-
-<script>
-$(document).ready(function(){
- $(document).on('change', '#imgupload', function(){
-  var name = document.getElementById("imgupload").files[0].name;
-  var form_data = new FormData();
-  var ext = name.split('.').pop().toLowerCase();
-  if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1)
-  {
-   alert("Invalid Image File");
-  }
-  var oFReader = new FileReader();
-  oFReader.readAsDataURL(document.getElementById("imgupload").files[0]);
-  var f = document.getElementById("imgupload").files[0];
-  var fsize = f.size||f.fileSize;
-  if(fsize > 2000000)
-  {
-   alert("Image File Size is very big");
-  }
-  else
-  {
-      form_data.append("image", document.getElementById('imgupload').files[0]);
-      form_data.append("id_user", $('input[name=user_id]').val());
-
-      $.ajaxSetup({
-                 headers: {
-                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                 }
-             });
-
-   $.ajax({
-    url:"/uploadAvatar",
-    method:"POST",
-    data: form_data,
-    contentType: false,
-    cache: false,
-    processData: false,
-    beforeSend:function(){
-     $('#uploaded_image').html("<label class='text-success'>Image Uploading...</label>");
-    },
-    success:function(data)
-    {
-        console.log('ok');
-     $('#uploaded_image').html('<img class="picture-img image-loader is-loaded" src="/images/users/'+data.image+'" alt="'+data.name+'" crossorigin="anonymous" height="150" width="150">');
- },
- error: function (xhr, msg) {
-     console.log($('input[name=user_id]').val());
-   console.log(msg + '\n' + xhr.responseText);
-}
-   });
-  }
- });
-});
-</script>
 
 
 

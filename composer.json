@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "paypal/rest-api-sdk-php": "^1.14",
+        "pbmedia/laravel-ffmpeg": "^6.0",
         "spatie/laravel-newsletter": "^4.8"
     },
     "require-dev": {

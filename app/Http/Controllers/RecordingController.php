@@ -137,11 +137,13 @@ class RecordingController extends Controller
     public function uploadVideo(Request $request)
     {
         $recording = Recording::find($request->recording_id);
-            $file = $request->video;
-            $filename = $file->getClientOriginalName();
-            $recording->video_file = $filename;
-            $recording->save();
-            $file->move(public_path().'/videos/recordings/', $filename);
+        $filename = time() . '.mp4';
+        $recording->video_file = $filename;
+        $recording->save();
+        $file = $request->video;
+
+
+        $file->move(public_path().'/videos/recordings/', $filename);
       return response()->json($recording);
     }
 

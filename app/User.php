@@ -100,6 +100,28 @@ class User extends Authenticatable
         }
 
 
+        /**
+         * [users description]
+         * relationship many to many with Recording model
+         * @return [array] [description]
+         */
+         public function recordings()
+         {
+             return $this->belongsToMany('App\Recording');
+         }
+
+
+         /**
+          * [users description]
+          * relationship many to many with Recording model
+          * @return [array] [description]
+          */
+          public function recordingsOne()
+          {
+              return $this->hasMany('App\Recording');
+          }
+
+
 
 
 

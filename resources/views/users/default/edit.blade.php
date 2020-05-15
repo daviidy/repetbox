@@ -516,18 +516,19 @@ div.pplsearchmin {
              <h3>
                  Mes enregistrements
              </h3>
+             @foreach(Auth::user()->recordings as $recording)
              <h6 class="text-left">
                    <div class="trafficlight">
                        <div class="trafficbulb redon"></div>
                        <div class="trafficbulb greenoff"></div>
                    </div>
-                   All of me
+                   {{$recording->name}}
              </h6>
              <div class="row videobloc">
 
                  <div class="col-sm-7">
                      <video width="100%" controls="">
-					  <source src="./video/guitare.mp4" type="video/mp4">
+					  <source src="/videos/recordings/{{$recording->video_file}}" type="video/mp4">
 					  Attention, votre navigateur ne supporte pas les vidéos
 					</video>
                  </div>
@@ -535,34 +536,20 @@ div.pplsearchmin {
                     <table>
                         <tbody>
                             <tr>
-                                <td>12/03/2020</td>
+                                <td>{{\Carbon::parse($recording->created_at)->format('d/m/Y')}}</td>
                                 <td class="right">00:00:25</td>
                             </tr>
                         </tbody>
                     </table>
+                    @foreach($recording->users as $user)
                     <div class="pplminiatures">
-                        <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
-                        thx1138
+                        <div class="profilepic creatorspics" style="background-image:url('/images/users/{{$user->image}}');"></div>
+                        {{$user->name}}
                     </div>
-                    <div class="pplminiatures">
-                        <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
-                        thx1138
-                    </div>
-                    <div class="pplminiatures">
-                        <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
-                        thx1138
-                    </div>
-                    <div class="pplminiatures">
-                        <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
-                        thx1138
-                    </div>
-                    <div class="pplminiatures">
-                        <div class="profilepic creatorspics" style="background-image:url('https://img.icons8.com/bubbles/2x/user.png');"></div>
-                        thx1138
-                    </div>
+                    @endforeach
                  </div>
              </div>
-
+             @endforeach
          </div>
 
      </div>

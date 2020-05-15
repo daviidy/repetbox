@@ -335,6 +335,7 @@ div.pplsearchmin {
              <div class="row videobloc">
 
                  <div class="col-sm-7">
+                     @if(count($recording->videos) > 0)
                      <video
                         id="my-player"
                         class="video-js"
@@ -342,7 +343,7 @@ div.pplsearchmin {
                         preload="auto"
                         poster="https://images.unsplash.com/photo-1529518969858-8baa65152fc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
                         data-setup='{}'>
-                      <source src="{{asset('storage/'.$recording->videos->where('user_id', Auth::user()->id)->first()->video_file)}}" type="video/mp4"></source>
+                      <source src="{{asset('storage/'.$recording->videos->first()->video_file)}}" type="video/mp4"></source>
 
                       <p class="vjs-no-js">
                         To view this video please enable JavaScript, and consider upgrading to a
@@ -352,6 +353,7 @@ div.pplsearchmin {
                         </a>
                       </p>
                     </video>
+                    @endif
 
                  </div>
                  <div class="col-sm-5 text-justify">

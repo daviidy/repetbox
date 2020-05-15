@@ -270,6 +270,7 @@ div.pplsearchmin {
              <div class="row videobloc">
 
                  <div class="col-sm-7">
+                     @if(count($recording->videos->where('user_id', Auth::user()->id)) > 0)
                      <video
                         id="my-player"
                         class="video-js"
@@ -287,6 +288,7 @@ div.pplsearchmin {
                         </a>
                       </p>
                     </video>
+                    @endif
 
                  </div>
                  <div class="col-sm-5 text-justify">

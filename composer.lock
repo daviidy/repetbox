@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "17ea9669beb25450a24749a72db0f509",
+    "content-hash": "9165c6be6bd067bd0220594dc46e517d",
     "packages": [
         {
             "name": "alchemy/binary-driver",
@@ -1337,16 +1337,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.67",
+            "version": "1.0.68",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "5b1f36c75c4bdde981294c2a0ebdb437ee6f275e"
+                "reference": "3e4198372276ec99ac3409a21d7c9d1ced9026e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/5b1f36c75c4bdde981294c2a0ebdb437ee6f275e",
-                "reference": "5b1f36c75c4bdde981294c2a0ebdb437ee6f275e",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/3e4198372276ec99ac3409a21d7c9d1ced9026e4",
+                "reference": "3e4198372276ec99ac3409a21d7c9d1ced9026e4",
                 "shasum": ""
             },
             "require": {
@@ -1417,7 +1417,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2020-04-16T13:21:26+00:00"
+            "time": "2020-05-12T20:33:44+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1776,41 +1776,43 @@
         },
         {
             "name": "pbmedia/laravel-ffmpeg",
-            "version": "6.0.0",
+            "version": "v7.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pascalbaljetmedia/laravel-ffmpeg.git",
-                "reference": "622c29cefa20ccd03b2e1967414634a9f133bb1e"
+                "reference": "c682c52b939e9368d9c044eab00f50b2b86c8b49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pascalbaljetmedia/laravel-ffmpeg/zipball/622c29cefa20ccd03b2e1967414634a9f133bb1e",
-                "reference": "622c29cefa20ccd03b2e1967414634a9f133bb1e",
+                "url": "https://api.github.com/repos/pascalbaljetmedia/laravel-ffmpeg/zipball/c682c52b939e9368d9c044eab00f50b2b86c8b49",
+                "reference": "c682c52b939e9368d9c044eab00f50b2b86c8b49",
                 "shasum": ""
             },
             "require": {
-                "illuminate/config": "^7.0",
-                "illuminate/filesystem": "^7.0",
-                "illuminate/log": "^7.0",
-                "illuminate/support": "^7.0",
-                "league/flysystem": "^1.0.8",
-                "php": "^7.2",
-                "php-ffmpeg/php-ffmpeg": "^0.14",
-                "symfony/process": "^5.0"
+                "illuminate/bus": "^6.0|^7.0",
+                "illuminate/config": "^6.0|^7.0",
+                "illuminate/filesystem": "^6.0|^7.0",
+                "illuminate/log": "^6.0|^7.0",
+                "illuminate/support": "^6.0|^7.0",
+                "php": "^7.4",
+                "php-ffmpeg/php-ffmpeg": "^0.16.0",
+                "spatie/temporary-directory": "^1.2"
             },
             "require-dev": {
-                "mockery/mockery": "^1.2.3",
-                "phpunit/phpunit": "^8.3",
+                "league/flysystem-memory": "^1.0",
+                "mockery/mockery": "^1.3",
+                "orchestra/testbench": "^4.0|^5.0",
+                "phpunit/phpunit": "^8.0",
                 "twistor/flysystem-http": "^0.2.0"
             },
             "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Pbmedia\\LaravelFFMpeg\\FFMpegServiceProvider"
+                        "Pbmedia\\LaravelFFMpeg\\Support\\ServiceProvider"
                     ],
                     "aliases": {
-                        "FFMpeg": "Pbmedia\\LaravelFFMpeg\\FFMpegFacade"
+                        "FFMpeg": "Pbmedia\\LaravelFFMpeg\\Support\\FFMpeg"
                     }
                 }
             },
@@ -1826,8 +1828,8 @@
             "authors": [
                 {
                     "name": "Pascal Baljet",
-                    "email": "pascal@pascalbaljetmedia.com",
-                    "homepage": "http://www.pascalbaljetmedia.com",
+                    "email": "pascal@protone.media",
+                    "homepage": "https://protone.media",
                     "role": "Developer"
                 }
             ],
@@ -1837,20 +1839,20 @@
                 "laravel-ffmpeg",
                 "pbmedia"
             ],
-            "time": "2020-03-03T20:02:34+00:00"
+            "time": "2020-05-16T18:07:16+00:00"
         },
         {
             "name": "php-ffmpeg/php-ffmpeg",
-            "version": "v0.14",
+            "version": "v0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-FFMpeg/PHP-FFMpeg.git",
-                "reference": "f9cc3d0c429fade5a144db674272eb8b48db8dce"
+                "reference": "4175c02b7d9f7e1a02cec2ba73474266ba2c5fa1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-FFMpeg/PHP-FFMpeg/zipball/f9cc3d0c429fade5a144db674272eb8b48db8dce",
-                "reference": "f9cc3d0c429fade5a144db674272eb8b48db8dce",
+                "url": "https://api.github.com/repos/PHP-FFMpeg/PHP-FFMpeg/zipball/4175c02b7d9f7e1a02cec2ba73474266ba2c5fa1",
+                "reference": "4175c02b7d9f7e1a02cec2ba73474266ba2c5fa1",
                 "shasum": ""
             },
             "require": {
@@ -1861,9 +1863,9 @@
                 "php": "^5.3.9 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.36",
                 "sami/sami": "~1.0",
-                "silex/silex": "~1.0"
+                "silex/silex": "~1.0",
+                "symfony/phpunit-bridge": "^5.0.4"
             },
             "suggest": {
                 "php-ffmpeg/extras": "A compilation of common audio & video drivers for PHP-FFMpeg"
@@ -1921,7 +1923,7 @@
                 "video",
                 "video processing"
             ],
-            "time": "2019-02-26T17:04:09+00:00"
+            "time": "2020-03-29T09:57:10+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -2531,6 +2533,52 @@
                 "newsletter"
             ],
             "time": "2020-03-03T12:49:27+00:00"
+        },
+        {
+            "name": "spatie/temporary-directory",
+            "version": "1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/temporary-directory.git",
+                "reference": "fcb127e615700751dac2aefee0ea2808ff3f5bb1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/temporary-directory/zipball/fcb127e615700751dac2aefee0ea2808ff3f5bb1",
+                "reference": "fcb127e615700751dac2aefee0ea2808ff3f5bb1",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\TemporaryDirectory\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Vanderbist",
+                    "email": "alex@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily create, use and destroy temporary directories",
+            "homepage": "https://github.com/spatie/temporary-directory",
+            "keywords": [
+                "spatie",
+                "temporary-directory"
+            ],
+            "time": "2019-12-15T18:52:09+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -6118,7 +6166,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "pbmedia/laravel-ffmpeg": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

@@ -1,15 +1,15 @@
 <?php
 
 return [
-    'default_disk' => 'local',
+    'default_disk' => 'public',
 
     'ffmpeg' => [
-        'binaries' => 'C:/ffmpeg/bin/ffmpeg.exe',
+        'binaries' => 'C:/FFmpeg/bin/ffmpeg.exe',
         'threads' => 12,
     ],
 
     'ffprobe' => [
-        'binaries' => 'C:/ffmpeg/bin/ffprobe.exe',
+        'binaries' => 'C:/FFmpeg/bin/ffprobe.exe',
     ],
 
     'timeout' => 3600,

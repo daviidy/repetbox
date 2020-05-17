@@ -197,11 +197,11 @@ class RecordingController extends Controller
             array_push($tab, $video->video_file);
         }
         //$tab = ['video1.mp4', 'video2.mp4'];
-        FFMpeg::fromDisk('local')
+        FFMpeg::fromDisk('public')
         ->open($tab)
         ->export()
         ->addFilter('[0:v][1:v]', 'hstack', '[v]')  // $in, $parameters, $out
-        ->addFormatOutputMapping(new X264('libmp3lame', 'libx264'), Media::make('local', 'stacked_video.mp4'), ['0:a', '[v]'])
+        ->addFormatOutputMapping(new X264('libmp3lame', 'libx264'), Media::make('public', 'out-'.time().'.mp4'), ['0:a', '[v]'])
         ->save();
 
         /*

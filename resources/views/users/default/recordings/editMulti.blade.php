@@ -396,6 +396,13 @@ div.pplsearchmin {
 #page_account .account-thumbnail{float:left;width:150px;}
 </style>
 
+
+<style media="screen">
+    .vjs-progress-control{
+        display: none;
+    }
+</style>
+
 <div class="container">
 
     <div class="row contentbox_row">
@@ -427,7 +434,7 @@ div.pplsearchmin {
                   <div class="col-md-6 col-12">
                       <div class="row">
                           <div class="col-12 text-right">
-                              <a href="/{{Auth::user()->id}}/recordings">
+                              <a href="/recordings">
                                       <i class="fa fa-video-camera"></i> >Mes enregistrements
                               </a>
 
@@ -452,6 +459,12 @@ div.pplsearchmin {
                       <strong>{{session('status')}}</strong>
                     </div>
                     @endif
+
+
+
+
+
+
                     <input value="{{$recording->id}}" hidden type="text" name="recording_id">
                     <div class="row">
                         <div class="col-md-12 text-left mb-4">
@@ -468,7 +481,7 @@ div.pplsearchmin {
                     </div>
                     <div class="row">
                         @foreach($recording->videos as $video)
-                        <div class="multi col-md-4 col-sm-12 text-left mb-4">
+                        <div class="multi col-md-4 col-sm-12 text-left">
                             <video
                                id="my-player"
                                class="video-js"
@@ -551,7 +564,7 @@ div.pplsearchmin {
 
                          <div class="col-md-12 mt-4">
                              <p>Réglage de la webcam</p>
-                             <video id="myVideo" playsinline class="video-js vjs-default-skin">
+                             <video style="width: 35%;" id="myVideo" playsinline class="video-js vjs-default-skin">
                                  <p class="vjs-no-js">
                                     To view this video please enable JavaScript, or consider upgrading to a
                                     web browser that

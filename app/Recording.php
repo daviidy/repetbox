@@ -11,12 +11,11 @@ class Recording extends Model
      * @var [array]
      */
     protected $fillable = ['name',
-                           'audio_file',
-                           'video_file',
                            'user_id',
                            'style_id',
                            'title_id',
                            'tempo',
+                           'final_video',
                          ];
 
 
@@ -76,7 +75,7 @@ class Recording extends Model
           * relationship one to many with Media model
           * @return [array] [description]
           */
-          public function medias()
+          public function multimedias()
           {
               return $this->hasMany('App\Media');
           }

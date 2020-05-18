@@ -524,7 +524,6 @@ div.pplsearchmin {
                         class="video-js"
                         controls
                         preload="auto"
-                        poster="https://images.unsplash.com/photo-1529518969858-8baa65152fc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
                         data-setup='{}'>
                       <source src="{{asset('storage/'.$recording->videos->where('user_id', Auth::user()->id)->first()->video_file)}}" type="video/mp4"></source>
 

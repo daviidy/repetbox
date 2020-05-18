@@ -536,7 +536,7 @@ div.pplsearchmin {
                     <table>
                         <tbody>
                             <tr>
-                                <td>{{Carbon\Carbon::parse($recording->created_at)->format('d/m/Y')}}</td>
+                                <td>{{\Carbon::parse($recording->created_at)->format('d/m/Y')}}</td>
                                 <td class="right">00:00:25</td>
                             </tr>
                         </tbody>

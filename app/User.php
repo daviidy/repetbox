@@ -122,6 +122,17 @@ class User extends Authenticatable
           }
 
 
+          /**
+          * [users description]
+          * relationship many to many with Video model
+          * @return [array] [description]
+          */
+          public function videos()
+          {
+              return $this->hasMany('App\Video');
+          }
+
+
 
 
 

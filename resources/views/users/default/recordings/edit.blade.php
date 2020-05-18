@@ -478,7 +478,9 @@ div.pplsearchmin {
                                                 <h4 class="mb-3">2- Inviter des musiciens (8 Max)</h4>
                                                 <select name="users_id[]" class="selectpicker" multiple data-live-search="true" name="">
                                                     @foreach($users as $user)
-                                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                                    @if($user->id !== Auth::user()->id)
+                                                    <option {{$recording->users->contains($user->id) ? 'selected' : ''}} value="{{$user->id}}">{{$user->name}}</option>
+                                                    @endif
                                                     @endforeach
                                                 </select>
                                             </div>

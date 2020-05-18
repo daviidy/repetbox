@@ -60,6 +60,16 @@ class Recording extends Model
              return $this->belongsToMany('App\User');
          }
 
+         /**
+          * [users description]
+          * relationship many to many with Video model
+          * @return [array] [description]
+          */
+          public function videos()
+          {
+              return $this->hasMany('App\Video');
+          }
+
 
          /**
           * [users description]

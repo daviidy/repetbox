@@ -4,6 +4,13 @@
 @section('content')
 
 <style media="screen">
+    .video-js{
+        width: 100%;
+        height: 55vh;
+    }
+</style>
+
+<style media="screen">
 div.sixtyprctwidth {
 width: 65%;
 padding-top: 65%;
@@ -504,15 +511,33 @@ div.pplsearchmin {
                        <div class="trafficbulb redon"></div>
                        <div class="trafficbulb greenoff"></div>
                    </div>
-                   {{$recording->name}}
+                   <a href="/recordings/multi/edit/{{$recording->id}}">
+                       {{$recording->name}}
+                   </a>
              </h6>
              <div class="row videobloc">
 
                  <div class="col-sm-7">
-                     <video width="100%" controls="">
-					  <source src="/videos/recordings/{{$recording->video_file}}" type="video/mp4">
-					  Attention, votre navigateur ne supporte pas les vidéos
-					</video>
+                     @if(count($recording->videos->where('user_id', Auth::user()->id)) > 0)
+                     <video
+                        id="my-player"
+                        class="video-js"
+                        controls
+                        preload="auto"
+                        poster="https://images.unsplash.com/photo-1529518969858-8baa65152fc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+                        data-setup='{}'>
+                      <source src="{{asset('storage/'.$recording->videos->where('user_id', Auth::user()->id)->first()->video_file)}}" type="video/mp4"></source>
+
+                      <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a
+                        web browser that
+                        <a href="https://videojs.com/html5-video-support/" target="_blank">
+                          supports HTML5 video
+                        </a>
+                      </p>
+                    </video>
+                    @endif
+
                  </div>
                  <div class="col-sm-5 text-justify">
                     <table>
@@ -636,5 +661,11 @@ div.pplsearchmin {
      </div>
 
 </div>
+
+
+
+<!-- unpkg : use the latest version of Video.js -->
+<link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet">
+<script src="https://unpkg.com/video.js/dist/video.min.js"></script>
 
 @endsection

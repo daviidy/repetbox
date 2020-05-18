@@ -103,8 +103,11 @@ Route::get('/admin/purchases/create', 'PurchaseController@create')->name('purcha
 Route::get('/members/{user}/edit', 'UserController@edit')->name('users');
 
 //recordings route routes
+Route::get('/recordings', 'RecordingController@index')->name('recordings');
 Route::get('/recordings/create', 'RecordingController@create')->name('recordings');
 Route::get('/recordings/edit/{recording}', 'RecordingController@edit')->name('recordings');
+Route::get('/recordings/multi/edit/{recording}/', 'RecordingController@editMulti')->name('recordings');
+Route::get('/joinVideos/{recording}/', 'RecordingController@joinVideos')->name('recordings');
 
 //ajax routes
 

@@ -375,7 +375,7 @@ a[_ngcontent-serverApp-c11]:hover   .nav-dropdown__profile[_ngcontent-serverApp-
                 <a href="#"><i class="fa fa-user-circle"></i> &nbsp; {{Auth::user()->name}}</a>
                 <ul class="sub-menu">
 					<li><a href="/home">Mon profil</a></li>
-                    <li><a href="#">Enregistrements</a></li>
+                    <li><a href="/recordings">Enregistrements</a></li>
                     <li><a href="#">Répétitions</a></li>
                     <li><a href="#">Messagerie</a></li>
                     <li><a href="#">Studio'Plan</a></li>
@@ -568,7 +568,7 @@ a[_ngcontent-serverApp-c11]:hover   .nav-dropdown__profile[_ngcontent-serverApp-
                   <ul id="dropdown_user" class="dropdown-menu global-nav__dropdown-content">
                       <li _ngcontent-serverapp-c11="" class="nav-dropdown__item nav-dropdown__item--profile  nav-dropdown__item--border"><a _ngcontent-serverapp-c11="" data-qa="navbar-profile" href="/home"><strong _ngcontent-serverapp-c11=""
                                 class="nav-dropdown__username" data-qa="navbar-username">{{Auth::user()->name}}</strong><span _ngcontent-serverapp-c11="" class="nav-dropdown__profile" data-qa="navbar-view-profile">Mon compte</span></a></li>
-                      <li _ngcontent-serverapp-c11="" class="nav-dropdown__item"><a _ngcontent-serverapp-c11="" data-qa="navbar-billing" routerlink="/profile/billing" href="#"> Enregistrements </a></li>
+                      <li _ngcontent-serverapp-c11="" class="nav-dropdown__item"><a _ngcontent-serverapp-c11="" data-qa="navbar-billing" routerlink="/profile/billing" href="/recordings"> Enregistrements </a></li>
                       <li _ngcontent-serverapp-c11="" class="nav-dropdown__item"><a _ngcontent-serverapp-c11="" data-qa="navbar-settings" routerlink="/profile/settings" href="#"> Répétitions </a></li>
                       <li _ngcontent-serverapp-c11="" class="nav-dropdown__item nav-dropdown__item--border"><a _ngcontent-serverapp-c11="" data-qa="navbar-download" routerlink="/download" href="#"> Messagerie </a></li>
                       <li _ngcontent-serverapp-c11="" class="nav-dropdown__item"><a _ngcontent-serverapp-c11="" data-qa="navbar-terms" routerlink="/terms" href="#">Studio'Plan</a></li>

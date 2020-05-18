@@ -276,10 +276,12 @@ div.pplsearchmin {
                         class="video-js"
                         controls
                         preload="auto"
-                        poster="https://images.unsplash.com/photo-1529518969858-8baa65152fc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
                         data-setup='{}'>
+                        @if($recording->final_video !== null)
+                        <source src="{{asset('storage/'.$recording->final_video)}}" type="video/mp4"></source>
+                        @else
                       <source src="{{asset('storage/'.$recording->videos->where('user_id', Auth::user()->id)->first()->video_file)}}" type="video/mp4"></source>
-
+                        @endif
                       <p class="vjs-no-js">
                         To view this video please enable JavaScript, and consider upgrading to a
                         web browser that
@@ -341,9 +343,12 @@ div.pplsearchmin {
                         class="video-js"
                         controls
                         preload="auto"
-                        poster="https://images.unsplash.com/photo-1529518969858-8baa65152fc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
                         data-setup='{}'>
+                        @if($recording->final_video !== null)
+                        <source src="{{asset('storage/'.$recording->final_video)}}" type="video/mp4"></source>
+                        @else
                       <source src="{{asset('storage/'.$recording->videos->first()->video_file)}}" type="video/mp4"></source>
+                      @endif
 
                       <p class="vjs-no-js">
                         To view this video please enable JavaScript, and consider upgrading to a
@@ -374,7 +379,7 @@ div.pplsearchmin {
                     <div class="row">
                         <div class="col-6">
                             <div class="showProfile__button left">
-                               <a style="background: #08192D; border-color: #08192D;" href="/members/{{Auth::user()->id}}/edit" class="button button--primary">
+                               <a style="background: #08192D; border-color: #08192D;" href="/recordings/multi/edit/{{$recording->id}}" class="button button--primary">
                                Accepter
                                </a>
                             </div>
@@ -382,7 +387,7 @@ div.pplsearchmin {
 
                         <div class="col-6">
                             <div class="showProfile__button left">
-                               <a href="#" class="button button--primary">
+                               <a href="/refuse/{{$recording->id}}" class="button button--primary">
                                Refuser
                                </a>
                             </div>

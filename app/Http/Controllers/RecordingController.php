@@ -6,6 +6,7 @@ use App\Recording;
 use App\User;
 use App\Style;
 use App\Video;
+use App\Multimedia;
 use Auth;
 use Validator;
 use Illuminate\Contracts\Filesystem\Filesystem;
@@ -107,14 +108,48 @@ class RecordingController extends Controller
     public function editMulti(Recording $recording)
     {
         if (Auth::check()) {
+            //si user est proprio
+            if (Auth::user()->id == $recording->user_id) {
+                $styles = Style::orderby('id', 'asc')->get();
+                $users = User::orderby('id', 'asc')->where('type', 'default')->get();
+                return view('users.default.recordings.edit', [
+                                                                'recording' => $recording,
+                                                                'styles' => $styles,
+                                                                'users' => $users,
+                                                            ]);
+            }
+            //si user est invité
+            elseif ($recording->users->contains(Auth::user()->id)) {
+                $styles = Style::orderby('id', 'asc')->get();
+                $users = User::orderby('id', 'asc')->where('type', 'default')->get();
+                return view('users.default.recordings.editMulti', [
+                                                                'recording' => $recording,
+                                                                'styles' => $styles,
+                                                                'users' => $users,
+                                                            ]);
+            }
 
-            $styles = Style::orderby('id', 'asc')->get();
-            $users = User::orderby('id', 'asc')->where('type', 'default')->get();
-            return view('users.default.recordings.editMulti', [
-                                                            'recording' => $recording,
-                                                            'styles' => $styles,
-                                                            'users' => $users,
-                                                        ]);
+            else {
+                return redirect('home');
+            }
+
+
+        }
+        else {
+            return redirect('home');
+        }
+    }
+
+    //when user refuses invitation
+    public function refuse(Recording $recording)
+    {
+        if (Auth::check()) {
+            //si user est invité
+            if ($recording->users->contains(Auth::user()->id)) {
+                $recording->users()->detach(Auth::user()->id);
+                return redirect('/recordings')->with('status', 'La demande a été refusée avec succès');
+            }
+
         }
         else {
             return redirect('home');
@@ -144,7 +179,7 @@ class RecordingController extends Controller
             if ($request->hasFile('input2') ) {
               foreach ($request->file('input2') as $file) {
                 $filename = $file->getClientOriginalName();
-                $media = Media::create([
+                $media = Multimedia::create([
                     'name' => $filename,
                     'recording_id' => $recording->id,
                 ]);
@@ -156,7 +191,13 @@ class RecordingController extends Controller
         if ($request->users_id) {
           foreach ($request->users_id as $user_id) {
               $user_found = User::find($user_id);
-              $recording->users()->attach($user_found);
+              if ($recording->users->contains($user_found->id)) {
+                  continue;
+              }
+              else {
+                  $recording->users()->attach($user_found);
+              }
+
           }
       }
             return redirect('/recordings/edit/'.$recording->id)->with('status', 'Les modifications ont été enregistrées avec succès');
@@ -193,16 +234,26 @@ class RecordingController extends Controller
     {
 
         $tab = array();
+        $hstack_input = '';
+        $counter = 0;
         foreach ($recording->videos as $video) {
             array_push($tab, $video->video_file);
+            $hstack_input = $hstack_input.'['.$counter.':v]';
+            $counter += 1;
         }
+        $final_video = 'out-'.time().'.mp4';
+        var_dump($hstack_input);
         //$tab = ['video1.mp4', 'video2.mp4'];
         FFMpeg::fromDisk('public')
         ->open($tab)
         ->export()
-        ->addFilter('[0:v][1:v]', 'hstack', '[v]')  // $in, $parameters, $out
-        ->addFormatOutputMapping(new X264('libmp3lame', 'libx264'), Media::make('public', 'out-'.time().'.mp4'), ['0:a', '[v]'])
+        ->addFilter($hstack_input, 'hstack='.count($recording->videos), '[v]')  // $in, $parameters, $out
+        ->addFormatOutputMapping(new X264('libmp3lame', 'libx264'), Media::make('public', $final_video), ['0:a', '[v]'])
         ->save();
+
+        $recording->final_video = $final_video;
+        $recording->save();
+
 
         /*
         $first_video = $recording->videos->first()->video_file;

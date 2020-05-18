@@ -516,7 +516,7 @@ div.pplsearchmin {
              <h3>
                  Mes enregistrements
              </h3>
-             @foreach(Auth::user()->recordings as $recording)
+             @foreach(Auth::user()->recordingsOne as $recording)
              <h6 class="text-left">
                    <div class="trafficlight">
                        <div class="trafficbulb redon"></div>
@@ -527,16 +527,33 @@ div.pplsearchmin {
              <div class="row videobloc">
 
                  <div class="col-sm-7">
-                     <video width="100%" controls="">
-					  <source src="/videos/recordings/{{$recording->video_file}}" type="video/mp4">
-					  Attention, votre navigateur ne supporte pas les vidéos
-					</video>
+                     @if(count($recording->videos->where('user_id', Auth::user()->id)) > 0)
+                     <video
+                        id="my-player"
+                        class="video-js"
+                        controls
+                        preload="auto"
+                        data-setup='{}'>
+                        @if($recording->final_video !== null)
+                        <source src="{{asset('storage/'.$recording->final_video)}}" type="video/mp4"></source>
+                        @else
+                      <source src="{{asset('storage/'.$recording->videos->where('user_id', Auth::user()->id)->first()->video_file)}}" type="video/mp4"></source>
+                        @endif
+                      <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a
+                        web browser that
+                        <a href="https://videojs.com/html5-video-support/" target="_blank">
+                          supports HTML5 video
+                        </a>
+                      </p>
+                    </video>
+                    @endif
                  </div>
                  <div class="col-sm-5 text-justify">
                     <table>
                         <tbody>
                             <tr>
-                                <td>{{\Carbon::parse($recording->created_at)->format('d/m/Y')}}</td>
+                                <td>{{\Carbon\Carbon::parse($recording->created_at)->format('d/m/Y')}}</td>
                                 <td class="right">00:00:25</td>
                             </tr>
                         </tbody>

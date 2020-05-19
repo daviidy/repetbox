@@ -203,6 +203,49 @@ div.contentbox {
     margin: 1rem auto;
 }
 
+@media screen and (max-width: 600px)
+{
+    .contentbox_row{
+        width: 100%;
+        margin: 1rem 0;
+    }
+    div.contentbox{
+        background-color: #fff;
+        -webkit-box-shadow: none;
+        -moz-box-shadow:none;
+        box-shadow: none;
+    }
+    .progress{
+        height: 6px !important;
+    }
+    .progres{
+        max-width: 50% !important;
+        margin-top: 10px;
+        padding: 0px;
+    }
+    .fa{
+        font-size: small;
+    }
+
+    .mic{
+        max-width: 10% !important;
+        padding-left: 5px;
+    }
+    .xls{
+        max-width: 50% !important;
+        
+    }
+    .contentbox {
+    padding: 25px 5px ;
+    }
+    .link{
+        font-size: small;
+        padding: 5px;
+    }
+    .input-group-btn .btn{
+        font-size: 0.700rem;
+    }
+}
 .progress-bar-vertical {
   width: 20px;
   min-height: 115px;
@@ -366,32 +409,32 @@ div.pplsearchmin {
      <div class="row contentbox_row">
          <div class="col-sm-12 contentbox center">
              <div class="row mb-5">
-                 <div class="col-md-6 col-12">
+                 <div class="col-md-6 col-12 xls">
                      <div class="row">
-                         <div class="col-2">
+                         <div class="col-2 mic">
                              <i class="fa fa-microphone"></i>
                          </div>
-                         <div class="col-8">
+                         <div class="col-8 progres">
                              <div class="progress">
                                   <div class="progress-bar" style="width:70%"></div>
                               </div>
                          </div>
-                         <div class="col-2">
+                         <div class="col-2 mic">
                              <i class="fa fa-microphone-slash"></i>
                          </div>
 
                      </div>
                  </div>
 
-                  <div class="col-md-6 col-12">
+                  <div class="col-md-6 col-12 xls">
                       <div class="row">
-                          <div class="col-12 text-right">
+                          <div class="col-12 text-right link">
                               <a href="/{{Auth::user()->id}}/recordings">
                                       <i class="fa fa-video-camera"></i> >Mes enregistrements
                               </a>
 
                           </div>
-                          <div class="col-12 text-right">
+                          <div class="col-12 text-right link">
                               <a href="/studioPlan">
                                       <i class="fa fa-desktop"></i> >Studio'Plan
                               </a>
@@ -449,8 +492,6 @@ div.pplsearchmin {
                                                           <span style="width: 100%;" class="btn btn-default btn-file">
                                                             <input id="input-2" name="input2[]" type="file" class="file" multiple data-show-upload="true" data-show-caption="true">
                                                           </span>
-
-
                                                 </div>
                                             </div>
 

@@ -822,6 +822,16 @@ Contact page
 	color: #6a7080;
 	background: #f5f6fa;
 }
+@media screen and (max-width: 600px)
+{
+	.contact-from input{
+		height: 35px;
+	}
+	.site-btn{
+		font-size: 12px;
+	    padding: 20px 20px;
+	}
+}
 
 .contact-from textarea {
 	resize: none;

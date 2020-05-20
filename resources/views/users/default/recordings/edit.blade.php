@@ -508,10 +508,6 @@ input[type="checkbox"]:checked + label:after{transform:skewX(-30deg);opacity:1;}
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-12 text-left mb-4">
-                                                <h4 class="mb-3">4- Réglage du tempo</h4>
-                                                <input name="tempo" min="0" max="500" step="20" type="range" class="custom-range" id="customRange">
-                                            </div>
 
                                             <div class="col-12">
                                                 <button type="submit" class="site-btn">Valider</button>
@@ -545,7 +541,7 @@ input[type="checkbox"]:checked + label:after{transform:skewX(-30deg);opacity:1;}
                         <div class="controls">
                             <label>BPM: <span>
                                     <i class="fa fa-minus bpm-minus"></i>
-                                    <input type="text" value="60" class="bpm-input">
+                                    <input name="tempo" type="text" value="60" class="bpm-input">
                                     <i class="fa fa-plus bpm-plus"></i>
                                 </span>
                             </label>

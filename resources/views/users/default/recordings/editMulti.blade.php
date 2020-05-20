@@ -5,7 +5,7 @@
 
 <style media="screen">
     .multi{
-        padding: 0;
+        padding: 2px;
     }
 </style>
 
@@ -27,8 +27,9 @@
 {
     #myVideo {
 
-      width: 100%;
+      width: 100%!important;
     }
+    .flt{flex-wrap: nowrap;}
 }
 
 .kv-upload-progress .progress{
@@ -394,6 +395,47 @@ div.pplsearchmin {
 .image-loader{opacity:0;-webkit-transition-duration:.3s;transition-duration:.3s;-webkit-transition-property:opacity;transition-property:opacity;-webkit-transition-timing-function:ease-out;transition-timing-function:ease-out;}
 .image-loader.is-loaded{opacity:1;}
 #page_account .account-thumbnail{float:left;width:150px;}
+
+@media screen and (max-width: 600px){ 
+    .contentbox_row {
+        width: 100%;
+        margin: 1rem 0;
+    }
+    div.contentbox {
+    background-color: #fff;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    }
+.contentbox {
+    padding: 25px 5px;
+    }
+    .xls {
+    max-width: 50% !important;
+    }
+    .mic {
+    max-width: 10% !important;
+    padding-left: 5px;
+    }
+    .progres {
+    max-width: 50% !important;
+    margin-top: 10px;
+    padding: 0px;
+    }
+    .progress {
+    height: 6px !important;
+    }
+    .fa {
+    font-size: small;
+    }
+    .link {
+    font-size: small;
+    padding: 5px;
+    }
+    .multi {
+    padding: 5px;
+    }
+}
 </style>
 
 
@@ -414,32 +456,32 @@ div.pplsearchmin {
      <div class="row contentbox_row">
          <div class="col-sm-12 contentbox center">
              <div class="row mb-5">
-                 <div class="col-md-6 col-12">
+                 <div class="col-md-6 col-12 xls">
                      <div class="row">
-                         <div class="col-2">
+                         <div class="col-2 mic">
                              <i class="fa fa-microphone"></i>
                          </div>
-                         <div class="col-8">
+                         <div class="col-8 progres">
                              <div class="progress">
                                   <div class="progress-bar" style="width:70%"></div>
                               </div>
                          </div>
-                         <div class="col-2">
+                         <div class="col-2 mic">
                              <i class="fa fa-microphone-slash"></i>
                          </div>
 
                      </div>
                  </div>
 
-                  <div class="col-md-6 col-12">
+                  <div class="col-md-6 col-12 xls">
                       <div class="row">
-                          <div class="col-12 text-right">
+                          <div class="col-12 text-right link">
                               <a href="/recordings">
                                       <i class="fa fa-video-camera"></i> >Mes enregistrements
                               </a>
 
                           </div>
-                          <div class="col-12 text-right">
+                          <div class="col-12 text-right link">
                               <a href="/studioPlan">
                                       <i class="fa fa-desktop"></i> >Studio'Plan
                               </a>
@@ -471,11 +513,11 @@ div.pplsearchmin {
                             <h4 class="mb-3">Titre du morceau: {{$recording->name}}</h4>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-9 col-sm-12 text-left mb-4">
+                    <div class="row flt">
+                        <div class="col-md-9 col-sm-6 text-left mb-4">
                             <p class="mb-3">Date de dernière version: {{$recording->updated_at}}</p>
                         </div>
-                        <div class="col-md-3 col-sm-12 text-right mb-4">
+                        <div class="col-md-3 col-sm-6 text-right mb-4">
                             <p class="mb-3">Durée:</p>
                         </div>
                     </div>

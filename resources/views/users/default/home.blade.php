@@ -525,7 +525,11 @@ div.pplsearchmin {
                         controls
                         preload="auto"
                         data-setup='{}'>
+                        @if($recording->final_video !== null)
+                        <source src="{{asset('storage/'.$recording->final_video)}}" type="video/mp4"></source>
+                        @else
                       <source src="{{asset('storage/'.$recording->videos->where('user_id', Auth::user()->id)->first()->video_file)}}" type="video/mp4"></source>
+                        @endif
 
                       <p class="vjs-no-js">
                         To view this video please enable JavaScript, and consider upgrading to a

@@ -355,6 +355,60 @@ div.pplsearchmin {
 #page_account .account-thumbnail{float:left;width:150px;}
 </style>
 
+<style media="screen">
+/*! CSS Used from: Embedded */
+button,input{overflow:visible;}
+section{display:block;}
+button,input{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0;}
+button{text-transform:none;}
+button{-webkit-appearance:button;}
+button::-moz-focus-inner{border-style:none;padding:0;}
+button:-moz-focusring{outline:ButtonText dotted 1px;}
+[type=checkbox]{box-sizing:border-box;padding:0;}
+/*! CSS Used from: Embedded */
+/*! @import //cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css */
+.fa{display:inline-block;font-family:FontAwesome;font-style:normal;font-weight:normal;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.fa-cog:before{content:"\f013";}
+.fa-plus:before{content:"\f067";}
+.fa-minus:before{content:"\f068";}
+.fa-caret-down:before{content:"\f0d7";}
+/*! end @import */
+input[type="checkbox"]{display:none;}
+input[type="checkbox"] + label{display:inline-block!important;height:15px;width:15px;margin:0px 4px 0px 0px!important;padding:0px;position:relative;top:4px;background:#FFF;cursor:pointer;}
+input[type="checkbox"] + label:before{content:"";display:inline-block;width:4px;height:8px;background:#F38630;opacity:0;position:relative;top:-5px;right:-1px;transform:skewX(0deg);transition:all 0.24s;}
+input[type="checkbox"] + label:after{content:"";display:inline-block;width:4px;height:15px;background:#F38630;opacity:0;position:relative;top:-5px;right:-3px;transform:skewX(0deg);transition:all 0.24s;}
+input[type="checkbox"]:checked + label:before{transform:skewX(30deg);opacity:1;}
+input[type="checkbox"]:checked + label:after{transform:skewX(-30deg);opacity:1;}
+.metronome-container{width:75%;height:auto;position:relative;margin:40px auto;background:#2f2f2f;}
+.metronome-container .options-btn{color:#FFF;font-size:22px;position:absolute;top:20px;right:15px;transform:rotateZ(0deg);cursor:pointer;transition:transform 0.3s;}
+.metronome-container .options-btn:hover{transform:rotateZ(60deg);}
+.metronome-container .options{max-height:0px;background:#FFF;color:#333;overflow:hidden;transition:all 0.25s;position:absolute;top:50px;right:15px;}
+.metronome-container .options .up{color:#FFF;font-size:22px;position:absolute;top:-14px;right:3px;z-index:500;transform:rotateZ(180deg);}
+.metronome-container .options label{display:block;margin-top:10px;}
+.metronome-container .counter{width:100%;padding-bottom:10px;background:#404040;text-align:center;}
+.metronome-container .counter .dot{width:15px;height:15px;display:inline-block;margin:25px 10px 10px 10px;background:#FFF;border-radius:50%;cursor:pointer;transition:all 0.3s;}
+.metronome-container .counter .active{background:#5ec2ff;}
+.metronome-container .controls{color:#FFF;padding:20px;text-align:center;}
+.metronome-container .controls label{display:block;margin-bottom:18px;}
+.metronome-container .controls label span{background:#FFF;color:#222;padding:5px;}
+.metronome-container .controls label span i{cursor:pointer;transition:color 0.2s;}
+.metronome-container .controls label span i:hover{color:#FA6900;}
+.metronome-container .controls input{width:30px;border:0px solid;color:#222;text-align:center;padding:4px;}
+.metronome-container .controls .play-btn{width:45%;background:#D6E26D;border:0px;border-radius:5px;padding:12px;color:#3d430d;transition:background 0.3s;}
+.metronome-container .controls .play-btn:hover{background:#e8efad;}
+.metronome-container .controls .tap-btn{width:45%;background:#888;border:0px;border-radius:5px;padding:12px;color:#fbfbfb;transition:background 0.3s;}
+.metronome-container .controls .tap-btn:hover{background:#959595;}
+.metronome-container{
+    border-radius: 8px;
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,.1);
+}
+.counter{
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+</style>
+
+
 <div class="container">
 
     <div class="row contentbox_row">
@@ -460,7 +514,7 @@ div.pplsearchmin {
                                             </div>
 
                                             <div class="col-12">
-                                                <button type="submit" class="site-btn">Envoyer la demande d'enregistrement</button>
+                                                <button type="submit" class="site-btn">Valider</button>
                                             </div>
 
                                         </div>
@@ -475,6 +529,45 @@ div.pplsearchmin {
 
 
                  </div>
+             </div>
+
+             <div class="row">
+                 <div class="col-sm-12">
+                     <h4 class="mt-3">4- Réglage du tempo</h4>
+                     <section class="metronome-container">
+                        <div class="counter">
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                    <!--    <i class="fa fa-cog options-btn"></i>-->
+                        <div class="controls">
+                            <label>BPM: <span>
+                                    <i class="fa fa-minus bpm-minus"></i>
+                                    <input type="text" value="60" class="bpm-input">
+                                    <i class="fa fa-plus bpm-plus"></i>
+                                </span>
+                            </label>
+                            <label>
+                                Beat: <input type="text" value="4" class="ts-top"></label>
+                            <div style="margin-bottom: 15px;">
+                                <input type="checkbox" id="timer-check">
+                                <label for="timer-check"></label>
+                                Timer: <input type="text" value="60" class="timer">
+                            </div>
+                            <button class="tap-btn">Tap</button>
+                            <button class="play-btn">Play</button>
+                        </div>
+                        <div class="options">
+                            <i class="fa fa-caret-down up"></i>
+                            <label>Off Beat Pitch: <input type="range" min="0" max="500" value="200" class="beat-range"></label>
+                            <label>Accent Pitch: <input type="range" min="0" max="500" value="380" class="accent-range"></label>
+                        </div>
+                    </section>
+
+                 </div>
+
              </div>
 
              <div class="row mt-5">
@@ -832,7 +925,160 @@ $(document).ready(function(){
 </script>
 
 
+<script type="text/javascript">
 
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+var context = new AudioContext();
+var timer, noteCount, counting, accentPitch = 380, offBeatPitch = 200;
+var delta = 0;
+var curTime = 0.0;
+
+// Load up dots on pageload
+$("document").ready(function() {
+$(".ts-top").trigger("change");
+$("header").fitText(1, { maxFontSize: "46px" });
+});
+
+
+/*
+Scheduling Help by: https://www.html5rocks.com/en/tutorials/audio/scheduling/
+*/
+function schedule() {
+while(curTime < context.currentTime + 0.1) {
+  playNote(curTime);
+  updateTime();
+}
+timer = window.setTimeout(schedule, 0.1);
+}
+
+function updateTime() {
+curTime += 60.0 / parseInt($(".bpm-input").val(), 10);
+noteCount++;
+}
+
+/* Play note on a delayed interval of t */
+function playNote(t) {
+    var note = context.createOscillator();
+
+    if(noteCount == parseInt($(".ts-top").val(), 10) )
+      noteCount = 0;
+
+    if( $(".counter .dot").eq(noteCount).hasClass("active") )
+      note.frequency.value = accentPitch;
+    else
+      note.frequency.value = offBeatPitch;
+
+    note.connect(context.destination);
+
+    note.start(t);
+    note.stop(t + 0.05);
+
+    $(".counter .dot").attr("style", "");
+
+    $(".counter .dot").eq(noteCount).css({
+      transform: "translateY(-10px)",
+      background: "#F75454"
+    });
+}
+
+function countDown() {
+  var t = $(".timer");
+
+  if( parseInt(t.val(), 10) > 0 && counting === true)
+  {
+      t.val( parseInt(t.val(), 10) - 1 );
+      window.setTimeout(countDown, 1000);
+  }
+  else
+  {
+    $(".play-btn").click();
+    t.val(60);
+  }
+}
+
+/* Tap tempo */
+$(".tap-btn").click(function() {
+  var d = new Date();
+  var temp = parseInt(d.getTime(), 10);
+
+  $(".bpm-input").val( Math.ceil(60000 / (temp - delta)) );
+  delta = temp;
+});
+
+/* Add or subtract bpm */
+$(".bpm-minus, .bpm-plus").click(function() {
+if($(this).hasClass("bpm-minus"))
+  $(".bpm-input").val(parseInt($(".bpm-input").val(), 10) - 1 );
+else
+  $(".bpm-input").val(parseInt($(".bpm-input").val(), 10) + 1 );
+});
+
+/* Change pitches for tones in options */
+$(".beat-range, .accent-range").change(function() {
+  if($(this).hasClass("beat-range"))
+    offBeatPitch = $(this).val();
+  else
+     accentPitch = $(this).val();
+});
+
+/* Activate dots for accents */
+$(document).on("click", ".counter .dot", function() {
+  $(this).toggleClass("active");
+});
+
+$(".options-btn").click(function() {
+$(".options").toggleClass("options-active");
+});
+
+/* Add dots when time signature is changed */
+$(".ts-top, .ts-bottom").on("change", function() {
+  var _counter = $(".counter");
+  _counter.html("");
+
+  for(var i = 0; i < parseInt($(".ts-top").val(), 10); i++)
+  {
+    var temp = document.createElement("div");
+    temp.className = "dot";
+
+    if(i === 0)
+      temp.className += " active";
+
+    _counter.append( temp );
+  }
+});
+
+
+/* Play and stop button */
+$(".play-btn").click(function() {
+if($(this).data("what") === "pause")
+{
+  // ====== Pause ====== //
+  counting = false;
+  window.clearInterval(timer);
+  $(".counter .dot").attr("style", "");
+  $(this).data("what", "play").attr("style","").text("Play");
+}
+else {
+  // ====== Play ====== //
+
+if( $("#timer-check").is(":checked") )
+ {
+   counting = true;
+   countDown();
+ }
+
+  curTime = context.currentTime;
+  noteCount = parseInt($(".ts-top").val(), 10);
+  schedule();
+
+  $(this).data("what", "pause").css({
+    background: "#F75454",
+    color: "#FFF"
+  }).text("Stop");
+}
+});
+
+</script>
 
 
 @endsection

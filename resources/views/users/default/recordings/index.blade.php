@@ -240,6 +240,57 @@ div.pplsearchmin {
         top: 6rem;
     }
 }
+@media screen and (max-width: 600px){ 
+    .contentbox_row {
+        width: 100%;
+        margin: 1rem 0;
+    }
+    div.contentbox {
+    background-color: #fff;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    }
+.contentbox {
+    padding: 25px 5px;
+    }
+    .xls {
+    max-width: 50% !important;
+    }
+    .mic {
+    max-width: 10% !important;
+    padding-left: 5px;
+    }
+    .progres {
+    max-width: 50% !important;
+    margin-top: 10px;
+    padding: 0px;
+    }
+    .progress {
+    height: 6px !important;
+    }
+    .fa {
+    font-size: small;
+    }
+    .link {
+    font-size: small;
+    padding: 5px;
+    }
+    .multi {
+    padding: 5px;
+    }
+    .contentbox h3{margin-bottom: 25px; font-size: 25px;}
+    .video-js{
+        height: 125px;
+    }
+    .videbloc .col-sm-5{
+        width: 50%;
+    }
+    div.videobloc {flex-wrap: nowrap;}
+    .text-justify{font-size: x-small;}
+    div.pplminiatures{margin-bottom: 10px;}
+    .button--primary{font-size: 0.575rem;padding: 4px 8px;border-radius: 15px;}
+}
 </style>
 
 <div class="container">

@@ -113,7 +113,7 @@ p{orphans:3;widows:3;}
 button{font-size:inherit;line-height:inherit;}
 a:focus,a:hover{color:#282828;text-decoration:underline;}
 a:focus{outline:dotted thin;outline:-webkit-focus-ring-color auto 5px;outline-offset:-2px;}
-p{margin:0 0 10px;}
+p{margin:0 0 15px;}
 ul{margin-top:0;margin-bottom:10px;}
 body ul{list-style:none;}
 a{color:#FC0254;text-decoration:none;cursor:pointer;}

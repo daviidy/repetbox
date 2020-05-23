@@ -249,8 +249,10 @@ class RecordingController extends Controller
 
 
         $file->move(storage_path('app/public'), $filename);
+        if (count($recording->videos) > 1) {
+            return redirect('/joinVideos/'.$recording->id);
+        }
 
-        return redirect('/joinVideos/'.$recording->id);
       return response()->json($recording);
     }
 

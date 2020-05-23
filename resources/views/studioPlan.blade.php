@@ -5,7 +5,7 @@
 
 <style media="screen">
 section.pricing {
-background: #007bff;
+background: #ececec !important;
 background: linear-gradient(to right, #FC0255, #08192D);
 }
 
@@ -52,11 +52,27 @@ font-weight: bold;
 padding: 1rem;
 opacity: 0.7;
 transition: all 0.2s;
+background-color: #fc0254 !important;
+    border-color: #fc0254 !important;
 }
 
 .contentbox_row {
     width: 80%;
     margin: 2rem 0;
+}
+.marg{
+  margin-bottom: 15px !important;
+}
+
+@media screen and (max-width: 600px){
+    .marg{
+      width: 100% !important;
+    }
+}
+@media screen and (max-width: 900px) and (min-width: 601px){
+  .marg{
+      width: 50% !important;
+    }
 }
 
 </style>
@@ -117,7 +133,7 @@ transition: all 0.2s;
       @auth
       @foreach($pricings as $pricing)
       @if(!Auth::user()->purchases->where('pricing_id', $pricing->id)->first())
-      <div class="col-lg-4">
+      <div class="col-lg-4 marg">
         <div class="card mb-5 mb-lg-0">
           <div class="card-body">
             <h5 class="card-title text-muted text-uppercase text-center">{{$pricing->name}}</h5>

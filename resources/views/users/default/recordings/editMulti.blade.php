@@ -43,6 +43,11 @@
         width: 100%;
         height: 30vh;
     }
+
+    .part{
+        width: 100%;
+        height: 30vh;
+    }
 </style>
 
 <style>
@@ -396,7 +401,7 @@ div.pplsearchmin {
 .image-loader.is-loaded{opacity:1;}
 #page_account .account-thumbnail{float:left;width:150px;}
 
-@media screen and (max-width: 600px){ 
+@media screen and (max-width: 600px){
     .contentbox_row {
         width: 100%;
         margin: 1rem 0;
@@ -443,6 +448,105 @@ div.pplsearchmin {
     .vjs-progress-control{
         display: none;
     }
+</style>
+
+
+<style media="screen">
+/*! CSS Used from: https://www.imujam.com/css/deps.min.css */
+progress{vertical-align:baseline;}
+button{overflow:visible;}
+.fa,button{text-transform:none;}
+.fa{-moz-osx-font-smoothing:grayscale;}
+progress{display:inline-block;}
+*,:after,:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
+button{margin:0;font:inherit;color:inherit;}
+button{-webkit-appearance:button;cursor:pointer;}
+button::-moz-focus-inner{padding:0;border:0;}
+@media print{
+*,:after,:before{color:#000!important;text-shadow:none!important;background:0 0!important;-webkit-box-shadow:none!important;box-shadow:none!important;}
+}
+*,:after,:before{box-sizing:border-box;}
+button{font-family:inherit;font-size:inherit;line-height:inherit;}
+.btn{line-height:1.42857143;}
+.btn{text-align:center;}
+.btn{display:inline-block;padding:6px 12px;margin-bottom:0;font-size:14px;font-weight:400;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-image:none;}
+.btn:active:focus,.btn:focus{outline:-webkit-focus-ring-color auto 5px;outline-offset:-2px;}
+.btn:focus,.btn:hover{color:#333;text-decoration:none;}
+.btn:active{background-image:none;outline:0;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);box-shadow:inset 0 3px 5px rgba(0,0,0,.125);}
+.btn-sm{padding:5px 10px;font-size:12px;line-height:1.5;border-radius:3px;}
+.fa{display:inline-block;}
+.fa{font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-decoration:inherit;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;}
+.fa-play:before{content:"\f2be";}
+.fa-step-backward:before{content:"\f31e";}
+.btn{border-radius:3px;}
+.btn{-webkit-box-shadow:none;box-shadow:none;border:1px solid transparent;}
+.btn:active{-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);-moz-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);box-shadow:inset 0 3px 5px rgba(0,0,0,.125);}
+.btn:focus{outline:0;}
+/*! CSS Used from: https://www.imujam.com/css/all.min.css */
+:focus{outline:0;}
+.btn>.fa{font-size:1.3em;vertical-align:bottom;line-height:20px;}
+progress{-webkit-appearance:none;-moz-appearance:none;appearance:none;width:100%;height:16px;border:none;border:2px solid #F51083;border-radius:8px;background:#DDD;overflow:hidden;margin-top:10px;}
+.btn{border-radius:30px;border:2px solid transparent;background:0 0;color:#F51083;padding:.3em 1.5em;outline:0!important;-webkit-transition:background .25s ease 0s;transition:background .25s ease 0s;}
+.btn:hover{background:#DEDEDE;}
+.video-control{width:100%;padding:20px 0;position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
+.video-control-btn{height:22px;width:22px;line-height:22px;padding:0;border:0;margin-right:10px;}
+.video-control-btn:hover{background:0 0;}
+.video-control-btn:hover i{color:#000;}
+progress.video-control-progress{margin:0;border:0;height:10px;background:#000;}
+.video-control-progress-time{white-space:nowrap;color:#E74782;padding:0 5px;}
+
+</style>
+
+
+<!--pour autoriser le micro-->
+<style media="screen">
+.cKlrlm {
+display: flex;
+flex: 1 1 0%;
+-webkit-box-pack: center;
+justify-content: center;
+-webkit-box-align: center;
+align-items: center;
+flex-direction: column;
+height: 180px;
+margin: 10px;
+border-radius: 4px;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 7px;
+transition: all 0.4s ease 0s;
+cursor: pointer;
+}
+
+.dIrmfa {
+    width: 90px;
+    height: 90px;
+    overflow: visible;
+}
+
+.jss7 {
+    font-size: 16px !important;
+}
+.jss7 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+}
+
+.MuiTypography-alignCenter {
+    text-align: center;
+}
+.MuiTypography-h6 {
+    font-size: 1.25rem;
+    font-family: "Nunito Sans", Verdana, Helvetica, sans-serif;
+    font-weight: 500;
+    line-height: 1.6;
+}
+.MuiTypography-root {
+    margin: 0;
+}
+h6, .MuiButton-root {
+    font-family: 'Montserrat', sans-serif !important;
+}
 </style>
 
 <div class="container">
@@ -518,28 +622,18 @@ div.pplsearchmin {
                             <p class="mb-3">Date de dernière version: {{$recording->updated_at}}</p>
                         </div>
                         <div class="col-md-3 col-sm-6 text-right mb-4">
-                            <p class="mb-3">Durée:</p>
+                            <p class="mb-3">Durée: <span id="recordingTime"></span> </p>
                         </div>
                     </div>
                     <div class="row">
                         @foreach($recording->videos as $video)
                         <div class="multi col-md-4 col-sm-12 text-left">
                             <video
-                               id="my-player"
-                               class="video-js"
-                               controls
-                               preload="none"
-                               poster="https://images.unsplash.com/photo-1529518969858-8baa65152fc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-                               data-setup='{}'>
+                               id="my-player{{$recording->id}}"
+                               class="part video-js"
+                               >
                              <source src="{{asset('storage/'.$video->video_file)}}" type="video/mp4"></source>
 
-                             <p class="vjs-no-js">
-                               To view this video please enable JavaScript, and consider upgrading to a
-                               web browser that
-                               <a href="https://videojs.com/html5-video-support/" target="_blank">
-                                 supports HTML5 video
-                               </a>
-                             </p>
                            </video>
                         </div>
                         @endforeach
@@ -547,11 +641,30 @@ div.pplsearchmin {
 
                     <div class="row">
 
+                        <div class="video-control">
+                            <button id="playVideos" data-action="play-pause" type="button" name="button" class="btn btn-sm video-control-btn" style="">
+                                <i id="play" class="fa fa-play-circle"></i>
+                                <i id="pause" class="fa fa-pause" style="display:none;"></i>
+                            </button>
+                            <button data-action="rewind" type="button" name="button" class="btn btn-sm video-control-btn" style="display: none;">
+                                <i class="fa fa-step-backward"></i>
+                            </button>
+                            <progress id="progressBar" value="0" max="100" class="video-control-progress"></progress>
+                            <div class="video-control-progress-time" style="">
+                                <span id="currentTime" class="video-control-current">00:00</span> /
+                                <span id="recordingTime2" class="video-control-duration"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="row">
+
                         <div class="col-sm-12">
                             <a href="/joinVideos/{{$recording->id}}">Joindre les {{count($recording->videos)}} vidéos</a>
                         </div>
 
                     </div>
+                -->
 
 
 
@@ -604,7 +717,48 @@ div.pplsearchmin {
 
                          </div>
 
+                         <div class="col-md-12">
+                             <a id="getAccess" class="styles__CategoryButton-vgii8s-2 cKlrlm">
+                                <div class="styles__CategoryButton_Icon-vgii8s-3 dIrmfa">
+                                    <img src="/images/micro.png" alt="">
+                                </div>
+                                <h6 class="MuiTypography-root jss16 jss593 jss7  MuiTypography-h6 MuiTypography-alignCenter">Autorisez le micro et la caméra</h6>
+                            </a>
+                         </div>
+
                          <div class="col-md-12 mt-4">
+
+                             <p>
+                                 <span id="minutes"></span>
+                                 <span id="seconds"></span>
+                                 <span id="recordingTime3" ></span>
+                             </p>
+                             <p id="maxTime" style="display: none;">{{$recording->time}}</p>
+                             <div style="display: none;" id="infoVideoCountDown" class="alert alert-success col-12 mt-3">
+                              <strong>L'enregistrement démarre dans <span id="secondsTimer"></span>...</strong>
+                            </div>
+                             <video muted style="margin: auto;margin-bottom: 2rem;width: 50%; display: none;" id="vid1"></video>
+                             <video style="margin: auto;margin-bottom: 2rem;width: 50%; display: none;" id="vid2" controls></video>
+                             <div class="row mb-4">
+                                 <div style="text-align: center;display: none;" id="divStart" class="col-12">
+                                     <div class="">
+                                        <a id="btnStart" style="background: #1AB394; border-color: #08192D;" class="button button--primary">
+                                        Démarrer l'enregistrement
+                                        </a>
+                                     </div>
+                                 </div>
+                                 <div style="text-align: center;display: none;" id="divStop" class="col-12">
+                                     <div class="">
+                                        <a id="btnStop" style="background: #FC0254; border-color: #08192D;" class="button button--primary">
+                                        Arrêter l'enregistrement
+                                        </a>
+                                     </div>
+                                 </div>
+
+
+                             </div>
+
+
                              <p>Réglage de la webcam</p>
                              <video style="width: 35%;" id="myVideo" playsinline class="video-js vjs-default-skin">
                                  <p class="vjs-no-js">
@@ -648,130 +802,301 @@ div.pplsearchmin {
 </div>
 
 
-
 <script type="text/javascript">
-var myPlayer = videojs('my-player', {
-autoplay: true,
-loop: true,
-controlBar: {
-    bigPlayButton: false,
-    muteToggle: true,
-    playToggle: true,
-    timeDivider: false,
-    currentTimeDisplay: false,
-    durationDisplay: false,
-    remainingTimeDisplay: false,
-    progressControl: false,
-    fullscreenToggle: false,
-    volumeControl: false,
+
+var maxTime = document.getElementById('maxTime').textContent;
+var hours = Math.floor(maxTime / 60);
+var minutes = maxTime % 60;
+document.getElementById('recordingTime').innerHTML = hours + ":" + minutes;
+document.getElementById('recordingTime2').innerHTML = hours + ":" + minutes;
+
+//logique pour l'enreisteement de la musique
+
+let constraintObj = {
+    audio: true,
+    video: {
+        facingMode: "user",
+    }
+};
+// width: 1280, height: 720  -- preference only
+// facingMode: {exact: "user"}
+// facingMode: "environment"
+
+//handle older browsers that might implement getUserMedia in some way
+if (navigator.mediaDevices === undefined) {
+    navigator.mediaDevices = {};
+    navigator.mediaDevices.getUserMedia = function(constraintObj) {
+        let getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+        if (!getUserMedia) {
+            return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+        }
+        return new Promise(function(resolve, reject) {
+            getUserMedia.call(navigator, constraintObj, resolve, reject);
+        });
+    }
+}else{
+    navigator.mediaDevices.enumerateDevices()
+    .then(devices => {
+        devices.forEach(device=>{
+            console.log(device.kind.toUpperCase(), device.label);
+            //, device.deviceId
+        })
+    })
+    .catch(err=>{
+        console.log(err.name, err.message);
+    })
 }
+
+
+$('#getAccess').click(function(){
+    console.log('ca marche');
+    navigator.mediaDevices.getUserMedia(constraintObj)
+    .then(function(mediaStreamObj) {
+        //connect the media stream to the first video element
+        let video = document.getElementById('vid1');
+        $('#vid1').css('display', 'block');
+        $('#divStart').css('display', 'block');
+        $('#getAccess').css('display', 'none');
+        if ("srcObject" in video) {
+            video.srcObject = mediaStreamObj;
+        } else {
+            //old version
+            video.src = window.URL.createObjectURL(mediaStreamObj);
+        }
+
+        video.onloadedmetadata = function(ev) {
+            //show in the video element what is being captured by the webcam
+            video.play();
+        };
+
+        //add listeners for saving video/audio
+        let start = document.getElementById('btnStart');
+        let stop = document.getElementById('btnStop');
+        let vidSave = document.getElementById('vid2');
+        let mediaRecorder = new MediaRecorder(mediaStreamObj);
+        let chunks = [];
+        var minutesLabel = document.getElementById("minutes");
+        var secondsLabel = document.getElementById("seconds");
+        var totalSeconds = 0;
+        var time;
+        var seconds;
+
+        //logique poour compter le temps de recording
+        function setTime()
+        {
+            ++totalSeconds;
+            if(pad(parseInt(totalSeconds/60)) == hours && pad(totalSeconds%60) == minutes)
+            {
+            mediaRecorder.stop();
+
+            }
+
+            secondsLabel.innerHTML = pad(totalSeconds%60);
+            minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
+            document.getElementById('recordingTime3').innerHTML = "/ " + hours + ":" + minutes;
+        }
+
+        function pad(val)
+        {
+            var valString = val + "";
+            if(valString.length < 2)
+            {
+                return "0" + valString;
+            }
+            else
+            {
+                return valString;
+            }
+        }
+
+        var secondsTimer = document.getElementById("secondsTimer");
+        var initSeconds = 4;
+
+
+        function countDown()
+        {
+            --initSeconds;
+            if (initSeconds == 0) {
+                mediaRecorder.start();
+                clearInterval(seconds);
+                $('#infoVideoCountDown').css('display', 'none');
+                $('#divStart').css('display', 'none');
+                $('#divStop').css('display', 'block');
+
+                time = setInterval(setTime, 1000);
+
+                console.log(mediaRecorder.state);
+            }
+
+            secondsTimer.innerHTML = initSeconds;
+        }
+
+
+
+        start.addEventListener('click', (ev)=>{
+            $('#infoVideoCountDown').css('display', 'block');
+            seconds = setInterval(countDown, 1000);
+
+        })
+        stop.addEventListener('click', (ev)=>{
+            mediaRecorder.stop();
+            console.log(mediaRecorder.state);
+        });
+        mediaRecorder.ondataavailable = function(ev) {
+            chunks.push(ev.data);
+        }
+        mediaRecorder.onstop = (ev)=>{
+            let blob = new Blob(chunks, { 'type' : 'video/mp4;' });
+            chunks = [];
+            clearInterval(time);
+            $('#vid1').css('display', 'none');
+            $('#vid2').css('display', 'block');
+            $('#divStop').css('display', 'none');
+            let videoURL = window.URL.createObjectURL(blob);
+            vidSave.src = videoURL;
+            vidSave.play();
+
+            console.log(totalSeconds);
+
+            $('#storeRecording').css('display', 'block');
+
+            $('#storeRecording').click(function(){
+
+                // Create an instance of FormData and append the video parameter that
+                // will be interpreted in the server as a file
+                var formData = new FormData();
+                formData.append('video', blob);
+                formData.append("recording_id", $('input[name=recording_id]').val());
+                formData.append("duration", totalSeconds);
+
+
+                $.ajaxSetup({
+                           headers: {
+                               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                           }
+                       });
+
+                 $.ajax({
+                  url:"/uploadVideo",
+                  method:"POST",
+                  data: formData,
+                  contentType: false,
+                  cache: false,
+                  processData: false,
+                  beforeSend:function(){
+                   $('#storeRecording').css('display', 'none');
+                   $('#infoVideoWarning').css('display', 'block');
+                   $('#infoVideoWarning strong').text("Votre vidéo est en cours de traitement...");
+                  },
+                  success:function(data)
+                  {
+                      console.log('ok');
+                      $('#infoVideoWarning').css('display', 'none');
+                      $('#infoVideoSuccess').css('display', 'block');
+                      $('#infoVideoSuccess strong').text("Votre vidéo a bien été mise en ligne");
+                      //window.location = '/home';
+                },
+                error: function (xhr, msg) {
+                 console.log(msg + '\n' + xhr.responseText);
+                }
+                 });
+
+            });
+
+
+        }
+    })
+    .catch(function(err) {
+        console.log(err.name, err.message);
+    });
+
 });
+
+
+/*********************************
+getUserMedia returns a Promise
+resolve - returns a MediaStream Object
+reject returns one of the following errors
+AbortError - generic unknown cause
+NotAllowedError (SecurityError) - user rejected permissions
+NotFoundError - missing media track
+NotReadableError - user permissions given but hardware/OS error
+OverconstrainedError - constraint video settings preventing
+TypeError - audio: false, video: false
+*********************************/
+
 </script>
+
+
 
 
 
 
 <script>
-var options = {
-    controls: true,
-    width: 320,
-    height: 240,
-    fluid: false,
-    plugins: {
-        record: {
-            audio: true,
-            video: true,
-            maxLength: 30,
-            debug: true,
-            videoMimeType: "video/webm;codecs=vp8,opus"
-        }
+
+
+var progressBar=document.getElementById('progressBar');
+var updateBar;
+//jouer tooutes les vidéos
+$("#playVideos").click(function(){
+
+    var vids = document.getElementsByClassName("part");
+    console.log(vids);
+    for (var i = 0; i < vids.length; i++) {
+
+
+            if (!vids[i].paused && !vids[i].ended){
+    		vids[i].pause();
+    		$('#play').css('display', 'block');
+            $('#pause').css('display', 'none');
+    		window.clearInterval(updateBar);
+    	} else {
+    		vids[i].play();
+            $('#play').css('display', 'none');
+            $('#pause').css('display', 'block');
+    		updateBar=setInterval(update, 500);
+    	}
+
+
     }
-};
 
-// apply some workarounds for opera browser
-applyVideoWorkaround();
+    function update() {
+            if (!vids[0].ended) {
+                var size=parseInt(vids[0].currentTime*100/document.getElementById('maxTime').textContent);
+                progressBar.setAttribute("value", size);
+                var hours = Math.floor(vids[0].currentTime / 60);
+                var minutes = Math.floor(vids[0].currentTime) % 60;
+                document.getElementById('currentTime').innerHTML = hours + ":" + minutes;
 
-var player = videojs('myVideo', options, function() {
-    // print version information at startup
-    var msg = 'Using video.js ' + videojs.VERSION +
-        ' with videojs-record ' + videojs.getPluginVersion('record') +
-        ' and recordrtc ' + RecordRTC.version;
-    videojs.log(msg);
-});
+            } else {
+                progressBar.setAttribute("value", "0");
+                $('#play').css('display', 'block');
+                $('#pause').css('display', 'none');
+                document.getElementById('currentTime').innerHTML = "00:00";
+                window.clearInterval(updateBar);
+            }
 
-// error handling
-player.on('deviceError', function() {
-    console.log('device error:', player.deviceErrorCode);
-});
-
-player.on('error', function(element, error) {
-    console.error(error);
-});
-
-// user clicked the record button and started recording
-player.on('startRecord', function() {
-    console.log('started recording!');
-    $('#storeRecording').css('display', 'none');
-    $('#infoVideoWarning').css('display', 'none');
-    $('#infoVideoSuccess').css('display', 'none');
-
-});
-
-// user completed recording and stream is available
-player.on('finishRecord', function() {
-    // the blob object contains the recorded data that
-    // can be downloaded by the user, stored on server etc.
-    console.log('finished recording: ', player.recordedData);
-
-    $('#storeRecording').css('display', 'block');
-
-    $('#storeRecording').click(function(){
-
-        // Create an instance of FormData and append the video parameter that
-        // will be interpreted in the server as a file
-        var formData = new FormData();
-        formData.append('video', player.recordedData);
-        formData.append("recording_id", $('input[name=recording_id]').val());
-
-
-        $.ajaxSetup({
-                   headers: {
-                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                   }
-               });
-
-         $.ajax({
-          url:"/uploadVideo",
-          method:"POST",
-          data: formData,
-          contentType: false,
-          cache: false,
-          processData: false,
-          beforeSend:function(){
-           $('#storeRecording').css('display', 'none');
-           $('#infoVideoWarning').css('display', 'block');
-           $('#infoVideoWarning strong').text("Votre vidéo est en cours de traitement");
-          },
-          success:function(data)
-          {
-              console.log('ok');
-              $('#infoVideoWarning').css('display', 'none');
-              $('#infoVideoSuccess').css('display', 'block');
-              $('#infoVideoSuccess strong').text("Votre vidéo a bien été mise en ligne");
-              //window.location = '/home';
-        },
-        error: function (xhr, msg) {
-         console.log(msg + '\n' + xhr.responseText);
         }
-         });
 
-    });
+        progressBar.addEventListener('click', clickedBar, false);
 
+        function clickedBar(e){
+            for (var i = 0; i < vids.length; i++) {
+                if(!vids[i].paused && !vids[i].ended){
+                    var mouseX=e.pageX-progressBar.offsetLeft;
+                    var newtime=mouseX*vids[0].duration/100;
+                    vids[i].currentTime=newtime;
+                    var size=parseInt(vids[0].currentTime*100/vids[0].duration);
+                    progressBar.setAttribute("value", size);
+                }
+            }
 
-
+    }
 
 });
 </script>
+
+
 
 
 <script>

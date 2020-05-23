@@ -109,6 +109,7 @@ Route::get('/recordings/edit/{recording}', 'RecordingController@edit')->name('re
 Route::get('/recordings/multi/edit/{recording}/', 'RecordingController@editMulti')->name('recordings');
 Route::get('/joinVideos/{recording}/', 'RecordingController@joinVideos')->name('recordings');
 Route::get('/refuse/{recording}/', 'RecordingController@refuse')->name('recordings');
+Route::get('/accept/{recording}/', 'RecordingController@accept')->name('recordings');
 
 //ajax routes
 

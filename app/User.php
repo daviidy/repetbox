@@ -107,7 +107,7 @@ class User extends Authenticatable
          */
          public function recordings()
          {
-             return $this->belongsToMany('App\Recording');
+             return $this->belongsToMany('App\Recording')->withPivot('accept');
          }
 
 

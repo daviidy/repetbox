@@ -233,7 +233,7 @@ div.contentbox {
     }
     .xls{
         max-width: 50% !important;
-        
+
     }
     .contentbox {
     padding: 25px 5px ;
@@ -374,7 +374,6 @@ div.pplsearchmin {
 }
 </style>
 
-
 <style media="screen">
 
 .svg-icon{fill:currentColor;stroke:currentColor;stroke-width:0;vertical-align:top;}
@@ -398,6 +397,7 @@ div.pplsearchmin {
 #page_account .account-thumbnail{float:left;width:150px;}
 </style>
 
+<!--pour le metronome-->
 <style media="screen">
 /*! CSS Used from: Embedded */
 button,input{overflow:visible;}
@@ -452,6 +452,59 @@ input[type="checkbox"]:checked + label:after{transform:skewX(-30deg);opacity:1;}
 </style>
 
 
+<!--pour autoriser le micro-->
+<style media="screen">
+.cKlrlm {
+display: flex;
+flex: 1 1 0%;
+-webkit-box-pack: center;
+justify-content: center;
+-webkit-box-align: center;
+align-items: center;
+flex-direction: column;
+height: 180px;
+margin: 10px;
+border-radius: 4px;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 7px;
+transition: all 0.4s ease 0s;
+cursor: pointer;
+}
+
+.dIrmfa {
+    width: 90px;
+    height: 90px;
+    overflow: visible;
+}
+
+.jss7 {
+    font-size: 16px !important;
+}
+.jss7 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+}
+
+.MuiTypography-alignCenter {
+    text-align: center;
+}
+.MuiTypography-h6 {
+    font-size: 1.25rem;
+    font-family: "Nunito Sans", Verdana, Helvetica, sans-serif;
+    font-weight: 500;
+    line-height: 1.6;
+}
+.MuiTypography-root {
+    margin: 0;
+}
+h6, .MuiButton-root {
+    font-family: 'Montserrat', sans-serif !important;
+}
+</style>
+
+
+
 <div class="container">
 
     <div class="row contentbox_row">
@@ -483,7 +536,7 @@ input[type="checkbox"]:checked + label:after{transform:skewX(-30deg);opacity:1;}
                   <div class="col-md-6 col-12 xls">
                       <div class="row">
                           <div class="col-12 text-right link">
-                              <a href="/{{Auth::user()->id}}/recordings">
+                              <a href="/recordings">
                                       <i class="fa fa-video-camera"></i> >Mes enregistrements
                               </a>
 
@@ -517,7 +570,7 @@ input[type="checkbox"]:checked + label:after{transform:skewX(-30deg);opacity:1;}
                                         <div class="row">
                                             <div class="col-md-12 text-left mb-4">
                                                 <h4 class="mb-3">Titre du morceau</h4>
-                                                <input value="{{$recording->name == 'New' ? '' : $recording->name}}" placeholder="Saisir le titre du morceau" type="text" name="name">
+                                                <input value="{{$recording->name}}" placeholder="Saisir le titre du morceau" type="text" name="name">
                                                 <input value="{{$recording->id}}" hidden type="text" name="recording_id">
                                             </div>
                                             <div class="col-md-12 text-left mb-4">
@@ -549,6 +602,11 @@ input[type="checkbox"]:checked + label:after{transform:skewX(-30deg);opacity:1;}
                                                 </div>
                                             </div>
 
+                                            <div class="col-md-12 text-left mb-4">
+                                                <h4 class="mb-3">4- Réglage du tempo</h4>
+                                                <input name="tempo" min="0" max="500" step="20" type="range" class="custom-range" id="customRange">
+                                            </div>
+
 
                                             <div class="col-12">
                                                 <button type="submit" class="site-btn">Valider</button>
@@ -570,7 +628,6 @@ input[type="checkbox"]:checked + label:after{transform:skewX(-30deg);opacity:1;}
 
              <div class="row">
                  <div class="col-sm-12">
-                     <h4 class="mt-3">4- Réglage du tempo</h4>
                      <section class="metronome-container">
                         <div class="counter">
                             <div class="dot active"></div>
@@ -581,9 +638,9 @@ input[type="checkbox"]:checked + label:after{transform:skewX(-30deg);opacity:1;}
                     <!--    <i class="fa fa-cog options-btn"></i>-->
                         <div class="controls">
                             <label>BPM: <span>
-                                    <i class="fa fa-minus bpm-minus"></i>
-                                    <input name="tempo" type="text" value="60" class="bpm-input">
-                                    <i class="fa fa-plus bpm-plus"></i>
+                                    <!--<i class="fa fa-minus bpm-minus"></i>-->
+                                    <input readonly name="tempo" type="text" value="{{$recording->tempo}}" class="bpm-input">
+                                    <!--<i class="fa fa-plus bpm-plus"></i>-->
                                 </span>
                             </label>
                             <label>
@@ -652,7 +709,51 @@ input[type="checkbox"]:checked + label:after{transform:skewX(-30deg);opacity:1;}
 
                          </div>
 
+                         <div class="col-md-12">
+                             <a id="getAccess" class="styles__CategoryButton-vgii8s-2 cKlrlm">
+                                <div class="styles__CategoryButton_Icon-vgii8s-3 dIrmfa">
+                                    <img src="/images/micro.png" alt="">
+                                </div>
+                                <h6 class="MuiTypography-root jss16 jss593 jss7  MuiTypography-h6 MuiTypography-alignCenter">Autorisez le micro et la caméra</h6>
+                            </a>
+                         </div>
+
+
+
                          <div class="col-md-12 mt-4">
+                             <p>
+                                 <span id="minutes"></span>
+                                 <span id="seconds"></span>
+                                 <span id="recordingTime3" ></span>
+                             </p>
+                             <p id="maxTime" style="display: none;">600</p>
+                             <div style="display: none;" id="infoVideoCountDown" class="alert alert-success col-12 mt-3">
+                              <strong>L'enregistrement démarre dans <span id="secondsTimer"></span>...</strong>
+                            </div>
+                             <video muted style="margin: auto;margin-bottom: 2rem;width: 50%; display: none;" id="vid1"></video>
+                             <video style="margin: auto;margin-bottom: 2rem;width: 50%; display: none;" id="vid2" controls></video>
+                             <div class="row mb-4">
+                                 <div style="text-align: center;display: none;" id="divStart" class="col-12">
+                                     <div class="">
+                                        <a id="btnStart" style="background: #1AB394; border-color: #08192D;" class="button button--primary">
+                                        Démarrer l'enregistrement
+                                        </a>
+                                     </div>
+                                 </div>
+                                 <div style="text-align: center;display: none;" id="divStop" class="col-12">
+                                     <div class="">
+                                        <a id="btnStop" style="background: #FC0254; border-color: #08192D;" class="button button--primary">
+                                        Arrêter l'enregistrement
+                                        </a>
+                                     </div>
+                                 </div>
+
+
+                             </div>
+
+
+
+
                              <p>Réglage de la webcam</p>
                              <video id="myVideo" playsinline class="video-js vjs-default-skin">
                                  <p class="vjs-no-js">
@@ -707,415 +808,230 @@ input[type="checkbox"]:checked + label:after{transform:skewX(-30deg);opacity:1;}
 </div>
 
 
+<script type="text/javascript">
 
-<!-- 4. Initialize and prepare the video recorder logic -->
-<script>
-    // Store a reference of the preview video element and a global reference to the recorder instance
-    var video = document.getElementById('my-preview');
-    var recorder;
-
-    // When the user clicks on start video recording
-    document.getElementById('btn-start-recording').addEventListener("click", function(){
-        // Disable start recording button
-        this.disabled = true;
-
-        // Request access to the media devices
-        navigator.mediaDevices.getUserMedia({
-            audio: true,
-            video: true
-        }).then(function(stream) {
-            // Display a live preview on the video element of the page
-            setSrcObject(stream, video);
-
-            // Start to display the preview on the video element
-            // and mute the video to disable the echo issue !
-            video.play();
-            video.muted = true;
-
-            // Initialize the recorder
-            recorder = new RecordRTCPromisesHandler(stream, {
-                mimeType: 'video/webm',
-                bitsPerSecond: 128000
-            });
-
-            // Start recording the video
-            recorder.startRecording().then(function() {
-                console.info('Recording video ...');
-            }).catch(function(error) {
-                console.error('Cannot start video recording: ', error);
-            });
-
-            // release stream on stopRecording
-            recorder.stream = stream;
-
-            // Enable stop recording button
-            document.getElementById('btn-stop-recording').disabled = false;
-        }).catch(function(error) {
-            console.error("Cannot access media devices: ", error);
-        });
-    }, false);
-
-    // When the user clicks on Stop video recording
-    document.getElementById('btn-stop-recording').addEventListener("click", function(){
-        this.disabled = true;
-
-        recorder.stopRecording().then(function() {
-            console.info('stopRecording success');
-
-            // Retrieve recorded video as blob and display in the preview element
-            var videoBlob = recorder.getBlob();
-            video.src = URL.createObjectURL(videoBlob);
-            video.play();
-
-            // Unmute video on preview
-            video.muted = false;
-
-            // Stop the device streaming
-            recorder.stream.stop();
-
-            // Enable record button again !
-            document.getElementById('btn-start-recording').disabled = false;
-        }).catch(function(error) {
-            console.error('stopRecording failure', error);
-        });
-    }, false);
-</script>
+var maxTime = document.getElementById('maxTime').textContent;
+var hours = Math.floor(maxTime / 60);
+var minutes = maxTime % 60;
 
 
+//logique pour l'enreisteement de la musique
 
-
-<script>
-var options = {
-    controls: true,
-    width: 320,
-    height: 240,
-    fluid: false,
-    plugins: {
-        record: {
-            audio: true,
-            video: true,
-            maxLength: 30,
-            debug: true,
-            videoMimeType: "video/webm;codecs=vp8,opus"
-        }
+let constraintObj = {
+    audio: true,
+    video: {
+        facingMode: "user",
     }
 };
+// width: 1280, height: 720  -- preference only
+// facingMode: {exact: "user"}
+// facingMode: "environment"
 
-// apply some workarounds for opera browser
-applyVideoWorkaround();
-
-var player = videojs('myVideo', options, function() {
-    // print version information at startup
-    var msg = 'Using video.js ' + videojs.VERSION +
-        ' with videojs-record ' + videojs.getPluginVersion('record') +
-        ' and recordrtc ' + RecordRTC.version;
-    videojs.log(msg);
-});
-
-// error handling
-player.on('deviceError', function() {
-    console.log('device error:', player.deviceErrorCode);
-});
-
-player.on('error', function(element, error) {
-    console.error(error);
-});
-
-// user clicked the record button and started recording
-player.on('startRecord', function() {
-    console.log('started recording!');
-    $('#storeRecording').css('display', 'none');
-    $('#infoVideoWarning').css('display', 'none');
-    $('#infoVideoSuccess').css('display', 'none');
-
-});
-
-// user completed recording and stream is available
-player.on('finishRecord', function() {
-    // the blob object contains the recorded data that
-    // can be downloaded by the user, stored on server etc.
-    console.log('finished recording: ', player.recordedData);
-
-    $('#storeRecording').css('display', 'block');
-
-    $('#storeRecording').click(function(){
-
-        // Create an instance of FormData and append the video parameter that
-        // will be interpreted in the server as a file
-        var formData = new FormData();
-        formData.append('video', player.recordedData);
-        formData.append("recording_id", $('input[name=recording_id]').val());
-
-
-        $.ajaxSetup({
-                   headers: {
-                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                   }
-               });
-
-         $.ajax({
-          url:"/uploadVideo",
-          method:"POST",
-          data: formData,
-          contentType: false,
-          cache: false,
-          processData: false,
-          beforeSend:function(){
-           $('#storeRecording').css('display', 'none');
-           $('#infoVideoWarning').css('display', 'block');
-           $('#infoVideoWarning strong').text("Votre vidéo est en cours de traitement");
-          },
-          success:function(data)
-          {
-              console.log('ok');
-              $('#infoVideoWarning').css('display', 'none');
-              $('#infoVideoSuccess').css('display', 'block');
-              $('#infoVideoSuccess strong').text("Votre vidéo a bien été mise en ligne");
-              //window.location = '/home';
-        },
-        error: function (xhr, msg) {
-         console.log(msg + '\n' + xhr.responseText);
+//handle older browsers that might implement getUserMedia in some way
+if (navigator.mediaDevices === undefined) {
+    navigator.mediaDevices = {};
+    navigator.mediaDevices.getUserMedia = function(constraintObj) {
+        let getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+        if (!getUserMedia) {
+            return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
         }
-         });
-
-    });
-
-
-
-
-});
-</script>
-
-
-<script>
-/*
-    $(document).ready(function(){
-        // Read value on page load
-        $("#resultA b").html($("#customRangeA").val());
-        // Read value on change
-        $("#customRangeA").change(function(){
-            $("#resultA b").html($(this).val());
+        return new Promise(function(resolve, reject) {
+            getUserMedia.call(navigator, constraintObj, resolve, reject);
         });
+    }
+}else{
+    navigator.mediaDevices.enumerateDevices()
+    .then(devices => {
+        devices.forEach(device=>{
+            console.log(device.kind.toUpperCase(), device.label);
+            //, device.deviceId
+        })
+    })
+    .catch(err=>{
+        console.log(err.name, err.message);
+    })
+}
 
+
+$('#getAccess').click(function(){
+    console.log('ca marche');
+    navigator.mediaDevices.getUserMedia(constraintObj)
+    .then(function(mediaStreamObj) {
+        //connect the media stream to the first video element
+        let video = document.getElementById('vid1');
+        $('#vid1').css('display', 'block');
+        $('#divStart').css('display', 'block');
+        $('#getAccess').css('display', 'none');
+        if ("srcObject" in video) {
+            video.srcObject = mediaStreamObj;
+        } else {
+            //old version
+            video.src = window.URL.createObjectURL(mediaStreamObj);
+        }
+
+        video.onloadedmetadata = function(ev) {
+            //show in the video element what is being captured by the webcam
+            video.play();
+        };
+
+        //add listeners for saving video/audio
+        let start = document.getElementById('btnStart');
+        let stop = document.getElementById('btnStop');
+        let vidSave = document.getElementById('vid2');
+        let mediaRecorder = new MediaRecorder(mediaStreamObj);
+        let chunks = [];
+        var minutesLabel = document.getElementById("minutes");
+        var secondsLabel = document.getElementById("seconds");
+        var totalSeconds = 0;
+        var time;
+        var seconds;
+
+        //logique poour compter le temps de recording
+        function setTime()
+        {
+            ++totalSeconds;
+            if(pad(parseInt(totalSeconds/60)) == hours && pad(totalSeconds%60) == minutes)
+            {
+            mediaRecorder.stop();
+
+            }
+
+            secondsLabel.innerHTML = pad(totalSeconds%60);
+            minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
+            document.getElementById('recordingTime3').innerHTML = "/ " + hours + ":" + minutes;
+        }
+
+        function pad(val)
+        {
+            var valString = val + "";
+            if(valString.length < 2)
+            {
+                return "0" + valString;
+            }
+            else
+            {
+                return valString;
+            }
+        }
+
+        var secondsTimer = document.getElementById("secondsTimer");
+        var initSeconds = 4;
+
+
+        function countDown()
+        {
+            --initSeconds;
+            if (initSeconds == 0) {
+                mediaRecorder.start();
+                clearInterval(seconds);
+                $('#infoVideoCountDown').css('display', 'none');
+                $('#divStart').css('display', 'none');
+                $('#divStop').css('display', 'block');
+
+                time = setInterval(setTime, 1000);
+
+                console.log(mediaRecorder.state);
+            }
+
+            secondsTimer.innerHTML = initSeconds;
+        }
+
+
+
+        start.addEventListener('click', (ev)=>{
+            $('#infoVideoCountDown').css('display', 'block');
+            seconds = setInterval(countDown, 1000);
+
+        })
+        stop.addEventListener('click', (ev)=>{
+            mediaRecorder.stop();
+            console.log(mediaRecorder.state);
+        });
+        mediaRecorder.ondataavailable = function(ev) {
+            chunks.push(ev.data);
+        }
+        mediaRecorder.onstop = (ev)=>{
+            let blob = new Blob(chunks, { 'type' : 'video/mp4;' });
+            chunks = [];
+            clearInterval(time);
+            $('#vid1').css('display', 'none');
+            $('#vid2').css('display', 'block');
+            $('#divStop').css('display', 'none');
+            let videoURL = window.URL.createObjectURL(blob);
+            vidSave.src = videoURL;
+            vidSave.play();
+
+            console.log(totalSeconds);
+
+            $('#storeRecording').css('display', 'block');
+
+            $('#storeRecording').click(function(){
+
+                // Create an instance of FormData and append the video parameter that
+                // will be interpreted in the server as a file
+                var formData = new FormData();
+                formData.append('video', blob);
+                formData.append("recording_id", $('input[name=recording_id]').val());
+                formData.append("duration", totalSeconds);
+
+
+                $.ajaxSetup({
+                           headers: {
+                               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                           }
+                       });
+
+                 $.ajax({
+                  url:"/uploadVideo",
+                  method:"POST",
+                  data: formData,
+                  contentType: false,
+                  cache: false,
+                  processData: false,
+                  beforeSend:function(){
+                   $('#storeRecording').css('display', 'none');
+                   $('#infoVideoWarning').css('display', 'block');
+                   $('#infoVideoWarning strong').text("Votre vidéo est en cours de traitement...");
+                  },
+                  success:function(data)
+                  {
+                      console.log('ok');
+                      $('#infoVideoWarning').css('display', 'none');
+                      $('#infoVideoSuccess').css('display', 'block');
+                      $('#infoVideoSuccess strong').text("Votre vidéo a bien été mise en ligne");
+                      //window.location = '/home';
+                },
+                error: function (xhr, msg) {
+                 console.log(msg + '\n' + xhr.responseText);
+                }
+                 });
+
+            });
+
+
+        }
+    })
+    .catch(function(err) {
+        console.log(err.name, err.message);
     });
-    */
+
+});
+
+
+/*********************************
+getUserMedia returns a Promise
+resolve - returns a MediaStream Object
+reject returns one of the following errors
+AbortError - generic unknown cause
+NotAllowedError (SecurityError) - user rejected permissions
+NotFoundError - missing media track
+NotReadableError - user permissions given but hardware/OS error
+OverconstrainedError - constraint video settings preventing
+TypeError - audio: false, video: false
+*********************************/
+
 </script>
 
-<script type="text/javascript">
-
-$('#openimgupload').click(function(){ $('#imgupload').trigger('click'); });
-
-</script>
-
-<script>
-$(document).ready(function(){
- $(document).on('change', '#imgupload', function(){
-  var name = document.getElementById("imgupload").files[0].name;
-  var form_data = new FormData();
-  var ext = name.split('.').pop().toLowerCase();
-  if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1)
-  {
-   alert("Invalid Image File");
-  }
-  var oFReader = new FileReader();
-  oFReader.readAsDataURL(document.getElementById("imgupload").files[0]);
-  var f = document.getElementById("imgupload").files[0];
-  var fsize = f.size||f.fileSize;
-  if(fsize > 2000000)
-  {
-   alert("Image File Size is very big");
-  }
-  else
-  {
-      form_data.append("image", document.getElementById('imgupload').files[0]);
-      form_data.append("id_user", $('input[name=user_id]').val());
-
-      $.ajaxSetup({
-                 headers: {
-                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                 }
-             });
-
-   $.ajax({
-    url:"/uploadAvatar",
-    method:"POST",
-    data: form_data,
-    contentType: false,
-    cache: false,
-    processData: false,
-    beforeSend:function(){
-     $('#uploaded_image').html("<label class='text-success'>Image Uploading...</label>");
-    },
-    success:function(data)
-    {
-        console.log('ok');
-     $('#uploaded_image').html('<img class="picture-img image-loader is-loaded" src="/images/users/'+data.image+'" alt="'+data.name+'" crossorigin="anonymous" height="150" width="150">');
- },
- error: function (xhr, msg) {
-     console.log($('input[name=user_id]').val());
-   console.log(msg + '\n' + xhr.responseText);
-}
-   });
-  }
- });
-});
-</script>
-
-
-<script type="text/javascript">
-
-window.AudioContext = window.AudioContext || window.webkitAudioContext;
-var context = new AudioContext();
-var timer, noteCount, counting, accentPitch = 380, offBeatPitch = 200;
-var delta = 0;
-var curTime = 0.0;
-
-// Load up dots on pageload
-$("document").ready(function() {
-$(".ts-top").trigger("change");
-$("header").fitText(1, { maxFontSize: "46px" });
-});
-
-
-/*
-Scheduling Help by: https://www.html5rocks.com/en/tutorials/audio/scheduling/
-*/
-function schedule() {
-while(curTime < context.currentTime + 0.1) {
-  playNote(curTime);
-  updateTime();
-}
-timer = window.setTimeout(schedule, 0.1);
-}
-
-function updateTime() {
-curTime += 60.0 / parseInt($(".bpm-input").val(), 10);
-noteCount++;
-}
-
-/* Play note on a delayed interval of t */
-function playNote(t) {
-    var note = context.createOscillator();
-
-    if(noteCount == parseInt($(".ts-top").val(), 10) )
-      noteCount = 0;
-
-    if( $(".counter .dot").eq(noteCount).hasClass("active") )
-      note.frequency.value = accentPitch;
-    else
-      note.frequency.value = offBeatPitch;
-
-    note.connect(context.destination);
-
-    note.start(t);
-    note.stop(t + 0.05);
-
-    $(".counter .dot").attr("style", "");
-
-    $(".counter .dot").eq(noteCount).css({
-      transform: "translateY(-10px)",
-      background: "#F75454"
-    });
-}
-
-function countDown() {
-  var t = $(".timer");
-
-  if( parseInt(t.val(), 10) > 0 && counting === true)
-  {
-      t.val( parseInt(t.val(), 10) - 1 );
-      window.setTimeout(countDown, 1000);
-  }
-  else
-  {
-    $(".play-btn").click();
-    t.val(60);
-  }
-}
-
-/* Tap tempo */
-$(".tap-btn").click(function() {
-  var d = new Date();
-  var temp = parseInt(d.getTime(), 10);
-
-  $(".bpm-input").val( Math.ceil(60000 / (temp - delta)) );
-  delta = temp;
-});
-
-/* Add or subtract bpm */
-$(".bpm-minus, .bpm-plus").click(function() {
-if($(this).hasClass("bpm-minus"))
-  $(".bpm-input").val(parseInt($(".bpm-input").val(), 10) - 1 );
-else
-  $(".bpm-input").val(parseInt($(".bpm-input").val(), 10) + 1 );
-});
-
-/* Change pitches for tones in options */
-$(".beat-range, .accent-range").change(function() {
-  if($(this).hasClass("beat-range"))
-    offBeatPitch = $(this).val();
-  else
-     accentPitch = $(this).val();
-});
-
-/* Activate dots for accents */
-$(document).on("click", ".counter .dot", function() {
-  $(this).toggleClass("active");
-});
-
-$(".options-btn").click(function() {
-$(".options").toggleClass("options-active");
-});
-
-/* Add dots when time signature is changed */
-$(".ts-top, .ts-bottom").on("change", function() {
-  var _counter = $(".counter");
-  _counter.html("");
-
-  for(var i = 0; i < parseInt($(".ts-top").val(), 10); i++)
-  {
-    var temp = document.createElement("div");
-    temp.className = "dot";
-
-    if(i === 0)
-      temp.className += " active";
-
-    _counter.append( temp );
-  }
-});
-
-
-/* Play and stop button */
-$(".play-btn").click(function() {
-if($(this).data("what") === "pause")
-{
-  // ====== Pause ====== //
-  counting = false;
-  window.clearInterval(timer);
-  $(".counter .dot").attr("style", "");
-  $(this).data("what", "play").attr("style","").text("Play");
-}
-else {
-  // ====== Play ====== //
-
-if( $("#timer-check").is(":checked") )
- {
-   counting = true;
-   countDown();
- }
-
-  curTime = context.currentTime;
-  noteCount = parseInt($(".ts-top").val(), 10);
-  schedule();
-
-  $(this).data("what", "pause").css({
-    background: "#F75454",
-    color: "#FFF"
-  }).text("Stop");
-}
-});
-
-</script>
 
 
 @endsection

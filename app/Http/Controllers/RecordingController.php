@@ -156,6 +156,25 @@ class RecordingController extends Controller
         }
     }
 
+
+    //when user accepts invitation
+    public function accept(Recording $recording)
+    {
+        if (Auth::check()) {
+            //si user est invité
+            if ($recording->users->contains(Auth::user()->id)) {
+                $recording->users()->updateExistingPivot(Auth::user()->id, ['accept' => '1']);
+                return redirect('/recordings/multi/edit/'.$recording->id)->with('status', 'La demande a été acceptée avec succès');
+            }
+
+        }
+        else {
+            return redirect('home');
+        }
+    }
+
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -208,6 +227,10 @@ class RecordingController extends Controller
     public function uploadVideo(Request $request)
     {
         $recording = Recording::find($request->recording_id);
+        if ($recording->user_id == Auth::user()->id) {
+            $recording->time = $request->duration;
+            $recording->save();
+        }
         $filename = time() . '.mp4';
         if (count($recording->videos->where('user_id', Auth::user()->id)) == 0) {
             $video = Video::create([
@@ -226,6 +249,8 @@ class RecordingController extends Controller
 
 
         $file->move(storage_path('app/public'), $filename);
+
+        return redirect('/joinVideos/'.$recording->id);
       return response()->json($recording);
     }
 

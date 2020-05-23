@@ -19,6 +19,10 @@
 
        <script src="/videojs/browser-workarounds.js"></script>
 
+       <script src="/js/get-blob-duration/dist/getBlobDuration.js" type="text/javascript">
+
+       </script>
+
        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
@@ -858,6 +862,347 @@ console.log("Submitted",quill.root.innerHTML ,$(form).serialize(), $(form).seria
 // alert('Open the console to see the submit data!')
 return true;
 };
+
+</script>
+
+
+
+
+
+
+<script>
+var options = {
+    controls: true,
+    width: 320,
+    height: 240,
+    fluid: false,
+    plugins: {
+        record: {
+            audio: true,
+            video: true,
+            maxLength: 30,
+            debug: true,
+            videoMimeType: "video/webm;codecs=vp8,opus"
+        }
+    }
+};
+
+// apply some workarounds for opera browser
+applyVideoWorkaround();
+
+var player = videojs('myVideo', options, function() {
+    // print version information at startup
+    var msg = 'Using video.js ' + videojs.VERSION +
+        ' with videojs-record ' + videojs.getPluginVersion('record') +
+        ' and recordrtc ' + RecordRTC.version;
+    videojs.log(msg);
+});
+
+// error handling
+player.on('deviceError', function() {
+    console.log('device error:', player.deviceErrorCode);
+});
+
+player.on('error', function(element, error) {
+    console.error(error);
+});
+
+// user clicked the record button and started recording
+player.on('startRecord', function() {
+    console.log('started recording!');
+    $('#storeRecording').css('display', 'none');
+    $('#infoVideoWarning').css('display', 'none');
+    $('#infoVideoSuccess').css('display', 'none');
+
+});
+
+// user completed recording and stream is available
+player.on('finishRecord', function() {
+    // the blob object contains the recorded data that
+    // can be downloaded by the user, stored on server etc.
+    console.log('finished recording: ', player.recordedData);
+    console.log(player.record().getDuration());
+
+    $('#storeRecording').css('display', 'block');
+
+    $('#storeRecording').click(function(){
+
+        // Create an instance of FormData and append the video parameter that
+        // will be interpreted in the server as a file
+        var formData = new FormData();
+        formData.append('video', player.recordedData);
+        formData.append("recording_id", $('input[name=recording_id]').val());
+        formData.append("duration", Math.floor(player.record().getDuration()));
+
+
+        $.ajaxSetup({
+                   headers: {
+                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                   }
+               });
+
+         $.ajax({
+          url:"/uploadVideo",
+          method:"POST",
+          data: formData,
+          contentType: false,
+          cache: false,
+          processData: false,
+          beforeSend:function(){
+           $('#storeRecording').css('display', 'none');
+           $('#infoVideoWarning').css('display', 'block');
+           $('#infoVideoWarning strong').text("Votre vidéo est en cours de traitement");
+          },
+          success:function(data)
+          {
+              console.log('ok');
+              $('#infoVideoWarning').css('display', 'none');
+              $('#infoVideoSuccess').css('display', 'block');
+              $('#infoVideoSuccess strong').text("Votre vidéo a bien été mise en ligne");
+              //window.location = '/home';
+        },
+        error: function (xhr, msg) {
+         console.log(msg + '\n' + xhr.responseText);
+        }
+         });
+
+    });
+
+
+
+
+});
+</script>
+
+
+<script>
+/*
+    $(document).ready(function(){
+        // Read value on page load
+        $("#resultA b").html($("#customRangeA").val());
+        // Read value on change
+        $("#customRangeA").change(function(){
+            $("#resultA b").html($(this).val());
+        });
+
+    });
+    */
+</script>
+
+<script type="text/javascript">
+
+$('#openimgupload').click(function(){ $('#imgupload').trigger('click'); });
+
+</script>
+
+<script>
+$(document).ready(function(){
+ $(document).on('change', '#imgupload', function(){
+  var name = document.getElementById("imgupload").files[0].name;
+  var form_data = new FormData();
+  var ext = name.split('.').pop().toLowerCase();
+  if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1)
+  {
+   alert("Invalid Image File");
+  }
+  var oFReader = new FileReader();
+  oFReader.readAsDataURL(document.getElementById("imgupload").files[0]);
+  var f = document.getElementById("imgupload").files[0];
+  var fsize = f.size||f.fileSize;
+  if(fsize > 2000000)
+  {
+   alert("Image File Size is very big");
+  }
+  else
+  {
+      form_data.append("image", document.getElementById('imgupload').files[0]);
+      form_data.append("id_user", $('input[name=user_id]').val());
+
+      $.ajaxSetup({
+                 headers: {
+                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+             });
+
+   $.ajax({
+    url:"/uploadAvatar",
+    method:"POST",
+    data: form_data,
+    contentType: false,
+    cache: false,
+    processData: false,
+    beforeSend:function(){
+     $('#uploaded_image').html("<label class='text-success'>Image Uploading...</label>");
+    },
+    success:function(data)
+    {
+        console.log('ok');
+     $('#uploaded_image').html('<img class="picture-img image-loader is-loaded" src="/images/users/'+data.image+'" alt="'+data.name+'" crossorigin="anonymous" height="150" width="150">');
+ },
+ error: function (xhr, msg) {
+     console.log($('input[name=user_id]').val());
+   console.log(msg + '\n' + xhr.responseText);
+}
+   });
+  }
+ });
+});
+</script>
+
+
+<!--bpm tempo-->
+<script type="text/javascript">
+
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+var context = new AudioContext();
+var timer, noteCount, counting, accentPitch = 380, offBeatPitch = 200;
+var delta = 0;
+var curTime = 0.0;
+
+// Load up dots on pageload
+$("document").ready(function() {
+$(".ts-top").trigger("change");
+$("header").fitText(1, { maxFontSize: "46px" });
+});
+
+
+/*
+Scheduling Help by: https://www.html5rocks.com/en/tutorials/audio/scheduling/
+*/
+function schedule() {
+while(curTime < context.currentTime + 0.1) {
+  playNote(curTime);
+  updateTime();
+}
+timer = window.setTimeout(schedule, 0.1);
+}
+
+function updateTime() {
+curTime += 60.0 / parseInt($(".bpm-input").val(), 10);
+noteCount++;
+}
+
+/* Play note on a delayed interval of t */
+function playNote(t) {
+    var note = context.createOscillator();
+
+    if(noteCount == parseInt($(".ts-top").val(), 10) )
+      noteCount = 0;
+
+    if( $(".counter .dot").eq(noteCount).hasClass("active") )
+      note.frequency.value = accentPitch;
+    else
+      note.frequency.value = offBeatPitch;
+
+    note.connect(context.destination);
+
+    note.start(t);
+    note.stop(t + 0.05);
+
+    $(".counter .dot").attr("style", "");
+
+    $(".counter .dot").eq(noteCount).css({
+      transform: "translateY(-10px)",
+      background: "#F75454"
+    });
+}
+
+function countDown() {
+  var t = $(".timer");
+
+  if( parseInt(t.val(), 10) > 0 && counting === true)
+  {
+      t.val( parseInt(t.val(), 10) - 1 );
+      window.setTimeout(countDown, 1000);
+  }
+  else
+  {
+    $(".play-btn").click();
+    t.val(60);
+  }
+}
+
+/* Tap tempo */
+$(".tap-btn").click(function() {
+  var d = new Date();
+  var temp = parseInt(d.getTime(), 10);
+
+  $(".bpm-input").val( Math.ceil(60000 / (temp - delta)) );
+  delta = temp;
+});
+
+/* Add or subtract bpm */
+$(".bpm-minus, .bpm-plus").click(function() {
+if($(this).hasClass("bpm-minus"))
+  $(".bpm-input").val(parseInt($(".bpm-input").val(), 10) - 1 );
+else
+  $(".bpm-input").val(parseInt($(".bpm-input").val(), 10) + 1 );
+});
+
+/* Change pitches for tones in options */
+$(".beat-range, .accent-range").change(function() {
+  if($(this).hasClass("beat-range"))
+    offBeatPitch = $(this).val();
+  else
+     accentPitch = $(this).val();
+});
+
+/* Activate dots for accents */
+$(document).on("click", ".counter .dot", function() {
+  $(this).toggleClass("active");
+});
+
+$(".options-btn").click(function() {
+$(".options").toggleClass("options-active");
+});
+
+/* Add dots when time signature is changed */
+$(".ts-top, .ts-bottom").on("change", function() {
+  var _counter = $(".counter");
+  _counter.html("");
+
+  for(var i = 0; i < parseInt($(".ts-top").val(), 10); i++)
+  {
+    var temp = document.createElement("div");
+    temp.className = "dot";
+
+    if(i === 0)
+      temp.className += " active";
+
+    _counter.append( temp );
+  }
+});
+
+
+/* Play and stop button */
+$(".play-btn").click(function() {
+if($(this).data("what") === "pause")
+{
+  // ====== Pause ====== //
+  counting = false;
+  window.clearInterval(timer);
+  $(".counter .dot").attr("style", "");
+  $(this).data("what", "play").attr("style","").text("Play");
+}
+else {
+  // ====== Play ====== //
+
+if( $("#timer-check").is(":checked") )
+ {
+   counting = true;
+   countDown();
+ }
+
+  curTime = context.currentTime;
+  noteCount = parseInt($(".ts-top").val(), 10);
+  schedule();
+
+  $(this).data("what", "pause").css({
+    background: "#F75454",
+    color: "#FFF"
+  }).text("Stop");
+}
+});
 
 </script>
 

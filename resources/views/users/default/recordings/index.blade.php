@@ -376,14 +376,16 @@ div.pplsearchmin {
                         {{$user->name}}
                     </div>
                     @endforeach
-                    <div class="row">
+                    <div class="row mt-4">
+                        @if($recording->pivot->accept == null)
                         <div class="col-6">
                             <div class="showProfile__button left">
-                               <a style="background: #08192D; border-color: #08192D;" href="/recordings/multi/edit/{{$recording->id}}" class="button button--primary">
+                               <a style="background: #08192D; border-color: #08192D;" href="/accept/{{$recording->id}}" class="button button--primary">
                                Accepter
                                </a>
                             </div>
                         </div>
+
 
                         <div class="col-6">
                             <div class="showProfile__button left">
@@ -392,6 +394,7 @@ div.pplsearchmin {
                                </a>
                             </div>
                         </div>
+                        @endif
 
                     </div>
                  </div>

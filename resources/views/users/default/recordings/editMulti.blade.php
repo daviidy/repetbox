@@ -625,7 +625,7 @@ h6, .MuiButton-root {
                             <p class="mb-3">Durée: <span id="recordingTime"></span> </p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row flt">
                         @foreach($recording->videos as $video)
                         <div class="multi col-md-4 col-sm-12 text-left">
                             <video

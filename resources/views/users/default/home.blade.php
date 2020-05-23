@@ -232,12 +232,56 @@ div.pplsearchmin {
 
 
 @media screen and (max-width: 600px){
+    h3 {
+    font-size: 15px;
+    }
     .showProfile__button{
-        float: left;
+        float: right;
         margin-bottom: 2rem;
+    }
+    .button--primary{
+        font-size: .675rem;
     }
     div.checkedprofile {
         top: 6rem;
+    }
+    .contentbox_row {
+        width: 100%;
+        margin: 1rem 0;
+    }
+    div.contentbox {
+    background-color: #fff;
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.15);
+    }
+.contentbox {
+    padding: 25px 5px;
+    }
+    .xls {
+    max-width: 50% !important;
+    }
+    .mic {
+    max-width: 10% !important;
+    padding-left: 5px;
+    }
+    .progres {
+    max-width: 50% !important;
+    margin-top: 10px;
+    padding: 0px;
+    }
+    .progress {
+    height: 6px !important;
+    }
+    .fa {
+    font-size: small;
+    }
+    .link {
+    font-size: small;
+    padding: 5px;
+    }
+    .multi {
+    padding: 5px;
     }
 }
 </style>

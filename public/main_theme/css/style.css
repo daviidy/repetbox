@@ -831,6 +831,9 @@ Contact page
 		font-size: 12px;
 	    padding: 20px 20px;
 	}
+	.multi .video-js{
+        height: 110px !important;
+    }
 }
 
 .contact-from textarea {

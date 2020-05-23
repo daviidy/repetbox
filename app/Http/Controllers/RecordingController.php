@@ -249,9 +249,7 @@ class RecordingController extends Controller
 
 
         $file->move(storage_path('app/public'), $filename);
-        if (count($recording->videos) > 1) {
             return redirect('/joinVideos/'.$recording->id);
-        }
 
       return response()->json($recording);
     }
@@ -259,55 +257,56 @@ class RecordingController extends Controller
 
     public function joinVideos(Recording $recording)
     {
+        if (count($recording->videos) > 1) {
+            $tab = array();
+            $hstack_input = '';
+            $counter = 0;
+            foreach ($recording->videos as $video) {
+                array_push($tab, $video->video_file);
+                $hstack_input = $hstack_input.'['.$counter.':v]';
+                $counter += 1;
+            }
+            $final_video = 'out-'.time().'.mp4';
+            var_dump($hstack_input);
+            //$tab = ['video1.mp4', 'video2.mp4'];
+            FFMpeg::fromDisk('public')
+            ->open($tab)
+            ->export()
+            ->addFilter($hstack_input, 'hstack='.count($recording->videos), '[v]')  // $in, $parameters, $out
+            ->addFormatOutputMapping(new X264('libmp3lame', 'libx264'), Media::make('public', $final_video), ['0:a', '[v]'])
+            ->save();
 
-        $tab = array();
-        $hstack_input = '';
-        $counter = 0;
-        foreach ($recording->videos as $video) {
-            array_push($tab, $video->video_file);
-            $hstack_input = $hstack_input.'['.$counter.':v]';
-            $counter += 1;
+            $recording->final_video = $final_video;
+            $recording->save();
+
+
+            /*
+            $first_video = $recording->videos->first()->video_file;
+
+            $video1 = $disk->open($first_video);
+            var_dump($tab);
+
+            $output = $disk->open('output.mp4');
+
+            var_dump($output_path);
+
+            $video1->concat($tab)->saveFromSameCodecs($output->getPathfile(), true);
+            */
+
+            /*
+             $video1 = $disk->open('video1.mp4');
+             $video2 = $disk->open('video2.mp4');
+
+             $video1->concat([
+                 $video1->getPathfile(),
+                 $video2->getPathfile(),
+             ])->saveFromDifferentCodecs(storage_path('app/public/out-'.time().'.mp4'), true);
+             */
+
+            //shell_exec("ffmpeg -i ".storage_path('app/public/video2.mp4')." -i ".storage_path('app/public/video3.mp4')." -filter_complex hstack ".storage_path('app/public/test.mp4'));
+
+            return redirect()->back()->with('status', 'Les vidéos ont été fusionnées avec succès');
         }
-        $final_video = 'out-'.time().'.mp4';
-        var_dump($hstack_input);
-        //$tab = ['video1.mp4', 'video2.mp4'];
-        FFMpeg::fromDisk('public')
-        ->open($tab)
-        ->export()
-        ->addFilter($hstack_input, 'hstack='.count($recording->videos), '[v]')  // $in, $parameters, $out
-        ->addFormatOutputMapping(new X264('libmp3lame', 'libx264'), Media::make('public', $final_video), ['0:a', '[v]'])
-        ->save();
-
-        $recording->final_video = $final_video;
-        $recording->save();
-
-
-        /*
-        $first_video = $recording->videos->first()->video_file;
-
-        $video1 = $disk->open($first_video);
-        var_dump($tab);
-
-        $output = $disk->open('output.mp4');
-
-        var_dump($output_path);
-
-        $video1->concat($tab)->saveFromSameCodecs($output->getPathfile(), true);
-        */
-
-        /*
-         $video1 = $disk->open('video1.mp4');
-         $video2 = $disk->open('video2.mp4');
-
-         $video1->concat([
-             $video1->getPathfile(),
-             $video2->getPathfile(),
-         ])->saveFromDifferentCodecs(storage_path('app/public/out-'.time().'.mp4'), true);
-         */
-
-        //shell_exec("ffmpeg -i ".storage_path('app/public/video2.mp4')." -i ".storage_path('app/public/video3.mp4')." -filter_complex hstack ".storage_path('app/public/test.mp4'));
-
-        return redirect()->back()->with('status', 'Les vidéos ont été fusionnées avec succès');
     }
 
     /**
